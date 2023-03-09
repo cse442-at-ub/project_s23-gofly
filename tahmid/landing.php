@@ -1,16 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="landing.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <title>Edit Profile</title>
+    <link rel="stylesheet" href="login.css">
+    <title>Gofly</title>
 </head>
 <body>
     <nav>
@@ -18,10 +19,9 @@
             <h4><a href="landing.html">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Reviews</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Register</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="profile.php">My Profile</a></li>
+            <li><a href="logout.php">Logout</a></li>
+
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -30,20 +30,19 @@
         </div>
     </nav>
 
-    <div class="container">
-        <form action="login.php" method="post" class="form-3">
-            <h2 style="font-size: 2rem;">Edit Profile</h2>
-            <input class="box" type="text" name="firstname" value="Fardin" required>
-            <input class="box" type="text" name="lastname" value="Chowdhury" required>
-            <input class="box" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" value="888-888-8888" required>
-            
-            <a class="fpwd" href="change_password.html"><u>Change Password</u></a>
+    <div> 
+        <?php
+        session_start();
 
-            <input type="submit" value="Save" id="submit">
-        </form>
+        if(isset($_SESSION["username"])) {
+            $username = $_SESSION['username'];
+            echo "<h1>Welcome, $username!</h1>";
+        }
+        
+        ?>
     </div>
 
-    <script src="land.js"></script>
     
+    <script src="land.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 // Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   // Connect to the database (replace with your own database credentials)
     $servername = "oceanus.cse.buffalo.edu:3306";

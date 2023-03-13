@@ -10,18 +10,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <title>Forgot password</title>
+    <title>Delete Account</title>
 </head>
 <body>
     <nav>
         <div class="logo">
-            <h4><a href="landing2.html">Gofly</a></h4>
+            <h4><a href="landing.html">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Reviews</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Register</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="landing2.html">Home</a></li>
+            <li><a href="landing2.html">Log Out</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -31,11 +29,11 @@
     </nav>
 
     <div class="container">
-        <form action="forgotpwd.php" method="post" class="form">
-            <h2 style="font-size: 2rem;">Forgot Password</h2>
-            <input class="box" type="email" name="email" placeholder="Email" required>
-            <input type="submit" value="Reset" id="submit">
-            <p1 id="p-login"> Return to <a href="login.html"><u>Login</u></a></p1>
+        <form action="deleteProfile.php" method="post" class="form">
+            <h2 style="font-size: 2rem;">Are you sure you want to delete your account?</h2>
+            <input class="box" type="password" name="password" placeholder="Current Password" id = 'password'required>
+            <input type="submit" value="Submit" id="submit">
+            
         </form>
         <div class="side">
             <img src="photos/bgpic1.png" alt="">

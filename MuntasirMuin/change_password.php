@@ -39,7 +39,9 @@
             $sql = "UPDATE users SET password='$new_password' WHERE username='$username' AND password='$current_password'";
             
             if (mysqli_query($conn, $sql)) {
-                echo "Successfully Changed Password";
+                // Redirect the user to the login page
+                 header("Location: successpw.html");
+                 exit;
             } else {
                 $error = "Error updating password: " . mysqli_error($conn);
             }

@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require_once ("config.php");
 
 // Redirect to login page if user is not logged in
 if(!isset($_SESSION['username'])){
@@ -10,18 +11,6 @@ if(!isset($_SESSION['username'])){
 
 // Process form data if it has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // Set up database connection
-    $servername = "oceanus.cse.buffalo.edu:3306";
-    $username = "mamuin";
-    $password = "50424784";
-    $dbname = "mamuin_db";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check for connection errors
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Get user input
     $firstName = $_POST['firstname'];
@@ -33,17 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "UPDATE users SET FirstName='$firstName', LastName='$lastName', PhoneNumber='$phone' WHERE username='$username'";
 
     // Execute query
-    if ($conn->query($sql) === TRUE) {
+    if ($db_connection->query($sql) === TRUE) {
          // Redirect the user to the login page
          header("Location: profile.php");
          $_SESSION['status'] = "Sucessfully Saved";
          exit;
     } else {
-        echo "Error updating user data: " . $conn->error;
+        echo "Error updating user data: ";
     }
 
     // Close database connection
-    $conn->close();
+    $db_connection->close();
 }
 
 ?>

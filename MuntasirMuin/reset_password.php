@@ -1,3 +1,44 @@
+<?php
+// Connect to SQL database
+require_once ("config.php");
+
+// Define a variable to hold the error message, if any
+$error_msg = "";
+
+// Check if the form has been submitted
+if (isset($_POST['password']) && isset($_POST['confirm_password']) && isset($_POST['token'])) {
+    // Get the password and token from the form
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+    $token = $_POST['token'];
+
+    // Check if the passwords match
+    if ($password != $confirm_password) {
+        $error_msg = "The passwords do not match.";
+    }
+
+    // Check if the token is valid
+    $sql = "SELECT * FROM users WHERE reset_token='$token'";
+    $result = mysqli_query($db_connection, $sql);
+
+    if (mysqli_num_rows($result) == 0) {
+        $error_msg = "Invalid reset token.";
+    }
+
+    // If there are no errors, update the user's password in the database
+    if (empty($error_msg)) {
+        $row = mysqli_fetch_assoc($result);
+        $username = $row['username'];
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "UPDATE users SET password='$hashedPassword', reset_token=NULL WHERE username='$username'";
+        mysqli_query($db_connection, $sql);
+        header("Location: successpw2.html");
+        exit;
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,35 +54,15 @@
     <title>Change Password</title>
 </head>
 <body>
-    <nav>
+<nav>
         <div class="logo">
-            <h4><a href="landing.php">Gofly</a></h4>
+            <h4><a href="landing2.html">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="displaylist.php">Listings</a></li>
             <li><a href="#">Reviews</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Register</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li>
-                <div class="dropdown">
-                    <a href="#">
-                    <i class="fa-solid fa-user"></i>
-                    <?php
-                        session_start();
-
-                        if(isset($_SESSION["username"])) {
-                            $username = $_SESSION['username'];
-                            echo "$username";
-                        }
-                    ?>
-                    </a>
-                <!-- dropdown for the user -->
-                    <div class="dropdown-content">
-                        <a href="profile.php">My Profile</a>
-                        <a href="logout.php">Logout</a>
-                    </div>
-                </div>
-            </li>
-            
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -51,8 +72,14 @@
     </nav>
 
     <div class="container">
-        <form action="reset_pass.php" method="post" class="form">
+        <form method="post" class="form">
             <h2 style="font-size: 2rem;">Reset Password</h2>
+            <?php
+                // Display the error message, if any
+                if (!empty($error_msg)) {
+                    echo "<p style='color:red;'>$error_msg</p>";
+                }
+                ?>
             <input class="box" type="text" name="token" placeholder="Token">
             <input class="box" type="password" name="password" placeholder="New Password" id = 'password'required>
             <input class="box" type="password" name="confirm_password" placeholder="Confirm New Password" id = 'password'required>

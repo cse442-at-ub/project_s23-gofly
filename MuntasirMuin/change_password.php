@@ -1,4 +1,5 @@
 <?php
+require_once("config.php");
     // Start the session
     session_start();
     
@@ -14,39 +15,50 @@
         $current_password = $_POST['cpwd'];
         $new_password = $_POST['newp'];
         $confirm_password = $_POST['cnewp'];
-        
+
+        //Get the username form the databse for this account
+         $username = $_SESSION['username'];
+
+        //Getting the user's password from the databse using bind;
+        $stmt = $db_connection->prepare("SELECT password FROM users WHERE username = ?");
+        $stmt -> bind_param('s', $username);
+        $stmt -> execute();
+        $result = $stmt -> get_result();
+        $user = $result -> fetch_assoc();
+
+        //If current password is equal to the one in the database
+        if(!password_verify($current_password, $user['password'])){
+            echo "Incorrect current password";
+            exit();
+        }
+
+
         // Validate form data
         if ($new_password != $confirm_password) {
             $error = "New passwords do not match";
-        } else {
-            // Connect to database
-            $servername = "oceanus.cse.buffalo.edu:3306";
-            $username = "mamuin";
-            $password = "50424784";
-            $dbname = "mamuin_db";
-          
+        } 
+
+        if(password_verify($new_password, $user['password'])){
+            echo "Cannot use previous passwords";
+            exit();
+        }
+    
+        else {
+
+            $hasshedNewPassword = password_hash($new_password, PASSWORD_DEFAULT);
+    
             
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            $sql = "UPDATE users SET password='$hasshedNewPassword' WHERE username='$username'";
             
-            // Check connection
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
-            
-            // Update password in database
-            $username = $_SESSION['username'];
-            
-            $sql = "UPDATE users SET password='$new_password' WHERE username='$username' AND password='$current_password'";
-            
-            if (mysqli_query($conn, $sql)) {
+            if (mysqli_query($db_connection, $sql)) {
                 // Redirect the user to the login page
                  header("Location: successpw.html");
                  exit;
             } else {
-                $error = "Error updating password: " . mysqli_error($conn);
+                $error = "Error updating password: " . mysqli_error($db_connection);
             }
             
-            mysqli_close($conn);
+            mysqli_close($db_connection);
         }
     }
 ?>

@@ -1,15 +1,8 @@
 <?php
+require_once ("config.php");
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-  // Connect to the database (replace with your own database credentials)
-    $servername = "oceanus.cse.buffalo.edu:3306";
-    $username = "mamuin";
-    $password = "50424784";
-    $dbname = "mamuin_db";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
 
      // Get the user input
      $user = $_POST['uid'];
@@ -19,29 +12,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      $LastName = $_POST['lname'];
      $PhoneNumber = $_POST['num'];
  
-     // Validate the user input (e.g. check for empty fields, validate email address, etc.)
-     // ...
- 
+     // Validate the user input (e.g. check for user's info is already in the database)
+     $sql = "SELECT * FROM users WHERE email = '$email' OR username = '$user' OR phoneNumber = '$PhoneNumber'";
+     $result = $db_connection->query($sql);
+     if($result -> num_rows > 0){
+        echo "The user already exists";
+        exit();
+     }
     //  // Hash the password for security
-    //  $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Insert the new user data into the database
     $sql = "INSERT INTO users (username, email, password, FirstName, LastName, PhoneNumber)
-            VALUES ('$user', '$email', '$password', '$FirstName', '$LastName', '$PhoneNumber')";
+            VALUES ('$user', '$email', '$hashedPassword', '$FirstName', '$LastName', '$PhoneNumber')";
 
-    if ($conn->query($sql) === TRUE) {
+    if ($db_connection->query($sql) === TRUE) {
         // Redirect the user to the login page
         header("Location: login.html");
         exit;
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . mysqli_error($db_connection);
     }
 
-    $conn->close();
+    $db_connection->close();
+
 
 }
 

@@ -1,3 +1,21 @@
+<?php
+       session_start();
+
+       // Establish database connection
+       $servername = "oceanus.cse.buffalo.edu:3306";
+       $username = "mamuin";
+       $password = "50424784";
+       $dbname = "mamuin_db";
+       $conn = mysqli_connect($servername, $username, $password, $dbname);
+       
+       // Retrieve user data
+       $username = $_SESSION['username'];
+       $query = "SELECT * FROM users WHERE username = '$username'";
+       $result = mysqli_query($conn, $query);
+       $row = mysqli_fetch_assoc($result);
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <title>Login</title>
+    <title>Edit Profile</title>
 </head>
 <body>
     <nav>
@@ -20,8 +38,11 @@
         <ul class="nav-links">
             <li><a href="#">Reviews</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li><a href="signup.html">Register</a></li>
-            
+            <li>
+                <a href="login.html">Login</a>
+                <a>/</a>
+                <a href="signup.html">Register</a>
+            </li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -31,17 +52,11 @@
     </nav>
 
     <div class="container">
-        <form action="login.php" method="post" class="form color-g">
-            <h2>Login</h2>
-            <input class="box" type="text" name="uid" placeholder="Username" required>
-            <input class="box" type="password" name="pwd" placeholder="password" required>
-            <a class="fpwd" href="forgotpwd.php"><u>Forgot Password?</u></a>
-            <input type="submit" value="Login" id="submit">
-            <p1 id="p-login"> Don't have a Account? <a href="signup.html"><u>Register</u></a></p1>
+        <form action="login.html" method="post" class="form-3">
+            <h2 style="font-size: 2rem;">If your email is associated with an account, you will receive an email shortly with instructions on how to reset your password.</h2>
+            <input type="submit" value="Back to Login" id="submit">
+            
         </form>
-        <div class="side">
-            <img src="photos/bgpic1.png" alt="">
-        </div>
     </div>
 
     <script src="land.js"></script>

@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="landing.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="landing.css">
-    <title>Gofly</title>
+    <title>Change Password</title>
 </head>
 <body>
     <nav>
@@ -38,15 +37,12 @@
                 <!-- dropdown for the user -->
                     <div class="dropdown-content">
                         <a href="profile.php">My Profile</a>
-                        <a href="post_listing.php">Post Listing</a>
-                        <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>
                 </div>
             </li>
+            
         </ul>
-        
-        <!-- Create a burger for mobile view -->
         <div class="burger">
             <div class="line1"></div>
             <div class="line2"></div>
@@ -54,18 +50,20 @@
         </div>
     </nav>
 
-    <div class="wel"> 
-        <?php
-
-        if(isset($_SESSION["username"])) {
-            $username = $_SESSION['username'];
-            echo "<h1>Welcome, $username!</h1>";
-        }
-        
-        ?>
+    <div class="container">
+        <form action="change_password.php" method="post" class="form">
+            <h2 style="font-size: 2rem;">Change Password</h2>
+            <input class="box" type="password" name="cpwd" placeholder="Current Password" id = 'password'required>
+            <input class="box" type="password" name="newp" placeholder="New Password" id = 'password'required>
+            <input class="box" type="password" name="cnewp" placeholder="Confirm New Password" id = 'password'required>
+            <input type="submit" value="Submit" id="submit">
+        </form>
+        <div class="side">
+            <img src="photos/bgpic1.png" alt="">
+        </div>
     </div>
-
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>
+    
 </body>
 </html>

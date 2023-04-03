@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="search.scss">
+    <link rel="stylesheet" href="search.css">
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="display.css">
     <title>Listings</title>
@@ -64,21 +64,66 @@
     </div>
 
 
+    <style>
+        .sort-dropdown {
+        display: inline-block;
+        margin: 10px;
+        }
 
-    <!-- Sort dropdown -->
+        .sort-label {
+        font-size: 17px;
+        font-weight: bold;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: 3px;
+        }
+
+        .select-container {
+        position: relative;
+        display: inline-block;
+        }
+
+        .sort-select {
+        appearance: none;
+        background-color: rgb(130, 111, 236);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        padding: 5px 10px;
+        width: auto;
+        }
+
+        .select-container::after {
+        content: "▼";
+        color: white;
+        font-size: 12px;
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        }
+    </style>
     <div class="sort-dropdown">
         <form action="sort_listing.php" method="post">
-            <label for="sort">Sort by:</label>
-            <select name="sort" id="sort" onchange="this.form.submit()">
-                <option value="">Select</option>
-                <option value="price_high_low" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_high_low' ? 'selected' : ''; ?>>Price High-Low</option>
-                <option value="price_low_high" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_low_high' ? 'selected' : ''; ?>>Price Low-High</option>
-                <option value="duration" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'duration' ? 'selected' : ''; ?>>Duration</option>
-                <option value="airline" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'airline' ? 'selected' : ''; ?>>Airline</option>
-                <option value="destination" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'destination' ? 'selected' : ''; ?>>Destination</option>
-            </select>
+            <label for="sort" class="sort-label">Sort by:</label>
+            <div class="select-container">
+                <select name="sort" id="sort" class="sort-select" onchange="this.form.submit()">
+                    <option value="">Select</option>
+                    <option value="price_high_low" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_high_low' ? 'selected' : ''; ?>>Price High-Low</option>
+                    <option value="price_low_high" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_low_high' ? 'selected' : ''; ?>>Price Low-High</option>
+                    <option value="duration" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'duration' ? 'selected' : ''; ?>>Duration</option>
+                    <option value="airline" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'airline' ? 'selected' : ''; ?>>Airline</option>
+                    <option value="destination" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'destination' ? 'selected' : ''; ?>>Destination</option>
+                </select>
+            </div>
         </form>
     </div>
+
+
 
 
 
@@ -174,14 +219,6 @@
 
     mysqli_close($db_connection);
 ?>
-
-       
-
-
-
-
-
-    
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>

@@ -85,7 +85,7 @@ html {
 #p-login {
     margin-top: 30px;
 }
-.form a{
+.form a {
     text-decoration: none;
     color: black;
 }
@@ -112,3 +112,52 @@ html {
     width:500px;
     height: 750px;
 }
+.flex-1 {
+    flex: 1;
+
+}
+
+
+.btn-1 {
+    display: block;
+    text-align: center;
+    padding: 12px 30px;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: rgb(124, 100, 231);
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.btn-1:hover{
+    cursor: pointer;
+    background-color: blueviolet;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#color-g input[type=number] {
+  appearance: textfield;
+}
+
+.color-g input:valid,
+textarea:valid {
+    border-color: rgb(103, 204, 103);
+}
+.color-g input[type=text]:focus,
+.color-g input[type=email]:focus,
+.color-g input[type=password]:focus,
+.color-g input[type=number]:focus
+ {
+    border-color: #ce1515;
+  }
+

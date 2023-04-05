@@ -64,7 +64,7 @@ if (isset($_POST['email'])) {
             <h4><a href="landing2.html">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Reviews</a></li>
+            <li><a href="reviews.php">Reviews</a></li>
             <li><a href="login.php">Login</a></li>
             <li><a href="signup.php">Register</a></li>
             <li><a href="#">Contact Us</a></li>

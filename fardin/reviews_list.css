@@ -1,0 +1,56 @@
+html { 
+    background: url("photos/bgimg.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin: 50px 0;
+    text-align: center;
+}
+
+.reviews-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 30px;
+    padding-bottom: 20px;
+}
+
+.review-container {
+    flex: 0 0 auto;
+    width: calc(100% / 3 - 30px);
+    max-width: 350px;
+}
+
+.review {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.review h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+    
+.rating {
+    color: rgb(124, 100, 231);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+    
+.review p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+}

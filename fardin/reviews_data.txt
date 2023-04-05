@@ -1,0 +1,1 @@
+[{"full_name":"sup","rating":"5","comment":"deez nuts"},{"full_name":"hi","rating":"1","comment":"hello"},{"full_name":"noone","rating":"3","comment":"doze nuts"},{"full_name":"someone ","rating":"4","comment":"no nuts"},{"full_name":"one","rating":"","comment":"some nuts"},{"full_name":"klk","rating":"2","comment":"many nuts"}]

@@ -180,3 +180,30 @@ textarea:valid {
     color: rgb(124, 100, 231);
 }
 
+.review-container {
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.review h3 {
+margin-top: 0;
+margin-bottom: 5px;
+}
+
+.review p {
+margin: 0;
+}
+
+.review .rating {
+font-size: 20px;
+margin-bottom: 10px;
+}
+
+.review hr {
+border: none;
+border-top: 1px solid #ccc;
+margin-top: 15px;
+margin-bottom: 15px;
+}

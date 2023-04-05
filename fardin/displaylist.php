@@ -20,7 +20,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="displaylist.php">Listings</a></li>
-            <li><a href="#">Reviews</a></li>
+            <li><a href="reviews.php">Reviews</a></li>
             <li><a href="#">Contact Us</a></li>
             <li>
                 <div class="dropdown">

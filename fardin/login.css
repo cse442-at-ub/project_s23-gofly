@@ -161,3 +161,22 @@ textarea:valid {
     border-color: #ce1515;
   }
 
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.rating-star {
+    font-size: 2em;
+    cursor: pointer;
+    color: #ccc;
+    user-select: none;
+}
+
+.rating-star:hover,
+.rating-star:hover ~ .rating-star,
+.rating[data-hover-rating] .rating-star[data-hovered] {
+    color: rgb(124, 100, 231);
+}
+

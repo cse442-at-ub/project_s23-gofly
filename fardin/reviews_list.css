@@ -17,7 +17,7 @@ html {
 h2 {
     font-size: 2.5rem;
     margin: 50px 0;
-    margin-bottom: 190px;
+    margin-bottom: 165px;
     text-align: center;
     color: rgba(236, 230, 250, 1)
 }
@@ -70,7 +70,7 @@ h2 {
     color: #000000;
     overflow-x: auto; /* Add a horizontal scrollbar */
     white-space: pre-wrap; /* Wrap the text into multiple lines */
-    max-height: 4.4rem; /* Allow for two lines of text */
+    max-height: 8.4rem; /* Allow for two lines of text */
     padding-bottom: 30px; /* Add a small padding to prevent scrollbar overlap */
 }
 
@@ -94,4 +94,25 @@ h2 {
 /* Right arrow icon */
 .arrow-right {
     right: 1rem;
+}
+
+
+/* Style the scrollbar for Chrome, Safari, and Opera */
+.review::-webkit-scrollbar {
+    width: 5px;
+}
+
+.review::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+}
+
+.review::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Style the scrollbar for Firefox */
+.review {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f0f0f0;
 }

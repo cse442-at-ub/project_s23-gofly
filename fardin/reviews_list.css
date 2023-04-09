@@ -1,3 +1,4 @@
+/* Set background image for the entire page */
 html { 
     background: url("photos/bgimg.png") no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -6,17 +7,22 @@ html {
     background-size: cover;
 }
 
+/* Container for the entire reviews section */
 .container {
     width: 80%;
     margin: 0 auto;
 }
 
+/* Reviews header */
 h2 {
     font-size: 2.5rem;
     margin: 50px 0;
+    margin-bottom: 190px;
     text-align: center;
+    color: rgba(236, 230, 250, 1)
 }
 
+/* Flex container for the review cards */
 .reviews-container {
     display: flex;
     flex-wrap: nowrap;
@@ -25,32 +31,67 @@ h2 {
     padding-bottom: 20px;
 }
 
+/* Individual review card container */
 .review-container {
     flex: 0 0 auto;
     width: calc(100% / 3 - 30px);
     max-width: 350px;
 }
 
+/* Review card styling */
 .review {
-    background-color: #ffffff;
+    background-color:rgb(245, 242, 242);
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
+    height: 270px; /* Increased the card length (height) */
 }
 
+/* Review card title (name) */
 .review h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 10px;
+    overflow-x: auto; /* Add a horizontal scrollbar */
+    white-space: nowrap; /* Keep the text in a single line */
+    max-width: 100%; /* Limit the width of the title */
 }
     
+/* Review card rating stars */
 .rating {
     color: rgb(124, 100, 231);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 10px;
 }
     
+/* Review card comment */
 .review p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #333;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    color: #000000;
+    overflow-x: auto; /* Add a horizontal scrollbar */
+    white-space: pre-wrap; /* Wrap the text into multiple lines */
+    max-height: 4.4rem; /* Allow for two lines of text */
+    padding-bottom: 30px; /* Add a small padding to prevent scrollbar overlap */
+}
+
+
+/* Arrow icons for scrolling the slider */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #000000;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Left arrow icon */
+.arrow-left {
+    left: 1rem;
+}
+
+/* Right arrow icon */
+.arrow-right {
+    right: 1rem;
 }

@@ -29,44 +29,55 @@
     </nav>
 
     <div class="container">
-        <h2>Reviews</h2>
-        <div class="reviews-container">
-            <?php
-            $filename = 'reviews_data.txt';
-            if (file_exists($filename)) {
-                $json_data = file_get_contents($filename);
-                $reviews = json_decode($json_data, true);
-                if (count($reviews) > 0) {
-                    foreach ($reviews as $review) {
-                        $full_name = $review['full_name'];
-                        $rating = $review['rating'];
-                        $comment = $review['comment'];
-            ?>
-            <div class="review-container">
-                <div class="review">
-                <h3><?php echo htmlspecialchars($full_name); ?></h3>
-                    <div class="rating">
-                        <?php
-                        for ($i = 1; $i <= 5; $i++) {
-                            echo $i <= $rating ? '&#9733;' : '&#9734;';
-                        }
-                        ?>
+        <h2>Our Customer Reviews</h2>
+        <div class="slider-container">
+            <span class="arrow arrow-left" onclick="scrollSlider(-1);">&#10094;</span>
+            <div class="reviews-container">
+                <?php
+                $filename = 'reviews_data.txt';
+                if (file_exists($filename)) {
+                    $json_data = file_get_contents($filename);
+                    $reviews = json_decode($json_data, true);
+                    if (count($reviews) > 0) {
+                        foreach ($reviews as $review) {
+                            $full_name = $review['full_name'];
+                            $rating = $review['rating'];
+                            $comment = $review['comment'];
+                ?>
+                <div class="review-container">
+                    <div class="review">
+                    <h3><?php echo htmlspecialchars($full_name); ?></h3>
+                        <div class="rating">
+                            <?php
+                            for ($i = 1; $i <= 5; $i++) {
+                                echo $i <= $rating ? '&#9733;' : '&#9734;';
+                            }
+                            ?>
+                        </div>
+                        <p><?php echo htmlspecialchars($comment); ?></p>
                     </div>
-                    <p><?php echo htmlspecialchars($comment); ?></p>
                 </div>
-            </div>
-            <?php
+                <?php
+                        }
+                    } else {
+                        echo '<p>No reviews found.</p>';
                     }
                 } else {
                     echo '<p>No reviews found.</p>';
                 }
-            } else {
-                echo '<p>No reviews found.</p>';
-            }
-            ?>
+                ?>
+            </div>
+            <span class="arrow arrow-right" onclick="scrollSlider(1);">&#10095;</span>
         </div>
     </div>
 
+    <script>
+        function scrollSlider(direction) {
+            const slider = document.querySelector('.reviews-container');
+            const singleSlideWidth = slider.querySelector('.review-container').clientWidth;
+            const scrollAmount = singleSlideWidth * direction;
+            slider.scrollBy({ top: 0, left: scrollAmount, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
-

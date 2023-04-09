@@ -8,9 +8,9 @@ if(!isset($_SESSION['username'])){
 }
 
 // Check if the user is logged in and has the user type "admin"
-if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
+if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
     // The user is not an admin, so redirect to regular users' landing page.
-    header('Location: admin_displaylist.php');
+    header('Location: displaylist.php');
     exit();
 }
 
@@ -34,6 +34,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <?php 
         // Check the session status
         $status = session_status();
+
         if ($status === PHP_SESSION_ACTIVE) {
             // Session is active
             include_once 'navbar.php';
@@ -48,11 +49,12 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 
     <div class="wel"> 
     <?php
-        if(isset($_SESSION["username"])) {
-            $username = $_SESSION['username'];
-            echo "<h1>Welcome, $username!</h1>";
-        }
-    ?>
+    if(isset($_SESSION["username"])) {
+    $username = $_SESSION['username'];
+    echo "<h1>Welcome Admin User: $username!</h1>";
+}
+
+?>
     </div>
 
 
@@ -175,6 +177,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
                             
 							<span style="align-items: center;" class="plane price">
 								<h1><?php echo "$" . " " . $row["price"]; ?></h1>
+                                <?php echo '<a class="btn-2" href="admin_deletelisting.php?id=' . $row["id"] . '">Delete Ticket</a>' ?>
                                 
 
 							</span>
@@ -191,7 +194,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 									
 								</span>
                                 <span class="price plane">
-                                    <?php echo '<a class="btn-3" href="addbooking.php?id=' . $row["id"] . '">Book Now</a>' ?>
+                                    
+                                    <?php echo '<a class="btn-3" href="editlistings.php?id=' . $row["id"] . '">Edit Ticket</a>' ?>
                                 </span>
 							</div>
 						</div>

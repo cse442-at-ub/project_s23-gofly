@@ -13,22 +13,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
     // Query the database
-    $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = mysqli_query($db_connection, $sql);
+
+    $stmt = $db_connection->prepare("SELECT username, password, user_type FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+
+
+    // $sql = "SELECT * FROM users WHERE username='$username'";
+    // $result = mysqli_query($db_connection, $sql);
 
 
     // Check if the query returned any rows
-    if (mysqli_num_rows($result) == 1) {
+    // if (mysqli_num_rows($result) == 1) {
+        if($stmt->num_rows == 1){
+            $stmt->bind_result($username, $hashed_password, $user_type);
+            $stmt->fetch();
         // Get the user's data
-        $user = mysqli_fetch_assoc($result);
+        // $user = mysqli_fetch_assoc($result);
         
         // Verify the password
-        if (password_verify($password, $user['password'])) {
+        if (password_verify($password, $hashed_password)) {
             // Login successfull
             
             $_SESSION['username'] = $username;
-            header("Location: landing.php");
-            exit;
+            $_SESSION['user_type'] = $user_type;
+           
+            
+            if($user_type == 'admin') {
+                header("Location: admin_landing.php");
+                exit();
+            }
+            else{
+                //The user_type = user
+                header("Location: landing.php");
+                exit();
+            }
+
         } else {
             // Login failed
             header("Location: login.php");

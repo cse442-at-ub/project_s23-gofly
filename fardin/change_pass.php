@@ -13,42 +13,21 @@
     <title>Change Password</title>
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <h4><a href="landing.php">Gofly</a></h4>
-        </div>
-        <ul class="nav-links">
-            <li><a href="displaylist.php">Listings</a></li>
-            <li><a href="#">Reviews</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li>
-                <div class="dropdown">
-                    <a href="#">
-                    <i class="fa-solid fa-user"></i>
-                    <?php
-                        session_start();
+<?php 
+    // Check the session status
+    $status = session_status();
 
-                        if(isset($_SESSION["username"])) {
-                            $username = $_SESSION['username'];
-                            echo "$username";
-                        }
-                    ?>
-                    </a>
-                <!-- dropdown for the user -->
-                    <div class="dropdown-content">
-                        <a href="profile.php">My Profile</a>
-                        <a href="logout.php">Logout</a>
-                    </div>
-                </div>
-            </li>
-            
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+    if ($status === PHP_SESSION_ACTIVE) {
+        // Session is active
+        include_once 'navbar.php';
+    } else {
+        session_start();
+        // Session is not active
+        include_once 'navbar.php';
+
+    }
+        
+    ?>
 
     <div class="container">
         <form action="change_password.php" method="post" class="form">

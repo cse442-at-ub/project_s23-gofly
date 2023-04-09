@@ -5,7 +5,6 @@ global $db_connection;
 //     header('Location: https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 //     exit();
 // }
-define('SENDGRID_API_KEY', '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');
 
 //Connect to the databse using mysqli
 $servername = "oceanus.cse.buffalo.edu:3306";

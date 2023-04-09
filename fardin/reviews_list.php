@@ -79,5 +79,8 @@
             slider.scrollBy({ top: 0, left: scrollAmount, behavior: 'smooth' });
         }
     </script>
+    <div class="reviews-btn-container">
+        <button class="view-reviews-btn" onclick="window.location.href='reviews.php'">Leave a Review</button>
+    </div>
 </body>
 </html>

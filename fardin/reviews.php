@@ -88,6 +88,11 @@
             <img src="photos/bgpic1.png" alt="">
         </div>
     </div>
+    <div class="reviews-btn-container">
+        <button class="view-reviews-btn" onclick="window.location.href='reviews_list.php'">View Customer Reviews</button>
+    </div>
+
+
     
 </body>
 </html>

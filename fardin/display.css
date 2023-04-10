@@ -519,6 +519,10 @@ nav {
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+
+
+  margin-bottom: 50px; 
+
 }
 
 .pagination a,
@@ -548,7 +552,7 @@ nav {
   border: none;
   background-color: transparent;
   color: #555;
-  font-size: 16px;
+  font-size: 16px;+
   cursor: default;
 }
 

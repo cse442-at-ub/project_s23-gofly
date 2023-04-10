@@ -6,6 +6,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

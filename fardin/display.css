@@ -574,7 +574,6 @@ nav {
 }
 .container2 {
   display: flex;
-  height: 900px;
   width: 600px;
   object-fit: cover; 
   /* border: 1px solid black; */

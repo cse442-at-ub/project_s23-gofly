@@ -27,11 +27,7 @@ if ($result->num_rows > 0) {
     echo "<p>No tickets found for $username</p>";
 }
 
-// Loop through the ticket IDs and retrieve the corresponding flight data
-foreach ($ticket_ids as $ticket_id) {
-    // Retrieve the flight data based on the ticket ID
-    $sql = "SELECT * FROM flight_listings WHERE id='$ticket_id'";
-    $result = $db_connection->query($sql);
+
 ?>
 
 
@@ -79,38 +75,49 @@ foreach ($ticket_ids as $ticket_id) {
     ?>
     </h1>
     
-    <div class="container2">
     
+
+
     <?php
+    // Loop through the ticket IDs and retrieve the corresponding flight data
+    foreach ($ticket_ids as $ticket_id) {
+    // Retrieve the flight data based on the ticket ID
+    $sql = "SELECT * FROM flight_listings WHERE id='$ticket_id'";
+    $result = $db_connection->query($sql);
     // Display the flight data
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
+
+        // echo $row["airline"];
         ?>
-<div class="ticket">
-	<div class="left">
-		<div class="image">
-			<p class="admit-one">
-				<span>TICKET</span>
-				<span>TICKET</span>
-				<span>TICKET</span>
-			</p>
-			<div class="ticket-number">
-				<p>
-                <?php  echo $row["flight_number"];?>
-				</p>
-			</div>
-		</div>
-		<div class="ticket-info">
-			<p class="date">
-				<span>TUESDAY</span>
-				<span class="june-29">JUNE 29TH</span>
-				<span>2021</span>
-			</p>
-			<div class="show-name">
-            <?php  echo  $row["airline"];?>
-				
-				<h2>  <?php  echo $row["departure"];?>
-                <span><svg
+    <div class="container2">
+    <div class="ticket">
+        <div class="left">
+            <div class="image">
+                <p class="admit-one">
+                    <span>TICKET</span>
+                    <span>TICKET</span>
+                    <span>TICKET</span>
+                </p>
+                <div class="ticket-number">
+                    <p>
+                        <?php  echo $row["flight_number"];?>
+                    </p>
+                </div>
+            </div>
+            <div class="ticket-info">
+                <p class="date">
+                    <span>TUESDAY</span>
+                    <span class="june-29">JUNE 29TH</span>
+                    <span>2021</span>
+                </p>
+                <div class="show-name">
+                    <?php  echo  $row["airline"];?>
+
+                    <h2>
+                        <?php  echo $row["departure"];?>
+                        <span>
+                            <svg
                                 clip-rule="evenodd"
                                 fill-rule="evenodd"
                                 height="60"
@@ -118,7 +125,7 @@ foreach ($ticket_ids as $ticket_id) {
                                 image-rendering="optimizeQuality"
                                 shape-rendering="geometricPrecision"
                                 text-rendering="geometricPrecision"
-                                viewBox="0 0 500 500"
+                                viewbox="0 0 500 500"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g stroke="#222">
                                     <line
@@ -135,46 +142,40 @@ foreach ($ticket_ids as $ticket_id) {
                                         stroke-linejoin="round"
                                         stroke-width="10"/>
                                 </g>
-                            </svg> <?php  echo $row["arrival"];?></h2>
-                            
-                        </span>
-			</div>
-			<div class="time">
-				<p><?php  echo $row["departure_date"];?></</p>
-				<p><?php  echo $row["departure_time"];?></p>
-			</div>
+                            </svg>
+                            <?php  echo $row["arrival"];?></h2>
 
-		</div>
-	</div>
-	<div class="right">
+                    </span>
+                </div>
+                <div class="time">
+                    <p><?php  echo $row["departure_date"];?></</p>
+                    <p><?php  echo $row["departure_time"];?></p>
+                </div>
 
-			<div class="barcode">
-				<img src="https://external-preview.redd.it/cg8k976AV52mDvDb5jDVJABPrSZ3tpi1aXhPjgcDTbw.png?auto=webp&s=1c205ba303c1fa0370b813ea83b9e1bddb7215eb" alt="QR code">
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+        <div class="right">
+
+            <div class="barcode">
+                <img
+                    src="https://external-preview.redd.it/cg8k976AV52mDvDb5jDVJABPrSZ3tpi1aXhPjgcDTbw.png?auto=webp&s=1c205ba303c1fa0370b813ea83b9e1bddb7215eb"
+                    alt="QR code">
+            </div>
+        </div>
+    </div>
 </div>
-       <?php  echo "<p>Airline: " . $row["airline"] . "</p>";?>
-        <!-- echo "<p>Flight Number: " . $row["flight_number"] . "</p>";
-        echo "<p>Departure: " . $row["departure"] . "</p>";
-        echo "<p>Arrival: " . $row["arrival"] . "</p>";
-        echo "<p>Departure Date: " . $row["departure_date"] . "</p>";
-        echo "<p>Departure Time: " . $row["departure_time"] . "</p>";
-        echo "<p>Duration: " . $row["duration"] . "</p>";
-        echo "<p>Price: " . $row["price"] . "</p>";
-        echo "<p>Seats: " . $row["seats"] . "</p>";
-        echo "<p>Class: " . $row["class"] . "</p>"; -->
-    <?php
-    } else {
-        echo "<p>No flight data found for ticket ID $ticket_id</p>";
-    }
-    }
 
-    $db_connection->close();
+
+    <?php
+        } else {
+            echo "<p>No flight data found for ticket ID $ticket_id</p>";
+        }
+        }
+
+        $db_connection->close();
     ?>
 
-    </div>
-
+</div>
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>  
    

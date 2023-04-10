@@ -109,6 +109,12 @@ mysqli_close($db_connection);
     <label>Credit Card Number</label>
     <input type="text" name="card_number" required>
     <br><br>
+    <?php 
+        if (isset($_SESSION['error'])) {
+            echo '<p style="color: red;">' . $_SESSION['error'] . '</p>';
+            unset($_SESSION['error']);
+        }
+    ?>
     <button class="btn btn-1" type="submit" name="book_securely">Book Securely</button>
   </form>
 </div>

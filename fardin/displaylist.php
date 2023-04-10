@@ -25,7 +25,6 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="search.css">
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="display.css">
     <title>Listings</title>
@@ -199,7 +198,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 				</div>
 			</div>
 
-			<?php
+		<br>
+        <?php
 		}
 		// add pagination links
 		$sql = "SELECT COUNT(*) AS count FROM flight_listings";
@@ -208,7 +208,9 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 		$count = $row['count'];
 		$pages = ceil($count / $limit);
 		if ($pages > 1) {
-			echo '<div class="pagination">';
+			?>
+            <div class="pagination">
+            <?php
 			for ($i = 1; $i <= $pages; $i++) {
 				if ($i == $page) {
 					echo "<span class='current'>$i</span>";
@@ -216,7 +218,9 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 					echo "<a href='?page=$i'>$i</a>";
 				}
 			}
-			echo '</div>';
+			?>
+            </div>
+            <?php
 		}
 	} else {
 		echo "<p>No results found.</p>";

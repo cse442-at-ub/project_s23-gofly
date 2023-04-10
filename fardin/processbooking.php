@@ -22,7 +22,9 @@ $result = mysqli_stmt_get_result($stmt);
 
 if (mysqli_num_rows($result) > 0) {
     // User has already booked this ticket
-    echo "You have already booked this ticket.";
+    $_SESSION['error'] = "You have already booked this ticket.";
+    header("Location: addbooking.php?id=$ticket_id");
+    exit();
 } else {
     // Prepare the insert statement
     $insert_query = "INSERT INTO user_booking (ticket_id, user) VALUES (?, ?)";
@@ -44,4 +46,4 @@ if (mysqli_num_rows($result) > 0) {
 // Close the statement and database connection
 mysqli_stmt_close($stmt);
 mysqli_close($db_connection);
-?> 
+?>

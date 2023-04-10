@@ -518,7 +518,9 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 250px;
+  margin-left: 250%;
+  margin-bottom: 100px;
 }
 
 .pagination a,
@@ -581,3 +583,4 @@ nav {
   margin-top: 5%;
   box-shadow: 15px 15px 20px black;
 }
+

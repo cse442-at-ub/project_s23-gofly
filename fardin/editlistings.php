@@ -177,7 +177,7 @@ mysqli_close($db_connection);
 
 
             <input type="submit" value="Save Listing" id="submit">
-            <button type="button" calss = 'btn-3' onclick="window.location.href='admin_displaylist.php'">Cancel</button>
+            <button type="button" class="btn-3" onclick="window.location.href='admin_displaylist.php'">Cancel</button>
             
         </form>
         

@@ -1,3 +1,21 @@
+<?php
+       session_start();
+
+       // Establish database connection
+       $servername = "oceanus.cse.buffalo.edu:3306";
+       $username = "mamuin";
+       $password = "50424784";
+       $dbname = "mamuin_db";
+       $conn = mysqli_connect($servername, $username, $password, $dbname);
+       
+       // Retrieve user data
+       $username = $_SESSION['username'];
+       $query = "SELECT * FROM users WHERE username = '$username'";
+       $result = mysqli_query($conn, $query);
+       $row = mysqli_fetch_assoc($result);
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +33,12 @@
 <body>
     <nav>
         <div class="logo">
-            <h4><a href="landing.html">Gofly</a></h4>
+            <h4><a href="landing2.html">Gofly</a></h4>
         </div>
         <ul class="nav-links">
             <li><a href="#">Reviews</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Register</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="signup.php">Register</a></li>
             <li><a href="#">Contact Us</a></li>
         </ul>
         <div class="burger">
@@ -32,14 +50,9 @@
 
     <div class="container">
         <form action="login.php" method="post" class="form-3">
-            <h2 style="font-size: 2rem;">Edit Profile</h2>
-            <input class="box" type="text" name="firstname" value="Fardin" required>
-            <input class="box" type="text" name="lastname" value="Chowdhury" required>
-            <input class="box" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" value="888-888-8888" required>
+            <h2 style="font-size: 2rem;">You Have Successfully Changed Your Password</h2>
+            <input type="submit" value="Back to Login" id="submit">
             
-            <a class="fpwd" href="change_password.html"><u>Change Password</u></a>
-
-            <input type="submit" value="Save" id="submit">
         </form>
     </div>
 

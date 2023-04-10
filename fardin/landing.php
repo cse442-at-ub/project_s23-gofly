@@ -1,11 +1,4 @@
-<?php 
-// Check if the user is logged in and has the user type "admin"
-if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
-    // The user is an admin, so redirect to regular admin to their landing page.
-    header('Location: admin_landing.php');
-    exit();
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

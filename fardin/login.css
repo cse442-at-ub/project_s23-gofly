@@ -161,3 +161,77 @@ textarea:valid {
     border-color: #ce1515;
   }
 
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.rating-star {
+    font-size: 2em;
+    cursor: pointer;
+    color: #ccc;
+    user-select: none;
+}
+
+.rating-star:hover,
+.rating-star:hover ~ .rating-star,
+.rating[data-hover-rating] .rating-star[data-hovered] {
+    color: rgb(124, 100, 231);
+}
+
+.review-container {
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.review h3 {
+margin-top: 0;
+margin-bottom: 5px;
+}
+
+.review p {
+margin: 0;
+}
+
+.review .rating {
+font-size: 20px;
+margin-bottom: 10px;
+}
+
+.review hr {
+border: none;
+border-top: 1px solid #ccc;
+margin-top: 15px;
+margin-bottom: 15px;
+}
+
+
+
+.reviews-btn-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 150px;
+    text-align: center;
+}
+
+.view-reviews-btn {
+    padding: 12px 30px;
+    width: 30%;
+    margin-top: 30px;
+    background-color: rgb(124, 100, 231);
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.view-reviews-btn:hover {
+    cursor: pointer;
+    background-color: blueviolet;
+}

@@ -25,13 +25,11 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="search.css">
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="display.css">
     <title>Listings</title>
 </head>
 <body>
-
     <?php 
         // Check the session status
         $status = session_status();
@@ -42,21 +40,6 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
             session_start();
             // Session is not active
             include_once 'navbar.php';
-
-    <nav>
-        <div class="logo">
-            <h4><a href="landing.php">Gofly</a></h4>
-        </div>
-        <ul class="nav-links">
-            <li><a href="displaylist.php">Listings</a></li>
-            <li><a href="reviews.php">Reviews</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li>
-                <div class="dropdown">
-                    <a href="#">
-                    <i class="fa-solid fa-user"></i>
-                    <?php
-                        session_start();
 
         }
         
@@ -215,7 +198,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 				</div>
 			</div>
 
-			<?php
+		<br>
+        <?php
 		}
 		// add pagination links
 		$sql = "SELECT COUNT(*) AS count FROM flight_listings";
@@ -224,7 +208,9 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 		$count = $row['count'];
 		$pages = ceil($count / $limit);
 		if ($pages > 1) {
-			echo '<div class="pagination">';
+			?>
+            <div class="pagination">
+            <?php
 			for ($i = 1; $i <= $pages; $i++) {
 				if ($i == $page) {
 					echo "<span class='current'>$i</span>";
@@ -232,7 +218,9 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 					echo "<a href='?page=$i'>$i</a>";
 				}
 			}
-			echo '</div>';
+			?>
+            </div>
+            <?php
 		}
 	} else {
 		echo "<p>No results found.</p>";

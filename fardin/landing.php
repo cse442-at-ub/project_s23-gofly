@@ -1,12 +1,3 @@
-<?php 
-// Check if the user is logged in and has the user type "admin"
-if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
-    // The user is not an admin, so redirect to regular users' landing page.
-    header('Location: admin_landing.php');
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,24 +13,9 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <title>Gofly</title>
 </head>
 <body>
-
 <?php 
     // Check the session status
     $status = session_status();
-    <nav>
-        <div class="logo">
-            <h4><a href="landing.php">Gofly</a></h4>
-        </div>
-        <ul class="nav-links">
-            <li><a href="displaylist.php">Listings</a></li>
-            <li><a href="reviews.php">Reviews</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li>
-                <div class="dropdown">
-                    <a href="#">
-                    <i class="fa-solid fa-user"></i>
-                    <?php
-                        session_start();
 
     if ($status === PHP_SESSION_ACTIVE) {
         // Session is active

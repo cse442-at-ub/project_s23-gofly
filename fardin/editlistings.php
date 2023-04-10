@@ -21,17 +21,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
 $ticket_id = $_GET['id'];
 
 
-
-
 // Get the current ticket information from the database
 $stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
-
-
-
-
-// Get the current ticket information from the database
-$stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
-
 
 //binding the type of parameter
 mysqli_stmt_bind_param($stmt, "i", $ticket_id);
@@ -39,7 +30,6 @@ mysqli_stmt_execute($stmt);
 
 $result = mysqli_stmt_get_result($stmt);
 $ticket = mysqli_fetch_assoc($result);
-
 
 $airline = $ticket['airline'];
 $flight_number = $ticket['flight_number'];

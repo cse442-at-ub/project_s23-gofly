@@ -219,3 +219,23 @@ input[type=number] {
   appearance: textfield;
 }
 
+.btn-4 {
+    text-decoration: none;
+    align-content: center;
+    padding: 12px 30px;
+    width: 60%;
+    margin-top: 30px;
+    background-color: rgb(124, 100, 231);
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.btn-4:hover{
+    cursor: pointer;
+    background-color: blueviolet;
+
+}
+

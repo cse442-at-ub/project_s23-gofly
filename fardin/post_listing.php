@@ -19,12 +19,9 @@
 
 
 
-       
-       // Retrieve user data
-       $username = $_SESSION['username'];
-       $query = "SELECT * FROM users WHERE username = '$username'";
-       $result = mysqli_query($db_connection, $query);
-       $row = mysqli_fetch_assoc($result);
+     
+
+
 
        if($_SERVER["REQUEST_METHOD"] == "POST") {
         $airline = mysqli_real_escape_string($db_connection, $_POST['airline']);
@@ -37,6 +34,13 @@
         $price = mysqli_real_escape_string($db_connection, $_POST['price']);
         $seats = mysqli_real_escape_string($db_connection, $_POST['seats']);
         $class = mysqli_real_escape_string($db_connection, $_POST['fclass']);
+
+        // //Check if any of the filds are empty.
+        // if(empty($airline) || empty($flight_number) || empty($departure) || empty($arrival) || empty($date) || empty($time) || empty($duration) || empty($seats) || empty($class)){
+            
+        // }
+
+
         
         $query = "INSERT INTO flight_listings (airline, flight_number, departure, arrival, departure_date, departure_time, duration, price, seats, class) VALUES ('$airline', '$flight_number', '$departure', '$arrival', '$date', '$time', '$duration', '$price', '$seats', '$class')";
         mysqli_query($db_connection, $query);

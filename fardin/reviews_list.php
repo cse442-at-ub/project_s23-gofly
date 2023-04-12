@@ -1,3 +1,7 @@
+<?php
+require_once('config.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,19 +38,18 @@
             <span class="arrow arrow-left" onclick="scrollSlider(-1);">&#10094;</span>
             <div class="reviews-container">
                 <?php
-                $filename = 'reviews_data.txt';
-                if (file_exists($filename)) {
-                    $json_data = file_get_contents($filename);
-                    $reviews = json_decode($json_data, true);
-                    if (count($reviews) > 0) {
-                        foreach ($reviews as $review) {
-                            $full_name = $review['full_name'];
-                            $rating = $review['rating'];
-                            $comment = $review['comment'];
+                $sql = "SELECT * FROM reviews ORDER BY created_at DESC";
+                $result = $db_connection->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $full_name = $row['full_name'];
+                        $rating = $row['rating'];
+                        $comment = $row['comment'];
                 ?>
                 <div class="review-container">
                     <div class="review">
-                    <h3><?php echo htmlspecialchars($full_name); ?></h3>
+                        <h3><?php echo htmlspecialchars($full_name); ?></h3>
                         <div class="rating">
                             <?php
                             for ($i = 1; $i <= 5; $i++) {
@@ -58,9 +61,6 @@
                     </div>
                 </div>
                 <?php
-                        }
-                    } else {
-                        echo '<p>No reviews found.</p>';
                     }
                 } else {
                     echo '<p>No reviews found.</p>';

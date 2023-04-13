@@ -98,24 +98,24 @@
         <!-- PASSENGER INFO -->
         <div id="flight-info">
           <div class="info-box">
-            <label for="adults">Adults</label>
-            <select name="adults">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </div>
+              <label for="adults">Adults</label>
+              <select name="adults">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
           </div>
           <div class="info-box">
-            <label for="class-type">Class</label>
-            <select name="class-type">
-              <option value="Economy">Economy</option>
-              <option value="Business">Business</option>
-              <option value="First">First Class</option>
-            </select>
+              <label for="class-type">Class</label>
+              <select name="class-type">
+                  <option value="Economy">Economy</option>
+                  <option value="Business">Business</option>
+                  <option value="First">First Class</option>
+              </select>
           </div>
       </div>
+
       
         <!-- SEARCH BUTTON -->
       <div id="flight-search">

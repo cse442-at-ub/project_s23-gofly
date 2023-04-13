@@ -40,6 +40,104 @@
         ?>
     </div>
 
+    <div id="search-form">
+    <section>
+      <h2 class="header">Search Flights</h2>
+      <div class="flight" id="flightbox">
+        
+        <form id="flight-form">
+        <!-- TRIP TYPE -->
+        <div id="flight-type">
+          <div class="info-box">
+            <input type="radio" name="flight-type" value="Return" id="return" checked />
+            <label for="return"> RETURN</label>
+          </div>
+          <div class="info-box">
+            <input type="radio" name="flight-type" value="Single" id="one-way" />
+            <label for="one-way">ONE WAY</label>
+          </div>
+        </div>
+        
+        <!-- FROM/TO -->
+        <div id="flight-depart">
+          <div class="info-box">
+            <label for="Origin">Origin</label>
+            <select name="Origin">
+              <option value="1">Select</option>
+              <option value="2">JFK</option>
+              <option value="3">DAC</option>
+              <option value="4">SAF</option>
+              <option value="5">BOS</option>
+            </select>
+          </div>
+          <div class="info-box">
+            <label for="Destination">Destination</label>
+            <select name="Destination">
+              <option value="1">Select</option>
+              <option value="2">JFK</option>
+              <option value="3">DAC</option>
+              <option value="4">SAF</option>
+              <option value="5">BOS</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- FROM/TO -->
+        <div id="flight-dates">
+          <div class="info-box">
+            <label for="">Departure</label>
+            <input type="date" class="form-control" aria-describedby="return-date-label" />
+          </div>
+          
+          <div class="info-box" id="return-box">
+            <label for="">Arrival</label>
+            <input type="date" class="form-control" aria-describedby="return-date-label" />
+          </div>
+        </div>
+        
+        <!-- PASSENGER INFO -->
+        <div id="flight-info">
+          <div class="info-box">
+            <label for="adults">Adults</label>
+            <select name="adults">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div class="info-box">
+            <label for="children">Children(s)(13-under)</label>
+            <select name="children">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="0">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="info-box">
+            <label for="class-type">Class</label>
+            <select name="class-type">
+              <option value="Economy">Economy</option>
+              <option value="Business">Business</option>
+              <option value="First">First Class</option>
+            </select>
+          </div>
+      </div>
+      
+        <!-- SEARCH BUTTON -->
+      <div id="flight-search">
+        <div class="info-box">
+          <input type="submit" id="search-flight" value="Search"/>
+        </div>
+      </div>
+        
+      </form> 
+      </div>
+    </section>
+       
+</div>
+
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>
 </body>

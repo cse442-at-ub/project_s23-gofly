@@ -106,14 +106,6 @@
               <option value="4">4</option>
             </select>
           </div>
-          <div class="info-box">
-            <label for="children">Children(s)(13-under)</label>
-            <select name="children">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="0">2</option>
-              <option value="3">3</option>
-            </select>
           </div>
           <div class="info-box">
             <label for="class-type">Class</label>

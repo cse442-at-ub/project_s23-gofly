@@ -62,7 +62,15 @@
     <div class="container">
         <form action="deleteProfile.php" method="post" class="form">
             <h2 style="font-size: 2rem;">Are you sure you want to delete your account?</h2>
-            <input class="box" type="password" name="password" placeholder="Current Password" id = 'password'required>
+            <p class="failed">
+                <?php
+                    if(isset($_SESSION['status'])){
+                        echo $_SESSION['status'];
+                        unset($_SESSION['status']);
+                    }
+                ?>
+            </p>
+            <input class="box" type="password" name="password" placeholder="Current Password" id = 'password' required>
             <input type="submit" value="Submit" id="submit">
             
         </form>

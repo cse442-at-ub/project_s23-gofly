@@ -10,6 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($db_connection, $_POST['uid']);
     $password = mysqli_real_escape_string($db_connection, $_POST['pwd']);
 
+        // Check if username or password is empty
+        if (empty($username) || empty($password)) {
+            $_SESSION['status'] = "Both Username and password are required.";
+            header("Location: login.php");
+            exit();
+        }
+
+
+
     
 
     // Query the database

@@ -1,50 +1,3 @@
-<?php
-require_once("config.php");
-session_start();
-
-if(!isset($_SESSION['username'])){
-    header('Location: login.php');
-    exit();
-
-}
-
-// Check if the user is logged in and has the user type "admin"
-if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
-    // The user is not an admin, so redirect to regular users' landing page.
-    header('Location: displaylist.php');
-    exit();
-}
-
-
-
-//Get the ticket ID from the query parameter.
-$ticket_id = $_GET['id'];
-
-
-// Get the current ticket information from the database
-$stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
-
-//binding the type of parameter
-mysqli_stmt_bind_param($stmt, "i", $ticket_id);
-mysqli_stmt_execute($stmt);
-
-$result = mysqli_stmt_get_result($stmt);
-$ticket = mysqli_fetch_assoc($result);
-
-$airline = $ticket['airline'];
-$flight_number = $ticket['flight_number'];
-$departure = $ticket['departure'];
-$arrival = $ticket['arrival'];
-$date = $ticket['departure_date'];
-$time = $ticket['departure_time'];
-$duration = $ticket['duration'];
-$price = $ticket['price'];
-$seats = $ticket['seats'];
-$class = $ticket['class'];
-
-mysqli_close($db_connection);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,8 +33,8 @@ mysqli_close($db_connection);
 
 
     <div class="container">
-        <form autocomplete="off" method="post" class="form" action='updateListing.php?id=' .$ticket_id .>
-            <h2>Edit Flight Listing</h2>
+        <form autocomplete="off" method="post" class="form" action='updateListing.php'>
+            <h2>Error Message</h2>
             <p class="failed">
                 <?php
                 if(isset($_SESSION['status'])){
@@ -91,7 +44,7 @@ mysqli_close($db_connection);
             ?>
             </p> 
 
-
+<!-- 
             <section class="child">
                 <p>Airline Name</p>
                 <input list="air-name-lists" class="box" type="text" name="airline" value="<?php echo $airline; ?>"
@@ -161,17 +114,17 @@ mysqli_close($db_connection);
 
 
                 <p><label for="time">Departure Time:</label></p>
-                <input class="box" type="time" id="time" name="time"  value="<?php echo $time; ?>" required><br>
+                <input class="box" type="time" id="time" name="time"  value="<?php echo $time; ?>"><br>
 
                 <p><label for="duration">Duration In Hours:</label></p>
                 <input class="box" type="text" id="duration" name="duration" value="<?php echo $duration; ?>" required><br>
-            </section>
+            </section> -->
 
 
 
 
 
-            <input type="submit" value="Save Listing" id="submit">
+            <!-- <input type="submit" value="Save Listing" id="submit"> -->
             <a class="btn-4" href="admin_displaylist.php">Cancel</a>
             
         </form>

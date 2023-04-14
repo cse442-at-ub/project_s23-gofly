@@ -161,3 +161,28 @@ textarea:valid {
     border-color: #ce1515;
   }
 
+.reviews-btn-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 150px;
+    text-align: center;
+}
+
+.view-reviews-btn {
+    padding: 12px 30px;
+    width: 30%;
+    margin-top: 30px;
+    background-color: rgb(124, 100, 231);
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.view-reviews-btn:hover {
+    cursor: pointer;
+    background-color: blueviolet;
+}

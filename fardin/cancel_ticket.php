@@ -10,6 +10,13 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
+// Check if the user is logged in and has the user type "admin"
+if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
+    // The user is not an admin, so redirect to regular users' landing page.
+    header('Location: landing.php');
+    exit();
+}
+
 
 
 //Get the ticket ID from the query parameter.

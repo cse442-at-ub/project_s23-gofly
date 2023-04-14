@@ -143,3 +143,19 @@ h2 {
     cursor: pointer;
     background-color: blueviolet;
 }
+
+
+/* ! ------------------------------------------------- Scroll bar issue may arrive ---------------------------------------------- */
+/* Add this new rule to style the scrollbar for .review h3 in Chrome, Safari, and Opera */
+.review h3::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f0f0f0; /* Set the background color for the scrollbar */
+}
+
+.review h3::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+}
+
+
+

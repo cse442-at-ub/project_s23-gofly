@@ -52,16 +52,18 @@ require_once("config.php");
             $hasshedNewPassword = password_hash($new_password, PASSWORD_DEFAULT);
     
             
-            $sql = "UPDATE users SET password='$hasshedNewPassword' WHERE username='$username'";
+            $sql = "UPDATE users SET password=? WHERE username=?";
+            $stmt1 = mysqli_prepare($db_connection, $sql);
+            mysqli_stmt_bind_param($stmt1, "ss", $hasshedNewPassword, $username);
             
-            if (mysqli_query($db_connection, $sql)) {
+            if (mysqli_stmt_execute($stmt1)) {
                 // Redirect the user to the login page
                  header("Location: successpw.html");
                  exit;
             } else {
                 $error = "Error updating password: " . mysqli_error($db_connection);
             }
-            
+            mysqli_stmt_close($stmt1);
             mysqli_close($db_connection);
         }
     }

@@ -29,10 +29,14 @@
         $seats = mysqli_real_escape_string($db_connection, $_POST['seats']);
         $class = mysqli_real_escape_string($db_connection, $_POST['fclass']);
 
-        // //Check if any of the filds are empty.
-        // if(empty($airline) || empty($flight_number) || empty($departure) || empty($arrival) || empty($date) || empty($time) || empty($duration) || empty($seats) || empty($class)){
+        //Check if any of the filds are empty.
+        if(empty($airline) || empty($flight_number) || empty($departure) || empty($arrival) || empty($date) || empty($time) || empty($duration) || empty($seats) || empty($class)){
+            $_SESSION['status'] = "Must Fill In All Information";
+            header("Location: post_listing.php");
+            exit();
+
             
-        // }
+        }
 
 
         
@@ -78,6 +82,14 @@
     <div class="container">
         <form autocomplete="off" method="post" class="form">
             <h2>Post Flight Listing</h2> 
+            <p class="fail">
+                <?php
+                    if(isset($_SESSION['status'])){
+                        echo $_SESSION['status'];
+                        unset($_SESSION['status']);
+                    }
+                ?>
+            </p>
             
 
             <section class="child">
@@ -127,7 +139,7 @@
                 <input class ="box" type="number" id="price" name="price" Placeholder="Ex..654" required><br>
 
                 <p><label for="seats">Available Seats:</label></p>
-                <input class ="box" type="number" id="seats" name="seats" Placeholder="Ex..5"required><br>
+                <input class ="box" type="number" id="seats" name="seats" Placeholder="Ex..5"><br>
 
 
                 <p><label for="seats">Flight Class:</label></p>

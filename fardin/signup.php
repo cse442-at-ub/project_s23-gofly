@@ -8,13 +8,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
      // Get the user input
      $user = filter_input(INPUT_POST, 'uid', FILTER_SANITIZE_STRING);
-     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
      $password = filter_input(INPUT_POST, 'pwd', FILTER_SANITIZE_STRING);
      $FirstName = filter_input(INPUT_POST, 'fname', FILTER_SANITIZE_STRING);
      $LastName = filter_input(INPUT_POST, 'lname', FILTER_SANITIZE_STRING);
      $PhoneNumber = filter_input(INPUT_POST, 'num', FILTER_SANITIZE_STRING);
-     $user_type = isset($_POST['user_type']) ? $_POST['user_type'] : 'user';
+     $user_type = $_POST['user_type'];
 
+    if(empty($user) || empty($FirstName) || empty($LastName) || empty($PhoneNumber) || empty($email) || empty($password)){
+        $_SESSION['status'] = "You must enter all the information";
+        header("Location: signup.php");
+        exit();
+    }
+
+    // // Check if the email is valid
+    // if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //     $_SESSION['status'] = "Invalid email format";
+    //     header("Location: signup.php");
+    //     exit();
+    // }
     //Check the type of user;
     if($user_type == 'admin') {
         $secret_key = filter_input(INPUT_POST, 'admin_Key', FILTER_SANITIZE_STRING);
@@ -28,7 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
      // Validate the user input (e.g. check for user's info is already in the database)
-     $sql = "SELECT * FROM users WHERE email = '$email' OR username = '$user' OR phoneNumber = '$PhoneNumber'";
+    
+    $sql = "SELECT * FROM users WHERE email = ? OR username = ? OR phoneNumber = ?";
+    $stmt = $db_connection->prepare($sql);
+    $stmt->bind_param("sss", $email, $user, $PhoneNumber);
+    $stmt->execute();
+    $result = $stmt->get_result();
      $result = $db_connection->query($sql);
      if($result -> num_rows > 0){
         header("Location: signup.php");
@@ -41,16 +58,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     // Insert the new user data into the database
-    $sql = "INSERT INTO users (username, email, password, FirstName, LastName, PhoneNumber, user_type)
-            VALUES ('$user', '$email', '$hashedPassword', '$FirstName', '$LastName', '$PhoneNumber', '$user_type')";
-           
-
-    if ($db_connection->query($sql) === TRUE) {
+    $sql = "INSERT INTO users (username, email, password, FirstName, LastName, PhoneNumber, user_type) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt1 = $db_connection->prepare($sql);
+    $stmt1->bind_param("sssssss", $user, $email, $hashedPassword, $FirstName, $LastName, $PhoneNumber, $user_type);
+    
+    if ($stmt1->execute()) {
         // Redirect the user to the login page
         header("Location: login.php");
         exit();
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($db_connection);
+        echo "Error: " . $stmt1->error;
     }
 
     $db_connection->close();

@@ -1,16 +1,16 @@
 <?php
        session_start();
        require_once ("config.php");
-       require_once ("config.php");
 
 
        
-       // Retrieve user data
-       $username = $_SESSION['username'];
-       $query = "SELECT * FROM users WHERE username = '$username'";
-       $result = mysqli_query($db_connection, $query);
-       $result = mysqli_query($db_connection, $query);
-       $row = mysqli_fetch_assoc($result);
+        // Retrieve user data using prepared statement
+        $username = $_SESSION['username'];
+        $stmt = $db_connection->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
     
        ?>
 
@@ -22,7 +22,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="landing.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">

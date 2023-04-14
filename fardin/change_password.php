@@ -19,6 +19,14 @@ require_once("config.php");
         //Get the username form the databse for this account
          $username = $_SESSION['username'];
 
+        if(empty($current_password) || empty($new_password) || empty($confirm_password)){
+            header("Location: change_pass.php");
+            $_SESSION['status'] = "All fields are required.";
+            exit();
+
+        }
+        
+        else{
         //Getting the user's password from the databse using bind;
         $stmt = $db_connection->prepare("SELECT password FROM users WHERE username = ?");
         $stmt -> bind_param('s', $username);
@@ -63,8 +71,12 @@ require_once("config.php");
             } else {
                 $error = "Error updating password: " . mysqli_error($db_connection);
             }
+
             mysqli_stmt_close($stmt1);
             mysqli_close($db_connection);
         }
+
+        }
+
     }
 ?>

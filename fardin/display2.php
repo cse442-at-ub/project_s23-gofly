@@ -54,89 +54,36 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     ?>
     </div>
 
-
-    <style>
-        .sort-dropdown {
-        display: inline-block;
-        margin: 10px;
-        }
-
-        .sort-label {
-        font-size: 17px;
-        font-weight: bold;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-        letter-spacing: 3px;
-        }
-
-        .select-container {
-        position: relative;
-        display: inline-block;
-        }
-
-        .sort-select {
-        appearance: none;
-        background-color: rgb(130, 111, 236);
-        border: none;
-        border-radius: 5px;
-        color: white;
-        cursor: pointer;
-        font-family: 'Poppins', sans-serif;
-        font-size: 15px;
-        font-weight: bold;
-        letter-spacing: 3px;
-        padding: 5px 10px;
-        width: auto;
-        }
-
-        .select-container::after {
-        content: "▼";
-        color: white;
-        font-size: 12px;
-        position: absolute;
-        right: 10px;
-        top: 8px;
-        }
-    </style>
-    <div class="sort-dropdown">
-        <form action="sort_listing.php" method="post">
-            <label for="sort" class="sort-label">Sort by:</label>
-            <div class="select-container">
-                <select name="sort" id="sort" class="sort-select" onchange="this.form.submit()">
-                    <option value="">Select</option>
-                    <option value="price_high_low" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_high_low' ? 'selected' : ''; ?>>Price High-Low</option>
-                    <option value="price_low_high" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_low_high' ? 'selected' : ''; ?>>Price Low-High</option>
-                    <option value="duration" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'duration' ? 'selected' : ''; ?>>Duration</option>
-                    <option value="airline" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'airline' ? 'selected' : ''; ?>>Airline</option>
-                    <option value="destination" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'destination' ? 'selected' : ''; ?>>Destination</option>
-                </select>
-            </div>
-
-
- 
-    <?php
+<?php
 	require_once("config.php");
 
 	$limit = 5;
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$offset = ($page - 1) * $limit;
 
-    if (isset($_SESSION["sorted_listings"])) {
-        $listings = $_SESSION["sorted_listings"];
-    } else {
-        $sql = "SELECT * FROM flight_listings LIMIT $limit OFFSET $offset";
-        $result = mysqli_query($db_connection, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            $listings = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        } else {
-            $listings = [];
-        }
-    }
+    // Retrieve input values from the form
+  $flight_type = $_POST['flight-type'];
+  $origin = $_POST['Origin'];
+  $destination = $_POST['Destination'];
+  $departure_date = $_POST['Departure'];
+  $arrival_date = $_POST['Arrival'];
+  $num_adults = $_POST['adults'];
+  $class_type = $_POST['class-type'];
+
+   
+  $sql = "SELECT * FROM flight_listings 
+            WHERE departure = '$origin' 
+            AND arrival = '$destination' 
+            AND departure_date = '$departure_date'
+            AND class = '$class_type'
+            LIMIT $limit OFFSET $offset";
+
+	$result = mysqli_query($db_connection, $sql);
     
 
-	if (count($listings) > 0) {
+	if (mysqli_num_rows($result) > 0) {
 		// output data of each row
-		foreach ($listings as $row) {
+		while ($row = mysqli_fetch_assoc($result)) {
 			?>
 
 			<!-- Creating Lufthansa Listing -->
@@ -211,8 +158,6 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 		<br>
         <?php
 		}
-        unset($_SESSION["sorted_listings"]); // Unset the sorted_listings session variable so that the next time the page is loaded, the listings are not sorted.
-
 		// add pagination links
 		$sql = "SELECT COUNT(*) AS count FROM flight_listings";
 		$result = mysqli_query($db_connection, $sql);

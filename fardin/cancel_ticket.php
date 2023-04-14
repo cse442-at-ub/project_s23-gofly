@@ -12,6 +12,7 @@ if (!isset($_SESSION['username'])) {
 
 
 
+
 //Get the ticket ID from the query parameter.
 $ticket_id = $_GET['ticket_id'];
 

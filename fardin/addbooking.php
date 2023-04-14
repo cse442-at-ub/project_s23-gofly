@@ -14,7 +14,8 @@ if (!isset($_SESSION['username'])) {
 $ticket_id = $_GET['id'];
 
 
-// Get the current ticket information from the database
+
+  // Get the current ticket information from the database
 $stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
 
 //binding the type of parameter
@@ -23,6 +24,7 @@ mysqli_stmt_execute($stmt);
 
 $result = mysqli_stmt_get_result($stmt);
 $ticket = mysqli_fetch_assoc($result);
+
 
 $airline = $ticket['airline'];
 $flight_number = $ticket['flight_number'];
@@ -34,6 +36,8 @@ $duration = $ticket['duration'];
 $price = $ticket['price'];
 $seats = $ticket['seats'];
 $class = $ticket['class'];
+
+
 
 mysqli_close($db_connection);
 ?>
@@ -74,6 +78,7 @@ mysqli_close($db_connection);
     <div class="model">
     <div class="room">
       <div class="text-cover">
+
         <h1><?php echo $departure ?> To <?php echo $arrival ?> </h1>
         <h2 class="price"> <?php echo $price?> <span>USD</span> / person</h2>
         <hr>
@@ -90,7 +95,7 @@ mysqli_close($db_connection);
           </tr>
           <tr>
             <td>Tax</td>
-            <td>10 USD</td>
+            <td>0 USD</td>
           </tr>
           <tfoot>
             <tr>

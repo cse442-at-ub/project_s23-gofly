@@ -16,6 +16,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
 }
 
 
+
+
 //Check if the form has been submitted
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $airline = mysqli_real_escape_string($db_connection, $_POST['airline']);
@@ -28,6 +30,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = mysqli_real_escape_string($db_connection, $_POST['price']);
     $seats = mysqli_real_escape_string($db_connection, $_POST['seats']);
     $class = mysqli_real_escape_string($db_connection, $_POST['fclass']);
+
+    if(empty($_POST['airline']) || empty($_POST['flightnumber']) || empty($_POST['departure']) || empty($_POST['arrival']) || empty($_POST['date']) || empty($_POST['time']) || empty($_POST['duration']) || empty($_POST['price']) || empty($_POST['seats']) || empty($_POST['fclass'])) {
+        $_SESSION['status'] = "All fields are required";
+        $_SESSION['form_data'] = $_POST;
+        header("Location: errormessage.php");
+        exit();
+    }
         // Check if the Flight Number is in the database
         $sql = "SELECT * From flight_listings where flight_number = '$flight_number'";
         

@@ -18,12 +18,7 @@
     }
 
 
-
-     
-
-
-
-       if($_SERVER["REQUEST_METHOD"] == "POST") {
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
         $airline = mysqli_real_escape_string($db_connection, $_POST['airline']);
         $flight_number = mysqli_real_escape_string($db_connection, $_POST['flightnumber']);
         $departure = mysqli_real_escape_string($db_connection, $_POST['departure']);

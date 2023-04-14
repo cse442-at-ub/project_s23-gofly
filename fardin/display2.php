@@ -54,7 +54,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     ?>
     </div>
 
-  <?php
+<?php
 	require_once("config.php");
 
 	$limit = 5;
@@ -77,6 +77,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
             AND departure_date = '$departure_date'
             AND class = '$class_type'
             LIMIT $limit OFFSET $offset";
+
 	$result = mysqli_query($db_connection, $sql);
     
 

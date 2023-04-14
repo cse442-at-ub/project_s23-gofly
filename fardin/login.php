@@ -91,9 +91,9 @@ mysqli_close($db_connection);
             <h4><a href="landing2.html">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Reviews</a></li>
+            <li><a href="reviews.php">Reviews</a></li>
             <li><a href="signup.php">Register</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="contact.php">Contact Us</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>

@@ -54,8 +54,8 @@
             <h4><a href="landing2.html">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Reviews</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="reviews_list.php">View Reviews</a></li>
+            <li><a href="contact.php">Contact Us</a></li>
             <li><a href="signup.php">Register</a></li>
         </ul>
         <div class="burger">

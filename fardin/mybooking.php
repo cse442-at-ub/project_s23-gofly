@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
         $ticket_ids[] = $row["ticket_id"];
     }
 } else {
-    echo "<p>No tickets found for $username</p>";
+    // echo "<p>No tickets found for $username</p>";
 }
 
 

@@ -121,12 +121,22 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$offset = ($page - 1) * $limit;
 
-	$sql = "SELECT * FROM flight_listings LIMIT $limit OFFSET $offset";
-	$result = mysqli_query($db_connection, $sql);
+    if (isset($_SESSION["sorted_listings"])) {
+        $listings = $_SESSION["sorted_listings"];
+    } else {
+        $sql = "SELECT * FROM flight_listings LIMIT $limit OFFSET $offset";
+        $result = mysqli_query($db_connection, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $listings = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        } else {
+            $listings = [];
+        }
+    }
+    
 
-	if (mysqli_num_rows($result) > 0) {
+	if (count($listings) > 0) {
 		// output data of each row
-		while ($row = mysqli_fetch_assoc($result)) {
+		foreach ($listings as $row) {
 			?>
 
 			<!-- Creating Lufthansa Listing -->
@@ -201,6 +211,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 		<br>
         <?php
 		}
+        unset($_SESSION["sorted_listings"]); // Unset the sorted_listings session variable so that the next time the page is loaded, the listings are not sorted.
+
 		// add pagination links
 		$sql = "SELECT COUNT(*) AS count FROM flight_listings";
 		$result = mysqli_query($db_connection, $sql);

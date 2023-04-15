@@ -161,10 +161,11 @@ nav {
 #search-form {
     display: flex;
     flex-direction: column;
-    width: 450px;
+    width: 40%;
     position: relative;
     margin: auto;
     margin-top: 5%;
+    margin-bottom: 10%;
     box-shadow: 15px 15px 20px black;
     background-color: whitesmoke;
 }
@@ -174,7 +175,6 @@ nav {
     text-align: center;
     font-size: 3rem;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    margin: 40px;
     color: rgb(124, 100, 231);
 }
 
@@ -285,7 +285,7 @@ nav {
     outline: none;
     border-radius: 5px;
     margin-top: 0px;
-    width: 200px;
+    width: 60%;
 }
 
 #flight-search input[type=submit]:hover {
@@ -293,3 +293,35 @@ nav {
     background-color: blueviolet;
 }
 
+.date-box {
+    padding: 12px;
+    width: 100%;
+    margin: 15px;
+    border: 1px solid rgb(124, 100, 231);
+    outline: none;
+    border-radius: 5px;
+
+}
+.footer {
+    
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #6d70df;
+    width: 100%;
+    color: white;
+ }
+.social-icons
+ {
+   text-align:right
+ }
+.social-icons a
+ {
+   width:40px;
+   height:40px;
+   line-height:40px;
+   margin-left:6px;
+   margin-right:0;
+   border-radius:100%;
+   background-color:pink
+ }

@@ -45,14 +45,6 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
         
     ?>
 
-    <div class="wel"> 
-    <?php
-        if(isset($_SESSION["username"])) {
-            $username = $_SESSION['username'];
-            echo "<h1>Welcome, $username!</h1>";
-        }
-    ?>
-    </div>
 
 <?php
 	require_once("config.php");
@@ -180,7 +172,14 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
             <?php
 		}
 	} else {
-		echo "<p>No results found.</p>";
+        ?>
+        <div class="wel">
+            <h1>
+                <?php echo "No results found.";?>
+            </h1>
+            
+        </div>
+		<?php
 	}
 
 	mysqli_close($db_connection);

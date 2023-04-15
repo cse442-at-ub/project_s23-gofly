@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2 class="header">Search Flights</h2>
         <div class="flight" id="flightbox">
 
-            <form id="flight-form" method="post" action="display2.php">
+            <form id="flight-form" method="post" action="">
                 <!-- TRIP TYPE -->
                 <div id="flight-type">
                     <div class="info-box">

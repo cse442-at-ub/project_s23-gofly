@@ -18,7 +18,7 @@ require_once('config.php');
 <body>
     <nav>
         <div class="logo">
-            <h4><a href="landing2.html">Gofly</a></h4>
+            <h4><a href="landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
             <li><a href="reviews.php">Reviews</a></li>

@@ -10,11 +10,20 @@
 
             // connect to the database and insert the new row into the user_booking table
 
-            $sql = "INSERT INTO user_booking (username, ticket_id) VALUES ('$username', '$ticket_id')";
-            mysqli_query($db_connection, $sql);
+            $sql = "INSERT INTO user_booking (username, ticket_id) VALUES ('?', '?')";
+            $stmt = mysqli_prepare($db_connection, $sql);
 
-            // redirect the user to the "My Bookings" page
+            //Bind the parameters
+            mysqli_stmt_bind_param($stmt, "si", $username, $ticket_id);
+            if(mysqli_stmt_execute($stmt)){
+                // redirect the user to the "My Bookings" page
             header("Location: my_booking.php");
             exit();
+
+            } 
+        //Closing the statement and the database
+        mysqli_stmt_close($stmt);
+        mysqli_close($db_connection);
+
         }
         ?>

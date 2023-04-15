@@ -12,8 +12,12 @@ if (!isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 
 // Retrieve the records from the user_booking table based on the current user's username
-$sql = "SELECT * FROM user_booking WHERE user='$username'";
-$result = $db_connection->query($sql);
+$sql = "SELECT * FROM user_booking WHERE user=?";
+
+$stmt = $db_connection ->prepare($sql);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
 
 // Create an empty array to store ticket IDs
 $ticket_ids = array();
@@ -24,7 +28,7 @@ if ($result->num_rows > 0) {
         $ticket_ids[] = $row["ticket_id"];
     }
 } else {
-    echo "<p>No tickets found for $username</p>";
+    // echo "<p>No tickets found for $username</p>";
 }
 
 

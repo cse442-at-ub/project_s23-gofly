@@ -1,3 +1,24 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $errors = '';
+  
+  // Check if required fields are filled in
+  if (empty($_POST['Origin']) || empty($_POST['Destination']) || empty($_POST['Departure']) || empty($_POST['class-type']))  {
+    $errors = 'Please fill in all the fields';
+  }
+  else{
+  session_start(); // start the session
+  $_SESSION['Origin'] = $_POST['Origin']; // store Origin in session
+  $_SESSION['Destination'] = $_POST['Destination']; // store Destination in session
+  $_SESSION['Departure'] = $_POST['Departure']; // store Departure in session
+  $_SESSION['class-type'] = $_POST['class-type']; // store Departure in session
+
+  header('Location: display2.php');
+  exit;
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,9 +64,10 @@
     <div id="search-form">
     <section>
       <h2 class="header">Search Flights</h2>
+    
       <div class="flight" id="flightbox">
         
-  <form id="flight-form" method="post" action="display2.php">
+  <form id="flight-form" method="post" action=''>
   <!-- TRIP TYPE -->
   <div id="flight-type">
     <div class="info-box">
@@ -123,9 +145,14 @@
   </div>
 </form>
 
+
+
       </div>
     </section>
 </div>
+
+
+
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>

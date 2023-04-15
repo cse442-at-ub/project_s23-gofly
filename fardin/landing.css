@@ -165,6 +165,7 @@ nav {
     position: relative;
     margin: auto;
     margin-top: 5%;
+    margin-bottom: 10%;
     box-shadow: 15px 15px 20px black;
     background-color: whitesmoke;
 }
@@ -301,3 +302,26 @@ nav {
     border-radius: 5px;
 
 }
+.footer {
+    
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #6d70df;
+    width: 100%;
+    color: white;
+ }
+.social-icons
+ {
+   text-align:right
+ }
+.social-icons a
+ {
+   width:40px;
+   height:40px;
+   line-height:40px;
+   margin-left:6px;
+   margin-right:0;
+   border-radius:100%;
+   background-color:pink
+ }

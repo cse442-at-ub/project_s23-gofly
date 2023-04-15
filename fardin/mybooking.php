@@ -148,7 +148,7 @@ if ($result->num_rows > 0) {
                         <p><?php  echo $row["departure_date"];?></< /p>
                         <p><?php  echo $row["departure_time"];?></p>
                     </div>
-                    <?php echo '<a class="btn-3" href="cancel_ticket.php?ticket_id=' . $row["id"] . '">Delete Ticket</a>' ?>
+                    
 
                 </div>
             </div>
@@ -161,6 +161,7 @@ if ($result->num_rows > 0) {
                     <img src="https://external-preview.redd.it/cg8k976AV52mDvDb5jDVJABPrSZ3tpi1aXhPjgcDTbw.png?auto=webp&s=1c205ba303c1fa0370b813ea83b9e1bddb7215eb"
                         alt="QR code">
                 </div>
+                <?php echo '<a class="btn-3" href="cancel_ticket.php?ticket_id=' . $row["id"] . '">Delete Ticket</a>' ?>
 
             </div>
 

@@ -161,7 +161,7 @@ nav {
 #search-form {
     display: flex;
     flex-direction: column;
-    width: 450px;
+    width: 40%;
     position: relative;
     margin: auto;
     margin-top: 5%;
@@ -174,7 +174,6 @@ nav {
     text-align: center;
     font-size: 3rem;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    margin: 40px;
     color: rgb(124, 100, 231);
 }
 
@@ -285,7 +284,7 @@ nav {
     outline: none;
     border-radius: 5px;
     margin-top: 0px;
-    width: 200px;
+    width: 60%;
 }
 
 #flight-search input[type=submit]:hover {
@@ -293,3 +292,12 @@ nav {
     background-color: blueviolet;
 }
 
+.date-box {
+    padding: 12px;
+    width: 100%;
+    margin: 15px;
+    border: 1px solid rgb(124, 100, 231);
+    outline: none;
+    border-radius: 5px;
+
+}

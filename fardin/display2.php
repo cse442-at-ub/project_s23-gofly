@@ -54,13 +54,13 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 	$offset = ($page - 1) * $limit;
 
     // Retrieve input values from the form
-  $flight_type = $_POST['flight-type'];
-  $origin = $_POST['Origin'];
-  $destination = $_POST['Destination'];
-  $departure_date = $_POST['Departure'];
-  $arrival_date = $_POST['Arrival'];
-  $num_adults = $_POST['adults'];
-  $class_type = $_POST['class-type'];
+//   $flight_type = $_SESSION['flight-type'];
+  $origin = $_SESSION['Origin'];
+  $destination = $_SESSION['Destination'];
+  $departure_date = $_SESSION['Departure'];
+//   $arrival_date = $_SESSION['Arrival'];
+//   $num_adults = $_SESSION['adults'];
+  $class_type = $_SESSION['class-type'];
 
    
   $sql = "SELECT * FROM flight_listings 
@@ -182,7 +182,10 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 		<?php
 	}
 
-	mysqli_close($db_connection);
+  
+    
+
+    mysqli_close($db_connection);
 ?>
 
 

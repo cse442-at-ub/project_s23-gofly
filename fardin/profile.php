@@ -5,7 +5,7 @@
 
        
         // Retrieve user data using prepared statement
-        $username = $_SESSION['username'];
+        $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
         $stmt = $db_connection->prepare("SELECT * FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -58,11 +58,11 @@
             
             
             <p>FirstName</p>
-            <input class="box" type="text" name="firstname" value= <?php echo $row['FirstName']; ?> required>
+            <input class="box" type="text" name="firstname" value="<?php echo isset($row['FirstName']) ? $row['FirstName'] : ''; ?>" required>
             <p>LastName</p>
-            <input class="box" type="text" name="lastname" value= <?php echo $row['LastName']; ?> required>
+            <input class="box" type="text" name="lastname" value="<?php echo isset($row['LastName']) ? $row['LastName'] : ''; ?>" required>
             <p>Phone</p>
-            <input class="box" type="number" name="phone" value= <?php echo $row['PhoneNumber']; ?> required>
+            <input class="box" type="number" name="phone" value="<?php echo isset($row['PhoneNumber']) ? $row['PhoneNumber'] : ''; ?>" required>
             
             <input type="submit" value="Save" id="submit">
             <a class="btn-1" href="delete.php">Delete Account</a>

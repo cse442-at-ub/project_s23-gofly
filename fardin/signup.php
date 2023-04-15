@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h4><a href="landing2.html">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Reviews</a></li>
+            <li><a href="reviews.php">Reviews</a></li>
             <li><a href="login.php">Login</a></li>
             <li><a href="#">Contact Us</a></li>
         </ul>
@@ -149,11 +149,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <script>
-      function Div() {
-         var Passport1 = document.getElementById("user_type");
-         var dvPassport = document.getElementById("key");
-         key.style.display = user_type.value == "admin" ? "block" : "none";
-      };
+        function Div() {
+            var Passport1 = document.getElementById("user_type");
+            var dvPassport = document.getElementById("key");
+            key.style.display = user_type.value == "admin" ? "block" : "none";
+        };
     </script>
 
     <script src="land.js"></script>

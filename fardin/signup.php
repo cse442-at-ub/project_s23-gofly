@@ -21,12 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // // Check if the email is valid
-    // if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    //     $_SESSION['status'] = "Invalid email format";
-    //     header("Location: signup.php");
-    //     exit();
-    // }
+    // Check if the email is valid
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['status'] = "Invalid email format";
+        header("Location: signup.php");
+        exit();
+    }
+
+    
     //Check the type of user;
     if($user_type == 'admin') {
         $secret_key = filter_input(INPUT_POST, 'admin_Key', FILTER_SANITIZE_STRING);
@@ -46,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("sss", $email, $user, $PhoneNumber);
     $stmt->execute();
     $result = $stmt->get_result();
-     $result = $db_connection->query($sql);
-     if($result -> num_rows > 0){
+    
+    if($result -> num_rows > 0){
         header("Location: signup.php");
         $_SESSION['status'] = "User Already Exists";
         exit();
@@ -122,12 +124,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ?>
             </p>
             <div id="error-msg"></div>
-            <input class="box" type="text" name="fname" placeholder="First Name" id='firstname' required>
-            <input class="box" type="text" name="lname" placeholder="Last Name" id='lastname' required>
-            <input class="box" type="tel" name="num" placeholder="Phone Number" id='pnum' required>
-            <input class="box" type="text" name="uid" placeholder="Username" id='username' required>
-            <input class="box" type="email" name="email" placeholder="Email" id='email' required>
-            <input class="box" type="password" name="pwd" placeholder="password" id='password' required>
+            <input class="box" type="text" name="fname" placeholder="First Name" id='firstname' >
+            <input class="box" type="text" name="lname" placeholder="Last Name" id='lastname' >
+            <input class="box" type="tel" name="num" placeholder="Phone Number" id='pnum' >
+            <input class="box" type="text" name="uid" placeholder="Username" id='username' >
+            <input class="box" type="email" name="email" placeholder="Email" id='email' >
+            <input class="box" type="password" name="pwd" placeholder="password" id='password' >
 
 
             <select class = "box" id="user_type" name = 'user_type' onchange="Div()">
@@ -136,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </select>
             
             <div id="key" style="display: none">
-                <input class ='box' type="password" name="admin_Key" placeholder="Secret key" id='admin_key' required>   
+                <input class ='box' type="password" name="admin_Key" placeholder="Secret key" id='admin_key'>   
             </div>
 
             <input type="submit" value="Sign Up" id="submit">

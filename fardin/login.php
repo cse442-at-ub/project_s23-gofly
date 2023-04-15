@@ -16,9 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: login.php");
             exit();
         }
-
-
-
     
 
     // Query the database
@@ -122,8 +119,8 @@ mysqli_close($db_connection);
                     }
                 ?>
             </p>
-            <input class="box" type="text" name="uid" placeholder="Username" required>
-            <input class="box" type="password" name="pwd" placeholder="password" required>
+            <input class="box" type="text" name="uid" placeholder="Username" >
+            <input class="box" type="password" name="pwd" placeholder="password" >
             <a class="fpwd" href="forgotpwd.php"><u>Forgot Password?</u></a>
             <input type="submit" value="Login" id="submit">
             <p1 id="p-login"> Don't have a Account? <a href="signup.php"><u>Register</u></a></p1>

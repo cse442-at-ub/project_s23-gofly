@@ -53,14 +53,14 @@
                 <!-- TRIP TYPE -->
                 <div id="flight-type">
                     <div class="info-box">
-                        <input
+                        <!-- <input
                             type="radio"
                             name="flight-type"
                             value="Return"
                             id="return"
                             checked="checked"/>
                         <label for="return">
-                            RETURN</label>
+                            RETURN</label> -->
                     </div>
                     <div class="info-box">
                         <input type="radio" name="flight-type" value="Single" id="one-way"/>
@@ -103,14 +103,14 @@
                             aria-describedby="return-date-label" required/>
                     </div>
 
-                    <div  class="info-box" id="return-box">
+                    <!-- <div  class="info-box" id="return-box">
                         <label for="">Arrival</label>
                         <input
                             class="date-box"
                             type="date"
                             name="Arrival"
                             aria-describedby="return-date-label" required/>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- PASSENGER INFO -->

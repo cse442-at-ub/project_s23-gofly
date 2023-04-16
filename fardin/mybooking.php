@@ -179,6 +179,9 @@ if ($result->num_rows > 0) {
     ?>
 
     </div>
+
+
+
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>
 

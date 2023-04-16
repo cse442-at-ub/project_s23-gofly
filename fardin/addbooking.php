@@ -110,9 +110,9 @@ mysqli_close($db_connection);
   <form method="post" action="processbooking.php?ticket_id=<?php echo $ticket_id; ?>">
     <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
     <label>Name on Credit Card</label>
-    <input type="text" name="card_name" required>
+    <input type="text" name="card_name" values="<?php echo $_SESSION['username']; ?>" required>
     <label>Credit Card Number</label>
-    <input type="text" name="card_number" required>
+    <input type="text" name="card_number" value="XXXX_XXXX_XXXX_XXXX" required>
     <br><br>
     <?php 
         if (isset($_SESSION['error'])) {

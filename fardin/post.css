@@ -155,7 +155,8 @@ nav {
     width: 1000px;
     object-fit: cover; 
     margin: auto;
-    margin-top: 2%;
+    margin-bottom: 5%;
+    margin-top: 5%;
     box-shadow: 15px 15px 20px black;
 }
 

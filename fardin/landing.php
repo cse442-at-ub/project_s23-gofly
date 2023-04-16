@@ -68,6 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section>
         <h2 class="header">Search Flights</h2>
         <div class="flight" id="flightbox">
+        <?php if (!empty($errors)): ?>
+          <p class="error" style="color: red;"><?php echo $errors; ?></p>
+        <?php endif; ?>
 
             <form id="flight-form" method="post" action="">
                 <!-- TRIP TYPE -->

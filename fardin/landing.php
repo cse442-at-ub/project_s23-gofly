@@ -137,6 +137,14 @@
                 <div id="flight-search">
                     <div class="info-box">
                         <input type="submit" id="search-flight" name="search-flight" value="Search"/>
+                        <p class="failed"> 
+                            <?php 
+                                if(isset($_SESSION['status'])){ 
+                                    echo $_SESSION['status']; 
+                                    unset($_SESSION['status']); 
+                                } 
+                            ?> </p>
+            
                     </div>
                 </div>
             </form>

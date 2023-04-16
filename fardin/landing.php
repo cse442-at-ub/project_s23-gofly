@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div id="flight-depart">
                     <div class="info-box">
                         <label for="Origin">Origin</label>
-                        <select name="Origin" Placeholder="Select" required>
+                        <select name="Origin" Placeholder="Select" >
                             <option value="JFK">JFK</option>
                             <option value="DAC">DAC</option>
                             <option value="SAF">SAF</option>
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="info-box">
                         <label for="Destination">Destination</label>
-                        <select name="Destination" Placeholder="Select" required>
+                        <select name="Destination" Placeholder="Select" >
                             <option value="JFK">JFK</option>
                             <option value="DAC">DAC</option>
                             <option value="SAF">SAF</option>
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             type="date"
                             name="Departure"
                             class="form-control"
-                            aria-describedby="return-date-label" required/>
+                            aria-describedby="return-date-label"/>
                     </div>
 
                     <!-- <div  class="info-box" id="return-box">

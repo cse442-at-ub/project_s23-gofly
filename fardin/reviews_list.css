@@ -53,7 +53,7 @@ h2 {
     margin-bottom: 10px;
     overflow-x: auto; /* Add a horizontal scrollbar */
     white-space: nowrap; /* Keep the text in a single line */
-    max-width: 100%; /* Limit the width of the title */
+    max-width: 90%; /* Limit the width of the title */
 }
     
 /* Review card rating stars */
@@ -146,7 +146,7 @@ h2 {
 
 
 /* ! ------------------------------------------------- Scroll bar issue may arrive ---------------------------------------------- */
-/* Add this new rule to style the scrollbar for .review h3 in Chrome, Safari, and Opera */
+/* rule to style the scrollbar in Chrome, Safari, and Opera */
 .review h3::-webkit-scrollbar {
     width: 10px;
     background-color: #f0f0f0; /* Set the background color for the scrollbar */
@@ -159,3 +159,59 @@ h2 {
 
 
 
+/* name and 3-dot menu */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown content (Edit and Delete options) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Dropdown content links */
+.dropdown-content a {
+    color: black;
+    padding: 8px 6px;
+    text-decoration: none;
+    display: block;
+    width: 80px;
+}
+
+/* Dropdown content links hover effect */
+.dropdown-content a:hover {
+    background-color: #9b9b9b;
+}
+
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* 3-dot menu button */
+.dropbtn {
+    background-color: transparent;
+    color: black;
+    padding: 0;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Remove outline on focus */
+.dropbtn:focus {
+    outline: none;
+}

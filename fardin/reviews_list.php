@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
 require_once('config.php');
 ?>
 
@@ -47,11 +54,16 @@ require_once('config.php');
                             $full_name = $row['full_name'];
                             $rating = $row['rating'];
                             $comment = $row['comment'];
+                            $username = $row['username'];
                     ?>
                     <div class="review-container">
                         <div class="review">
                             <div class="review-header">
                                 <h3><?php echo htmlspecialchars($full_name); ?></h3>
+                                <?php
+                                    // checking if the current user's username matches the username associated with the review
+                                    if ($_SESSION['username'] == $username) {
+                                ?>
                                 <div class="dropdown">
                                     <button class="dropbtn">&#8942;</button>
                                     <div class="dropdown-content">
@@ -59,6 +71,9 @@ require_once('config.php');
                                         <a href="#">Delete</a>
                                     </div>
                                 </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
                             <div class="rating">
                                 <?php

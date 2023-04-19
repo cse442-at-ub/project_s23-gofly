@@ -43,7 +43,7 @@ require_once('config.php');
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            // $review_id = $row['id'];
+                            $review_id = $row['id'];
                             $full_name = $row['full_name'];
                             $rating = $row['rating'];
                             $comment = $row['comment'];
@@ -88,6 +88,12 @@ require_once('config.php');
                 const scrollAmount = singleSlideWidth * direction;
                 slider.scrollBy({ top: 0, left: scrollAmount, behavior: 'smooth' });
             }
+
+            function editReview(review_id, full_name) {
+                window.location.href = 'edit_review.php?review_id=' + review_id + '&full_name=' + encodeURIComponent(full_name);
+            }
+
+
         </script>
         <div class="reviews-btn-container">
             <button class="view-reviews-btn" onclick="window.location.href='reviews.php'">Leave a Review</button>

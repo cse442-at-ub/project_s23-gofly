@@ -68,7 +68,6 @@ require_once('config.php');
                                     <button class="dropbtn">&#8942;</button>
                                     <div class="dropdown-content">
                                         <a href="javascript:void(0);" onclick="editReview(<?php echo $review_id; ?>, '<?php echo htmlspecialchars(addslashes($full_name)); ?>')">Edit</a>
-                                        <a href="#">Delete</a>
                                     </div>
                                 </div>
                                 <?php

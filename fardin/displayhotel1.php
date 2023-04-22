@@ -154,7 +154,9 @@ if(!isset($_SESSION['username'])){
 			<p><strong>Room type:</strong><?php echo $row["hotel_room"]; ?></p>
 			<p><strong>City:</strong><?php echo $row["hotel_city"]; ?></p>
 			<p><strong>Price per night:</strong><?php echo $row["hotel_price"]; ?></p>
-			<button>Book Now</button>
+			<!-- <button>Book Now</button> -->
+            <a href="addbookinghotel.php?id=<?php echo $row['id']; ?>" style="width:60%;" class="btn-2">Book Now</a>
+
 		</div>
 	</div>
 
@@ -197,9 +199,10 @@ if(!isset($_SESSION['username'])){
     width:800px;
     margin-left:5%;
     margin-top:10%;
-	padding: 20px;
+    padding: 20px;
 	box-shadow: 0px 0px 10px #ccc;
 	display: flex;
+    justify-content: left;
 	align-items: center;
 }
 

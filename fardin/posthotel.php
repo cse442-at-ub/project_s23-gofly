@@ -48,7 +48,7 @@
        
            if ($stmt->execute()) {
                // Redirect to success page
-               header("Location: hotelview.php");
+               header("Location: displayhotel1.php");
                exit();
            } else {
                // Handle error

@@ -1,67 +1,67 @@
 <?php
        session_start();
        require_once ("config.php");
-
-    if(!isset($_SESSION['username'])){
-        header('Location: login.php');
-        exit();
-
-    }
-
-    // Check if the user is logged in and has the user type "admin"
-    if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
-        // The user is not an admin, so redirect to regular users' landing page.
-        header('Location: displaylist.php');
-        exit();
-    }
-
-
-
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
-    $name = $_POST["name"];
-    $description = $_POST["description"];
-    $address = $_POST['address'];
-    $city = $_POST['city'];
-    $zipcode = $_POST['zipcode'];
-    $room = $_POST['room_type'];
-    $price = $_POST['price'];
-
-  
-    // Handle file upload
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-  
-    // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["image"]["tmp_name"]);
-    if($check !== false) {
-      $uploadOk = 1;
-    } else {
-      $uploadOk = 0;
-    }
-  
-    // Insert record into database
-    $stmt = $db_connection->prepare("INSERT INTO hotel_listings (hotel_name, hotel_description, hotel_address, hotel_city, hotel_zipcode, hotel_room, hotel_price) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssi", $name, $description, $address, $city, $zipcode, $room, $price);
-  
-    if ($stmt->execute()) {
-      // Redirect to success page
-      header("Location: posthotel.php");
-      exit();
-    } else {
-      // Handle error
-      echo "Error inserting record: " . $stmt->error;
-    }
-  
-    // Close statement
-    $stmt->close();
-  }
-  
-  // Close database connection
-  $db_connection->close();
+       
+       if(!isset($_SESSION['username'])){
+           header('Location: login.php');
+           exit();
+       }
+       
+       // Check if the user is logged in and has the user type "admin"
+       if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
+           // The user is not an admin, so redirect to regular users' landing page.
+           header('Location: displaylist.php');
+           exit();
+       }
+       
+       // Handle form submission
+       if ($_SERVER["REQUEST_METHOD"] == "POST") {
+           // Get form data
+           $name = $_POST["name"];
+           $description = $_POST["description"];
+           $address = $_POST['address'];
+           $city = $_POST['city'];
+           $zipcode = $_POST['zipcode'];
+           $room = $_POST['room_type'];
+           $price = $_POST['price'];
+       
+           // Handle file upload
+           $target_dir = "uploads/";
+           $target_file = $target_dir . basename($_FILES["image"]["name"]);
+           $uploadOk = 1;
+           $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+       
+           // Check if image file is a actual image or fake image
+           $check = getimagesize($_FILES["image"]["tmp_name"]);
+           if($check !== false) {
+               $uploadOk = 1;
+           } else {
+               $uploadOk = 0;
+           }
+       
+           // Read image file contents
+           $image = file_get_contents($_FILES["image"]["tmp_name"]);
+       
+           // Insert record into database
+           $stmt = $db_connection->prepare("INSERT INTO hotel_listings (hotel_name, hotel_description, hotel_address, hotel_city, hotel_zipcode, hotel_room, hotel_price, hotel_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+           $stmt->bind_param("ssssssis", $name, $description, $address, $city, $zipcode, $room, $price, $image);
+       
+           if ($stmt->execute()) {
+               // Redirect to success page
+               header("Location: hotelview.php");
+               exit();
+           } else {
+               // Handle error
+               echo "Error inserting record: " . $stmt->error;
+           }
+       
+           // Close statement
+           $stmt->close();
+       }
+       
+       // Close database connection
+       $db_connection->close();
+       
     
        ?>
 

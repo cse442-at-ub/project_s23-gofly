@@ -125,8 +125,8 @@
 
 
             <!-- <input type="submit" value="Save Listing" id="submit"> -->
-            <a class="btn-4" href="admin_displaylist.php">Cancel</a>
-            
+            <a class="btn-4" href="#" onclick="window.history.back(); return false;">Cancel</a>
+
         </form>
         
         

@@ -117,7 +117,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <?php
 	require_once("config.php");
 
-	$limit = 5;
+	$limit = 3;
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$offset = ($page - 1) * $limit;
 
@@ -133,7 +133,6 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
         }
     }
     
-
 	if (count($listings) > 0) {
 		// output data of each row
 		foreach ($listings as $row) {
@@ -211,6 +210,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 		<br>
         <?php
 		}
+
         unset($_SESSION["sorted_listings"]); // Unset the sorted_listings session variable so that the next time the page is loaded, the listings are not sorted.
 
 		// add pagination links
@@ -237,6 +237,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 	} else {
 		echo "<p>No results found.</p>";
 	}
+
 
 	mysqli_close($db_connection);
 ?>

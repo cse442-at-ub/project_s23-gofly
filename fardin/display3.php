@@ -30,6 +30,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <title>Listings</title>
 </head>
 <body>
+    <h1>Return Flights</h1>
     <?php 
         // Check the session status
         $status = session_status();
@@ -54,11 +55,11 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 	$offset = ($page - 1) * $limit;
 
     // Retrieve input values from the form
-  $flight_type = $_SESSION['flight-type'];
+//   $flight_type = $_SESSION['flight-type'];
   $origin = $_SESSION['Origin'];
   $destination = $_SESSION['Destination'];
   $departure_date = $_SESSION['Departure'];
-  $arrival_date = $_SESSION['Arrival'];
+//   $arrival_date = $_SESSION['Arrival'];
 //   $num_adults = $_SESSION['adults'];
   $class_type = $_SESSION['class-type'];
 
@@ -139,14 +140,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 									
 								</span>
                                 <span class="price plane">
-                                    <?php 
-                                    if ($flight_type == 'Single'){
-                                        echo '<a class="btn-3" href="addbooking.php?id=' . $row["id"] . '">Book Now</a>' ;
-                                    }
-                                    else{
-                                        echo '<a class="btn-3" href="display3.php">Select</a>';
-                                    }
-                                    ?>
+                                    <?php echo '<a class="btn-3" href="addbooking.php?id=' . $row["id"] . '">Book Now</a>' ?>
                                 </span>
 							</div>
 						</div>

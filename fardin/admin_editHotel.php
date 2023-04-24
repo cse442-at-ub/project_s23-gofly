@@ -16,7 +16,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
 }
 
 
-
+var_dump($_GET);
 //Get the ticket ID from the query parameter.
 $hotel_id = $_GET['id'];
 
@@ -79,8 +79,8 @@ mysqli_close($db_connection);
 
 
     <div class="container">
-        <form autocomplete="off" method="post" class="form" action='updateHotelListing.php?id=' .$hotel_id .>
-            <h2>Edit Hotel Listing</h2>
+    <form method="post" action="updateHotelListing.php?id=<?php echo $hotel_id ?>">
+          <h2>Edit Hotel Listing</h2>
             <p class="failed">
                 <?php
                 if(isset($_SESSION['status'])){
@@ -93,6 +93,7 @@ mysqli_close($db_connection);
 
             <section class="child">
                 <p>Hotel Name:</p>
+                <!-- <input type="hidden" name="id" value="<?php echo $hotel_id; ?>"> -->
                 <input list="air-name-lists" class="box" type="text" name="hotel_name" value="<?php echo $hotelName; ?>"
                     required>
                 <datalist id="air-name-lists">

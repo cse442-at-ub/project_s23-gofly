@@ -15,11 +15,14 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
     exit();
 }
 
-//Get the ticket ID from the query parameter.
 $hotel_id = $_GET['id'];
+
+
+
 
 //Check if the form has been submitted
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // $hotel_id = myali_real_escape_string($db_connection, $_POST['id']);
     $hotelName = mysqli_real_escape_string($db_connection, $_POST['hotel_name']);
     $hotelAddress =mysqli_real_escape_string($db_connection, $_POST['hotel_address']);
     $hotelZipcode =mysqli_real_escape_string($db_connection, $_POST['hotel_zipcode']);

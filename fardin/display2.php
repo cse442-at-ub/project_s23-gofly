@@ -144,6 +144,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
                                         echo '<a class="btn-3" href="addbooking.php?id=' . $row["id"] . '">Book Now</a>' ;
                                     }
                                     else{
+                                        
                                         echo '<a class="btn-3" href="display3.php">Select</a>';
                                     }
                                     ?>

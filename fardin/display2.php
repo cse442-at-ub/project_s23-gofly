@@ -67,6 +67,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
             WHERE departure = '$origin' 
             AND arrival = '$destination' 
             AND departure_date = '$departure_date'
+            
             AND class = '$class_type'
             LIMIT $limit OFFSET $offset";
 
@@ -145,7 +146,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
                                     }
                                     else{
                                         
-                                        echo '<a class="btn-3" href="display3.php">Select</a>';
+                                        echo '<a class="btn-3" href="display3.php?id=' . $row["id"] . '">Select</a>' ;
                                     }
                                     ?>
                                 </span>

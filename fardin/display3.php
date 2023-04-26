@@ -56,19 +56,21 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 
     // Retrieve input values from the form
 //   $flight_type = $_SESSION['flight-type'];
+$_SESSION['first_flight'] = $_GET['id'];
+  
   $origin = $_SESSION['Origin'];
   $destination = $_SESSION['Destination'];
   $departure_date = $_SESSION['Departure'];
-//   $arrival_date = $_SESSION['Arrival'];
+  $arrival_date = $_SESSION['Arrival'];
 //   $num_adults = $_SESSION['adults'];
   $class_type = $_SESSION['class-type'];
 
    
   $sql = "SELECT * FROM flight_listings 
-            WHERE departure = '$origin' 
-            AND arrival = '$destination' 
-            AND departure_date = '$departure_date'
-            AND class = '$class_type'
+            WHERE departure = '$destination' 
+            AND arrival = '$origin' 
+            AND departure_date = '$arrival_date'
+
             LIMIT $limit OFFSET $offset";
 
 	$result = mysqli_query($db_connection, $sql);
@@ -82,6 +84,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 			<!-- Creating Lufthansa Listing -->
 			<div class="container">
 				<div class="box">
+                    <?php $_SESSION['return_flight'] = $row['id']; ?>
 
 					<div action='editlistings.php' class="ticket" method="get">
 						<span class="airline"><?php echo $row["airline"]; ?></span>
@@ -140,7 +143,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 									
 								</span>
                                 <span class="price plane">
-                                    <?php echo '<a class="btn-3" href="addbooking.php?id=' . $row["id"] . '">Book Now</a>' ?>
+                                    <?php echo '<a class="btn-3" href="addbooking.php?id=' . $row["id"]. '">Book Now</a>' ?>
                                 </span>
 							</div>
 						</div>

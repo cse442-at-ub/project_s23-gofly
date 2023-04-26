@@ -1,30 +1,9 @@
 <?php
-session_start();
-require_once ("config.php");
-
-
-// Check if the user is logged in.
-// If not, redirect them to the login page.
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
-
-
-if ($_SESSION['flight-type'] == 'Single') {
-  $ticket_id = $_SESSION['return_flight']; // Return Flight ID
-  include_once 'f12.php';
-}
-
-
-if ($_SESSION['flight-type'] =='Return'){
-  $first_flight = $_SESSION['first_flight']; // First Flight ID 
-  $return_id = $_SESSION['return_flight']; // Return Flight ID
-
+// Get the current ticket information from the database
 $stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
 
 //binding the type of parameter
-mysqli_stmt_bind_param($stmt, "i", $first_flight);
+mysqli_stmt_bind_param($stmt, "i", $ticket_id);
 mysqli_stmt_execute($stmt);
 
 $result = mysqli_stmt_get_result($stmt);
@@ -42,37 +21,12 @@ $price = $ticket['price'];
 $seats = $ticket['seats'];
 $class = $ticket['class'];
 
-$stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
 
-//binding the type of parameter
-mysqli_stmt_bind_param($stmt, "i", $return_id);
-mysqli_stmt_execute($stmt);
 
-$result = mysqli_stmt_get_result($stmt);
-$ticket = mysqli_fetch_assoc($result);
-
-$return_airline = $ticket['airline'];
-$return_flight_number = $ticket['flight_number'];
-$return_departure = $ticket['departure'];
-$return_arrival = $ticket['arrival'];
-$return_date = $ticket['departure_date'];
-$return_time = $ticket['departure_time'];
-$return_duration = $ticket['duration'];
-$return_price = $ticket['price'];
-$return_seats = $ticket['seats'];
-$return_class = $ticket['class'];
-
-echo $return_airline;
-echo $return_flight_number;
-echo $return_departure;
-echo $return_arrival;
-echo $return_date;
-echo $return_time;
-echo $return_duration;
 
 mysqli_close($db_connection);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -165,9 +119,3 @@ mysqli_close($db_connection);
 </body>
       
 </html>
-
-
-
-<?php
-}
-

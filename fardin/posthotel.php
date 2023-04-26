@@ -135,6 +135,9 @@
   <label for="image">Hotel image:</label>
   <input type="file" id="image" name="image" required>
 
+  <label for="roomimage">Room Images:</label>
+  <input type="file" id="roomimage" name="roomimage[]" multiple required>
+
   <label for="price">Price per night:</label>
   <input type="text" id="price" name="price" placeholder="Enter price per night" required>
 

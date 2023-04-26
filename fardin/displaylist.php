@@ -27,6 +27,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="display.css">
+    <link rel="stylesheet" href="weather.css">
+
     <title>Listings</title>
 </head>
 <body>
@@ -189,7 +191,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 							</span>
 							<div class="sub-content">
 								<span style="display:inline-block; white-space: nowrap; overflow: hidden; max-width: 9ch;" class="watermark"><?php echo $row["airline"]; ?></span>
-								<span class="name">BOARDING TIME<span>
+                                        <?php echo '<a class="btn-weather" href="weather.php?id=' . $row["id"] . '">Weather</a>' ?>
+                                <span class="name">BOARDING TIME<span>
 										<br>
 										<span><?php echo $row["departure_date"] . " " . $row["departure_time"]; ?></span>
 									</span>

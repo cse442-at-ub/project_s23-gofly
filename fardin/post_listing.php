@@ -111,22 +111,22 @@
                 <input list="airports" class="box" type="text" id="departure" name="departure" Placeholder="Ex..JFK" maxlength="3"  required><br>
 
                 <datalist id="airports">
-                    <option>JFK (NYC)</option>
-                    <option>BUF (NY)</option>
-                    <option>DIA (Doha)</option>
-                    <option>LAG (NYC)</option>
-                    <option>DAC (Dhaka)</option>
+                    <option>JFK</option>
+                    <option>BUF</option>
+                    <option>DIA</option>
+                    <option>LAG</option>
+                    <option>DAC</option>
                 </datalist>
 
                 <p><label for="arrival">Arrival Airport:</label></p>
                 <input list="airports" class= "box" type="text" id="arrival" name="arrival" Placeholder="Ex..Buf"maxlength="11" required><br>
 
                 <datalist id="airports">
-                    <option>JFK (NYC)</option>
-                    <option>BUF (NY)</option>
-                    <option>DIA (Doha)</option>
-                    <option>LAG (NYC)</option>
-                    <option>DAC (Dhaka)</option>
+                    <option>JFK</option>
+                    <option>BUF</option>
+                    <option>DIA</option>
+                    <option>LAG</option>
+                    <option>DAC</option>
                 </datalist>
 
                 <p><label for="date">Departure Date:</label></p>

@@ -11,7 +11,17 @@ if (!isset($_SESSION['username'])) {
 }
 
 //Get the ticket ID from the query parameter.
-$hotel_id = $_GET['id'];
+$id = isset($_GET['id']) ? $_GET['id'] : '';
+
+$hotel_id = '';
+
+if (strpos($id, 'hotel') === 0) {
+  // Extract the number from the id parameter
+  $hotel_id = substr($id, 5);
+
+  // Use the $hotel_id variable as needed
+}
+
 
 
 
@@ -124,7 +134,7 @@ mysqli_close($db_connection);
       </div>
       <div class="payment-info">
   <h2 style="padding-bottom:20px;">Payment Info</h2>
-  <form method="post" action="processbooking.php?ticket_id=<?php echo $hotel_id; ?>">
+  <form method="post" action="processhotelbooking.php?id=<?php echo $hotel_id; ?>">
     <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
     <label>Name on Credit Card</label>
     <input type="text" name="card_name" values="<?php echo $_SESSION['username']; ?>" required>

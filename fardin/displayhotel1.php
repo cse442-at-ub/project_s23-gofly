@@ -140,25 +140,24 @@ if(!isset($_SESSION['username'])){
 			?>
 
 <div class="hotel-listing">
-		<div class="hotel-image">
-        
-        <?php
-                        $image_data = $row["hotel_image"];
-                        $encoded_image = base64_encode($image_data);
-                        $image_src = "data:image/jpeg;base64," . $encoded_image;
-                    ?>
-                    <img src="<?php echo $image_src; ?>" alt="Hotel Image">
-		</div>
-		<div class="hotel-info">
-			<h2><?php echo $row["hotel_name"]; ?></h2>
-			<p><strong>Room type:</strong><?php echo $row["hotel_room"]; ?></p>
-			<p><strong>City:</strong><?php echo $row["hotel_city"]; ?></p>
-			<p><strong>Price per night:</strong><?php echo $row["hotel_price"]; ?></p>
-			<!-- <button>Book Now</button> -->
-            <a href="addbookinghotel.php?id=<?php echo $row['id']; ?>" style="width:60%;" class="btn-2">Book Now</a>
+  <div class="hotel-image">
+    <?php
+      $image_data = $row["hotel_image"];
+      $encoded_image = base64_encode($image_data);
+      $image_src = "data:image/jpeg;base64," . $encoded_image;
+    ?>
+    <img src="<?php echo $image_src; ?>" alt="Hotel Image">
+  </div>
+  <div class="hotel-info">
+    <h2><?php echo $row["hotel_name"]; ?></h2>
+    <p><strong>Room type:</strong><?php echo $row["hotel_room"]; ?></p>
+    <p><strong>City:</strong><?php echo $row["hotel_city"]; ?></p>
+    <p><strong>Price per night:</strong><?php echo $row["hotel_price"]; ?></p>
+        <a href="hotel_details.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-1" id="view-details">View Details</a>
 
-		</div>
-	</div>
+    <a href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
+  </div>
+</div>
 
 		<br>
         <?php

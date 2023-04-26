@@ -87,15 +87,32 @@ if ($result->num_rows > 0) {
     ?>
     </h1>
 
+    <br> </br>
+
     <div class="buttons-container">
-        <button class="flights-button">Flights</button>
-        <button class="hotels-button">Hotels</button>
+    
+    <div style="text-align: center;">
+  <button onclick="showPage1()" class="btn-flight active">Flights</button>
+  <button onclick="showPage2()" class="btn-hotel">Hotels</button>
+</div>
+
+
+
+
+
+
+
+
+
     </div>
 
 
+    <section id="flight-section">
 
 
     <?php
+
+    
     // Loop through the ticket IDs and retrieve the corresponding flight data
     foreach ($ticket_ids as $ticket_id) {
     // Retrieve the flight data based on the ticket ID
@@ -185,6 +202,14 @@ if ($result->num_rows > 0) {
             echo "<p>No flight data found for ticket ID $ticket_id</p>";
         }
         }
+        
+    ?>
+
+    </section>
+
+    <section id="hotel-section">
+
+    <?php
 
     
 
@@ -229,6 +254,7 @@ if ($result->num_rows > 0) {
 
         $db_connection->close();
     ?>
+     </section>
 
     </div>
 
@@ -294,6 +320,71 @@ if ($result->num_rows > 0) {
 	background-color: #004265;
 }
 
+.btn-flight.active {
+  background-color: grey;
+  color: white;
+}
+
+.btn-hotel.active {
+  background-color: grey;
+  color: white;
+}
+
+.btn-flight {
+  background-color: white;
+  color: grey;
+  font-size: 20px;
+  padding: 10px 40px;
+  margin-right: 10px;
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-hotel {
+  background-color: white;
+  color: grey;
+  font-size: 20px;
+  padding: 10px 40px;
+  margin-left: 10px;
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+  border: none;
+}
+
 </style>
+
+<script>
+    window.onload = function() {
+  showPage1();
+}
+    
+    
+
+    function showPage1() {
+  document.getElementById("flight-section").style.display = "block";
+  document.getElementById("hotel-section").style.display = "none";
+}
+
+function showPage2() {
+  document.getElementById("flight-section").style.display = "none";
+  document.getElementById("hotel-section").style.display = "block";
+}
+
+const btnFlight = document.querySelector('.btn-flight');
+  const btnHotel = document.querySelector('.btn-hotel');
+
+  btnFlight.addEventListener('click', function() {
+    btnFlight.classList.add('active');
+    btnHotel.classList.remove('active');
+  });
+
+  btnHotel.addEventListener('click', function() {
+    btnHotel.classList.add('active');
+    btnFlight.classList.remove('active');
+  });
+    </script>
 
 </html>

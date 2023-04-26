@@ -165,7 +165,7 @@ if(!isset($_SESSION['username'])){
         unset($_SESSION["sorted_listings"]); // Unset the sorted_listings session variable so that the next time the page is loaded, the listings are not sorted.
 
 		// add pagination links
-		$sql = "SELECT COUNT(*) AS count FROM flight_listings";
+		$sql = "SELECT COUNT(*) AS count FROM hotel_listings";
 		$result = mysqli_query($db_connection, $sql);
 		$row = mysqli_fetch_assoc($result);
 		$count = $row['count'];

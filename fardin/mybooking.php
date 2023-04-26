@@ -239,7 +239,7 @@ if ($result->num_rows > 0) {
 			<p><strong>City:</strong><?php echo $row["hotel_city"]; ?></p>
 			<p><strong>Price per night:</strong><?php echo $row["hotel_price"]; ?></p>
 			<!-- <button>Book Now</button> -->
-            <a href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>" style="width:60%;" class="btn-2">Cancel Booking</a>
+            <a href="cancel_ticket.php?id=hotel<?php echo $row['id']; ?>" style="width:60%;" class="btn-2">Cancel Booking</a>
 
 
 		</div>

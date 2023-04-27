@@ -1,10 +1,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
-/* * {
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-} */
+}
 
 html { 
   background: url("photos/bgimg.png") no-repeat center center fixed; 
@@ -15,14 +15,15 @@ html {
 
 }
 nav {
+  background-color:rgb(130, 111, 236);
+  font-weight: bold;
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 8vh;
-  background-color: transparent;
+  min-height: 9vh;
   font-family: 'Poppins', sans-serif;
 }
-
 .logo a{
   text-decoration: none;
   color: rgb(238, 240, 241);

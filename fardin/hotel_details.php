@@ -60,6 +60,10 @@
         echo "<div class='hotel'>";
         echo "<h2>$name</h2>";
         echo "<img src='data:image/jpeg;base64,".base64_encode($image)."'/>";
+        $room_images = json_decode($row["room_image"], true);
+        foreach ($room_images as $image) {
+            echo "<img src='data:image/jpeg;base64," . $image . "' width='200' /><br /><br />";
+        }
         echo "<p><strong>Description:</strong> $description</p>";
         echo "<p><strong>Address:</strong> $address, $city $zipcode</p>";
         echo "<p><strong>Room type:</strong> $room</p>";

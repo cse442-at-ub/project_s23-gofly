@@ -1,6 +1,4 @@
-/* weather.css */
-
-.btn-weather {
+.btn-weather {                      /* - weather button on the ticket in lisitng */
     display: block;
     text-align: center;
     padding: 3px 10px;
@@ -21,3 +19,35 @@
     cursor: pointer;
     background-color: blueviolet;
     }  
+
+#weather-submit {
+    display: block;
+    width: fit-content;
+    height: 35px;
+    background-color: rgb(124, 100, 231);
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#weather-submit:hover {
+    background-color: blueviolet;
+}
+
+.weather-box {                                  /* - search box */
+    padding: 12px;
+    width: 55%;
+    border: 1px solid rgb(124, 100, 231);
+    outline: none;
+    border-radius: 5px;
+}
+
+.form h2.weather-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}

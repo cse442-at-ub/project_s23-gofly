@@ -186,13 +186,6 @@ nav {
 }
 
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-
-}
 
 :root {
   --main-blue: #71b7e6;
@@ -201,22 +194,11 @@ nav {
   --sub-grey: #d9d9d9;
 }
 
-body {
-  display: flex;
-  height: 100vh;
-  justify-content: center; /*center vertically */
-  align-items: center; /* center horizontally */
-  /* background: linear-gradient(135deg, var(--main-blue), var(--main-purple)); */
-  padding: 10px;
-}
 
 .custom-shape-divider-top-1682544526 {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  overflow: hidden;
-  line-height: 0;
+
 }
 
 .custom-shape-divider-top-1682544526 svg {

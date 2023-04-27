@@ -44,6 +44,7 @@
                         if ($role === 'admin') {
                             echo '<a href="post_listing.php">Post Airline</a>';
                             echo '<a href="posthotel.php">Post Hotel</a>';
+                            echo '<a href="admin_hotelDisplay.php">Display Hotel</a>';
                         }
                     }
                     ?>

@@ -106,14 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <form id="flight-form" method="post" action="">
                         <!-- TRIP TYPE -->
-                        <div id="flight-type">
-                            <div class="info-box">
-                                <input type="radio" name="flight-type" value="Return" id="return" checked="checked" onchange="showArrival()"/>
-                                <label for="return"> RETURN</label>
-                            </div>
-                            <div class="info-box">
+                        <div class="container-10">
+                            <div class="tabs">
+                            <input type="radio" name="flight-type" value="Return" id="return" checked="checked" onchange="showArrival()"/>
+                                <label class="tab" for="return"> RETURN</label>
                                 <input type="radio" name="flight-type" value="Single" id="one-way" onchange="hideArrival()"/>
-                                <label for="one-way">ONE WAY</label>
+                                <label class="tab" for="one-way">ONE WAY</label>
+                                
+                                <span class="glider"></span>
                             </div>
                         </div>
 

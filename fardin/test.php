@@ -1,36 +1,3 @@
-<?php
-    // Connect to database
-    require_once("config.php");
-
-    // Retrieve hotel from database based on hotel_id parameter
-    $hotel_id = $_GET['id'];
-    $sql = "SELECT * FROM hotel_listings WHERE id = ?";
-    $stmt = $db_connection->prepare($sql);
-    $stmt->bind_param("i", $hotel_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Display hotel information
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $name = $row["hotel_name"];
-        $description = $row["hotel_description"];
-        $address = $row["hotel_address"];
-        $city = $row["hotel_city"];
-        $zipcode = $row["hotel_zipcode"];
-        $room = $row["hotel_room"];
-        $price = $row["hotel_price"];
-        $image = $row["hotel_image"];
-        $id = $row["id"];
-
-     
-    }
-
-    // Close database connection
-    $stmt->close();
-    $db_connection->close();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,7 +8,7 @@
   </head>
   <body>
     <header>
-      <h1><?php echo $name ?></h1>
+      <h1>Hotel Name</h1>
       <nav>
         <a href="#">Home</a>
         <a href="#">Rooms</a>
@@ -51,25 +18,20 @@
     </header>
     <main>
       <section class="room-details">
-        <h2><?php echo $room ?></h2>
+        <h2>Room Type</h2>
         <div class="room-images">
-    <?php
-      $room_images = json_decode($row["room_image"], true);
-      foreach ($room_images as $image) {
-        echo "<img src='data:image/jpeg;base64," . $image . "' alt='Room Image' />";
-      }
-    ?>
-  </div>
+          <img src="https://via.placeholder.com/500x300.png?text=Room+Image+1" alt="Room Image 1">
+          <img src="https://via.placeholder.com/500x300.png?text=Room+Image+2" alt="Room Image 2">
+          <img src="https://via.placeholder.com/500x300.png?text=Room+Image+3" alt="Room Image 3">
+        </div>
         <p class="hotel-description">
-        <h3>Description: </h3>
-        <?php echo $description ?>
-        
-        
-
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae nulla id justo feugiat rhoncus. Aenean pharetra tincidunt mi in posuere. Nam mollis, lacus quis gravida bibendum, elit odio ultrices elit, at faucibus velit nisi non lectus.
         </p>
-
         <div class="address">
-
+          <h3>Address</h3>
+          <p>123 Main Street</p>
+          <p>City, State Zip</p>
+          <p>Country</p>
         </div>
         <div class="amenities">
           <h3>Amenities</h3>
@@ -91,13 +53,10 @@
           </div>
         </div>
         <div class="price">
-        <h3>Address</h3>
-          <p><?php echo $address ?></p>
-          <p><?php echo $city . ", " . $zipcode; ?></p>
           <h3>Price</h3>
           <div class="price-label">Price per night:</div>
-          <div class="price-amount"><?php echo $price ?></div>
-          <a href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
+          <div class="price-amount">$150</div>
+          <button>Book Now</button>
         </div>
       </section>
     </main>
@@ -165,11 +124,10 @@ main {
 }
 
 .hotel-description {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .address {
-    margin-top: 20px;
   width: 50%;
 }
 
@@ -216,10 +174,10 @@ main {
   margin-right: 10px;
 }
 
-.price-amount {                     // price field
-    font-size: 28px;
-    font-weight: bold;
-    margin-left: 200px;
+.price-amount {
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 button {
@@ -238,5 +196,3 @@ button:hover {
 
 
     </style>
-
-	

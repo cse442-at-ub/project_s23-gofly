@@ -398,7 +398,7 @@ nav {
 
 .second-part h1 {
     font-size: 30px;
-    border-bottom: black;
+    border-bottom: rgb(214, 211, 211);
     margin-left: 2%;
     margin-top: 20%;
     color: rgb(95, 90, 90);
@@ -410,7 +410,7 @@ nav {
     display: flex;
     width: 100%;
     justify-content: center;
-    background: linear-gradient(0.25turn, #d0c6e2, #8b7be7, #e2e1e6);
+    background: linear-gradient(0.25turn, #a988e7, #8b7be7, #e2e1e6);
 }
 .cards {
     width: 80%;

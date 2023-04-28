@@ -80,7 +80,7 @@
        
            if ($stmt->execute()) {
                // Redirect to success page
-               header("Location: displayhotel1.php");
+               header("Location: admin_hotelDisplay.php");
                exit();
            } else {
                // Handle error

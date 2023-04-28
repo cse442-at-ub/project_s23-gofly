@@ -155,7 +155,7 @@ if(!isset($_SESSION['username'])){
     <p><strong>Price per night:</strong><?php echo $row["hotel_price"]; ?></p>
         <a href="hotel_details.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-1" id="view-details">View Details</a>
 
-    <a href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
+    <a href="addbookinghotel.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
   </div>
 </div>
 

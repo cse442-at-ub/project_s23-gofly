@@ -11,16 +11,10 @@ if (!isset($_SESSION['username'])) {
 }
 
 //Get the ticket ID from the query parameter.
-$id = isset($_GET['id']) ? $_GET['id'] : '';
 
-$hotel_id = '';
 
-if (strpos($id, 'hotel') === 0) {
-  // Extract the number from the id parameter
-  $hotel_id = substr($id, 5);
+$hotel_id = $_GET['id'];
 
-  // Use the $hotel_id variable as needed
-}
 
 
 
@@ -148,6 +142,7 @@ mysqli_close($db_connection);
         }
     ?>
     <button class="btn btn-1" type="submit" name="book_securely">Book Securely</button>
+
   </form>
 </div>
 

@@ -216,7 +216,7 @@ main {
   margin-right: 10px;
 }
 
-.price-amount {                     // price field
+.price-amount {                  
     font-size: 28px;
     font-weight: bold;
     margin-left: 200px;

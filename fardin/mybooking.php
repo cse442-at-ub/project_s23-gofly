@@ -28,10 +28,10 @@ $hotel_ids = array();
 // Loop through the records and add the ticket IDs and hotel IDs to the arrays
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        if ($row["ticket_id"] !== null) {
+        if ($row["ticket_id"] !== null && $row["hotel_id"] == null ) {
             $ticket_ids[] = $row["ticket_id"];
         }
-        if ($row["hotel_id"] !== null) {
+        if ($row["hotel_id"] !== null && $row["ticket_id"] == null ) {
             $hotel_ids[] = $row["hotel_id"];
         }
     }
@@ -247,9 +247,7 @@ if ($result->num_rows > 0) {
         
         
             <?php
-                } else {
-                    echo "<p>No flight data found for ticket ID $ticket_id</p>";
-                }
+                } 
                 }
 
         $db_connection->close();

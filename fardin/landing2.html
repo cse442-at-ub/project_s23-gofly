@@ -46,20 +46,14 @@
 
                     <form id="flight-form"  action="login.php">
                         <!-- TRIP TYPE -->
-                        <div id="flight-type">
-                            <div class="info-box">
-                                <input
-                                    type="radio"
-                                    name="flight-type"
-                                    value="Return"
-                                    id="return"
-                                    checked="checked"/>
-                                <label for="return">
-                                    RETURN</label>
-                            </div>
-                            <div class="info-box">
-                                <input type="radio" name="flight-type" value="Single" id="one-way"/>
-                                <label for="one-way">ONE WAY</label>
+                        <div class="container-10">
+                            <div class="tabs">
+                            <input type="radio" name="flight-type" value="Return" id="return" checked="checked" onchange="showArrival()"/>
+                                <label class="tab" for="return"> RETURN</label>
+                                <input type="radio" name="flight-type" value="Single" id="one-way" onchange="hideArrival()"/>
+                                <label class="tab" for="one-way">ONE WAY</label>
+                                
+                                <span class="glider"></span>
                             </div>
                         </div>
 
@@ -147,6 +141,11 @@
 
 
 
+
+
+
+
+
 <!-- ticket display -->
 <div class="second-part">
 <h1>
@@ -199,6 +198,38 @@
 </div>
 
 
+
+
+<!-- Contact us form -->
+<div class="ctct">
+    <div id="contact" class="contact">
+        <div class="side">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2917.9297774401107!2d-78.7915446234417!3d43.00081319437999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d373d2261b049f%3A0x2868694d4fc4f56f!2sUniversity%20at%20Buffalo!5e0!3m2!1sen!2sus!4v1682661393025!5m2!1sen!2sus"   style="border: 2px;;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+           </div>
+           <form action="https://formspree.io/f/mlekpwqw" method="post" class="form color-g">
+               <h2>Contact Us</h2>
+               
+               <input class="box" type="text" name="name" pattern="[a-zA-Z]+" title="Please enter only alphabetical letters." placeholder="Enter Your Name" required>
+               <input class="box" type="email" name="email" placeholder="Enter Your Email Address" required>
+               <textarea class="box" name="message" rows="4" cols="50" placeholder="Enter text here..."></textarea>
+               <input type="submit" value="Submit" id="submit">
+           </form>
+
+       </div>
+   
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- foooter -->
 
 
@@ -242,5 +273,14 @@
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>
+    <script>
+        function showArrival() {
+            document.getElementById("return-box").style.display = "block";
+        }
+        function hideArrival() {
+            document.getElementById("return-box").style.display = "none";
+        }
+
+    </script>
 </body>
 </html>

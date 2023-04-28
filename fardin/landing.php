@@ -251,6 +251,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 
+<!-- Contact us form -->
+ <div class="ctct">
+ <div id="contact" class="contact">
+        <form action="https://formspree.io/f/mlekpwqw" method="post" class="form color-g">
+            <h2>Contact Us</h2>
+            
+            <input class="box" type="text" name="name" pattern="[a-zA-Z]+" title="Please enter only alphabetical letters." placeholder="Enter Your Name" required>
+            <input class="box" type="email" name="email" placeholder="Enter Your Email Address" required>
+            <textarea class="box" name="message" rows="4" cols="50" placeholder="Enter text here..."></textarea>
+            <input type="submit" value="Submit" id="submit">
+        </form>
+        <div class="side">
+            <img src="photos/bgpic1.png" alt="">
+        </div>
+    </div>
+
+ </div>
+
 
 
 

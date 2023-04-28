@@ -39,6 +39,7 @@ if (isset($_GET['id'])) {
             <h2 class="weather-title">Weather Information</h2>
             <input class="weather-box" type="text" name="city" placeholder="Search city...">
             <input type="submit" value="Search" id="weather-submit">
+            <div id="weather-container"></div>
 
             <script>
                 const apiKey = "5436f3bc399e7ad36a83b1bbb7f08afa";

@@ -42,13 +42,8 @@
   <body>
     <header>
       <h1><?php echo $name ?></h1>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">Rooms</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
     </header>
+    
     <main>
       <section class="room-details">
         <h2><?php echo $room ?></h2>
@@ -74,19 +69,19 @@
         <div class="amenities">
           <h3>Amenities</h3>
           <div class="amenity">
-            <img class="amenity-icon" src="https://via.placeholder.com/50x50.png" alt="Amenity Icon">
+            <img class="amenity-icon" src="photos/wifi.jpg" alt="Amenity Icon">
             <div class="amenity-label">Free Wifi</div>
           </div>
           <div class="amenity">
-            <img class="amenity-icon" src="https://via.placeholder.com/50x50.png" alt="Amenity Icon">
+            <img class="amenity-icon" src="photos/swim.jpg" alt="Amenity Icon">
             <div class="amenity-label">Swimming Pool</div>
           </div>
           <div class="amenity">
-            <img class="amenity-icon" src="https://via.placeholder.com/50x50.png" alt="Amenity Icon">
+            <img class="amenity-icon" src="photos/gym.png" alt="Amenity Icon">
             <div class="amenity-label">Fitness Center</div>
           </div>
           <div class="amenity">
-            <img class="amenity-icon" src="https://via.placeholder.com/50x50.png" alt="Amenity Icon">
+            <img class="amenity-icon" src="photos/desk.png" alt="Amenity Icon">
             <div class="amenity-label">24-Hour Front Desk</div>
           </div>
         </div>

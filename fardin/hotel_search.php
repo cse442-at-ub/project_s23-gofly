@@ -117,6 +117,21 @@ if(!isset($_SESSION['username'])){
     <?php
 	require_once("config.php");
 
+    $city = $_SESSION['search_city'];
+    $check_in = $_SESSION['check_in'];
+    $check_out = $_SESSION['check_out'];
+    $adults = $_SESSION['hotel_adults'];
+
+        // Create DateTime objects from the date strings
+    $check_in = new DateTime($check_in);
+    $check_out = new DateTime($check_out);
+
+    // Calculate the difference between the check-in and check-out dates
+    $interval = $check_in->diff($check_out);
+    $duration = $interval->format('%a'); // Get the difference in days
+
+    echo $duration;
+
 	$limit = 5;
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$offset = ($page - 1) * $limit;
@@ -124,7 +139,12 @@ if(!isset($_SESSION['username'])){
     if (isset($_SESSION["sorted_listings"])) {
         $listings = $_SESSION["sorted_listings"];
     } else {
-        $sql = "SELECT * FROM hotel_listings LIMIT $limit OFFSET $offset";
+        
+
+        $sql = "SELECT * FROM hotel_listings
+        WHERE hotel_city = '$city'
+        LIMIT $limit OFFSET $offset";
+
         $result = mysqli_query($db_connection, $sql);
         if (mysqli_num_rows($result) > 0) {
             $listings = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -152,7 +172,7 @@ if(!isset($_SESSION['username'])){
     <h2><?php echo $row["hotel_name"]; ?></h2>
     <p><strong>Room type:</strong><?php echo $row["hotel_room"]; ?></p>
     <p><strong>City:</strong><?php echo $row["hotel_city"]; ?></p>
-    <p><strong>Price per night:</strong><?php echo '$'. $row["hotel_price"]; ?></p>
+    <p><strong>Price per night:</strong><?php echo '$' . $row["hotel_price"] * $duration; ?></p>
         <a href="hotel_details.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-1" id="view-details">View Details</a>
 
     <a href="addbookinghotel.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>

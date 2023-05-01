@@ -7,13 +7,13 @@
                 My Booking</a></li>
         <?php
         // Check if user is logged in and has a role
-        if (isset($_SESSION['role'])) {
-            $role = $_SESSION['role'];
+        if (isset($_SESSION['user_type'])) {
+            $role = $_SESSION['user_type'];
             
             // Display different items based on the user's role
             if ($role === 'admin') {
-                echo '<li><a href="postlisting.php">Post Listing</a></li>';
-            } else if ($role === 'regular') {
+                echo '<li><a href="admindisplay.php">Listing</a></li>';
+            } else if ($role === 'user') {
                 echo '<li><a href="displaylist.php">Listings</a></li>';
             }
         }
@@ -45,6 +45,10 @@
                             echo '<a href="post_listing.php">Post Airline</a>';
                             echo '<a href="posthotel.php">Post Hotel</a>';
                             echo '<a href="admin_hotelDisplay.php">Display Hotel</a>';
+                        }
+
+                        if($role === 'user') {
+                            echo '<a href="displayhotel1.php">Display Hotel</a>';
                         }
                     }
                     ?>

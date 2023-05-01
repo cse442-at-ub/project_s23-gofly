@@ -18,6 +18,7 @@ if(!isset($_SESSION['username'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,6 +30,7 @@ if(!isset($_SESSION['username'])){
     <link rel="stylesheet" href="display.css">
     <title>Listings</title>
 </head>
+
 <body>
     <?php 
         // Check the session status
@@ -45,8 +47,8 @@ if(!isset($_SESSION['username'])){
         
     ?>
 
-    <div class="wel"> 
-    <?php
+    <div class="wel">
+        <?php
         if(isset($_SESSION["username"])) {
             $username = $_SESSION['username'];
             echo "<h1>Welcome, $username!</h1>";
@@ -56,25 +58,25 @@ if(!isset($_SESSION['username'])){
 
 
     <style>
-        .sort-dropdown {
+    .sort-dropdown {
         display: inline-block;
         margin: 10px;
-        }
+    }
 
-        .sort-label {
+    .sort-label {
         font-size: 17px;
         font-weight: bold;
         color: white;
         font-family: 'Poppins', sans-serif;
         letter-spacing: 3px;
-        }
+    }
 
-        .select-container {
+    .select-container {
         position: relative;
         display: inline-block;
-        }
+    }
 
-        .sort-select {
+    .sort-select {
         appearance: none;
         background-color: rgb(130, 111, 236);
         border: none;
@@ -87,16 +89,16 @@ if(!isset($_SESSION['username'])){
         letter-spacing: 3px;
         padding: 5px 10px;
         width: auto;
-        }
+    }
 
-        .select-container::after {
+    .select-container::after {
         content: "▼";
         color: white;
         font-size: 12px;
         position: absolute;
         right: 10px;
         top: 8px;
-        }
+    }
     </style>
     <div class="sort-dropdown">
         <form action="sort_listing.php" method="post">
@@ -104,17 +106,27 @@ if(!isset($_SESSION['username'])){
             <div class="select-container">
                 <select name="sort" id="sort" class="sort-select" onchange="this.form.submit()">
                     <option value="">Select</option>
-                    <option value="price_high_low" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_high_low' ? 'selected' : ''; ?>>Price High-Low</option>
-                    <option value="price_low_high" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_low_high' ? 'selected' : ''; ?>>Price Low-High</option>
-                    <option value="duration" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'duration' ? 'selected' : ''; ?>>Duration</option>
-                    <option value="airline" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'airline' ? 'selected' : ''; ?>>Airline</option>
-                    <option value="destination" <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'destination' ? 'selected' : ''; ?>>Destination</option>
+                    <option value="price_high_low"
+                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_high_low' ? 'selected' : ''; ?>>
+                        Price High-Low</option>
+                    <option value="price_low_high"
+                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_low_high' ? 'selected' : ''; ?>>
+                        Price Low-High</option>
+                    <option value="duration"
+                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'duration' ? 'selected' : ''; ?>>
+                        Duration</option>
+                    <option value="airline"
+                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'airline' ? 'selected' : ''; ?>>
+                        Airline</option>
+                    <option value="destination"
+                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'destination' ? 'selected' : ''; ?>>
+                        Destination</option>
                 </select>
             </div>
 
 
- 
-    <?php
+
+            <?php
 	require_once("config.php");
 
 	$limit = 5;
@@ -139,28 +151,31 @@ if(!isset($_SESSION['username'])){
 		foreach ($listings as $row) {
 			?>
 
-<div class="hotel-listing">
-  <div class="hotel-image">
-    <?php
+
+            <div class="hotel-listing">
+                <div class="hotel-image">
+                    <?php
       $image_data = $row["hotel_image"];
       $encoded_image = base64_encode($image_data);
       $image_src = "data:image/jpeg;base64," . $encoded_image;
     ?>
-    <img src="<?php echo $image_src; ?>" alt="Hotel Image">
-  </div>
-  <div class="hotel-info">
-    <h2><?php echo $row["hotel_name"]; ?></h2>
-    <p><strong>Room type:</strong><?php echo $row["hotel_room"]; ?></p>
-    <p><strong>City:</strong><?php echo $row["hotel_city"]; ?></p>
-    <p><strong>Price per night:</strong><?php echo $row["hotel_price"]; ?></p>
-        <a href="hotel_details.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-1" id="view-details">View Details</a>
+                    <img src="<?php echo $image_src; ?>" alt="Hotel Image">
+                </div>
+                <div class="hotel-info">
+                    <h2><?php echo $row["hotel_name"]; ?></h2>
+                    <p><strong>Room type:</strong><?php echo $row["hotel_room"]; ?></p>
+                    <p><strong>City:</strong><?php echo $row["hotel_city"]; ?></p>
+                    <p><strong>Price per night:</strong><?php echo $row["hotel_price"]; ?></p>
+                    <a href="hotel_details.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-1"
+                        id="view-details">View Details</a>
 
-    <a href="addbookinghotel.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
-  </div>
-</div>
+                    <a href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>" style="width:45%;"
+                        class="btn-2">Book Now</a>
+                </div>
+            </div>
 
-		<br>
-        <?php
+            <br>
+            <?php
 		}
         unset($_SESSION["sorted_listings"]); // Unset the sorted_listings session variable so that the next time the page is loaded, the listings are not sorted.
 
@@ -173,7 +188,7 @@ if(!isset($_SESSION['username'])){
 		if ($pages > 1) {
 			?>
             <div class="pagination">
-            <?php
+                <?php
 			for ($i = 1; $i <= $pages; $i++) {
 				if ($i == $page) {
 					echo "<span class='current'>$i</span>";
@@ -192,72 +207,176 @@ if(!isset($_SESSION['username'])){
 	mysqli_close($db_connection);
 ?>
 
-<style>
-  .hotel-listing {
-	background-color: #fff;
-    width:800px;
-    margin-left:5%;
-    margin-top:10%;
-    padding: 20px;
-	box-shadow: 0px 0px 10px #ccc;
-	display: flex;
-    justify-content: left;
-	align-items: center;
-}
+            <style>
+            /* @import url('https://fonts.googleapis.com/css?family=Lato:200,400|Playfair+Display');
 
-.hotel-image {
-	width: 200px;
-	height: 200px;
-	margin-right: 20px;
-}
+    body {
+        background-image: linear-gradient(190deg, rgba(0, 0, 99, .05) 10%, rgba(0, 0, 255, .19) 100%);
+        padding: 0;
+        margin: 0;
+    }
 
-.hotel-image img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
+    .wrapper {
+        float: left;
+        width: 30%;
+        min-width: 300px;
+        background-color: #f1f1f1;
+        margin: 1.5%;
+        padding: 2em 1em;
+        box-sizing: border-box;
+        box-shadow: 0 1px 30px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.24);
+        text-align: center;
+    }
 
-.hotel-info h2 {
-	margin-top: 0;
-	font-weight: bold;
-	font-size: 24px;
-	margin-bottom: 10px;
-}
+    .wrapper>h1 {
+        font-family: "Lato", sans-serif;
+        font-weight: 200;
+        font-size: 1.5em;
+        letter-spacing: .15em;
+        color: #333;
+    }
 
-.hotel-info p {
-	margin-bottom: 10px;
-	font-size: 16px;
-}
+    .details {
+        width: 95%;
+        margin: 0 auto 2em;
+        padding-top: 10.5em;
+        padding-bottom: 1em;
+        background-color: #FFEBC8;
+        color: #333;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.24);
+        transition: all ease-in 0.15s;
+    }
 
-.hotel-info strong {
-	font-weight: bold;
-}
+    .wrapper:hover .details {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 5px rgba(0, 0, 0, 0.22);
+        transform: translate(0px, -2px) scale(1.01);
+    }
 
-.hotel-info button {
-	background-color: #008CBA;
-	color: #fff;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 16px;
-	margin-top: 10px;
-}
+    .details>h1 {
+        font-family: "Playfair Display";
+        font-size: 1em;
+    }
 
-.hotel-info button:hover {
-	background-color: #004265;
-}
+    .details>h2 {
+        font-family: sans-serif;
+        font-size: 1.4em;
+        font-weight: 200;
+        letter-spacing: 0.1em;
+    }
 
-</style>
+    .details>p {
+        font-family: sans-serif;
+        font-size: 1em;
+        font-weight: 200;
+    }
+
+    .image {
+        position: relative;
+        z-index: 2;
+        width: 85%;
+        height: 250px;
+        margin: 0 auto -10em;
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
+        transition: all ease-in .15s;
+    }
+
+    .wrapper:hover .image {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        transform: translate(0px, -3px) scale(1.02);
+    }
+
+
+    @media screen and (max-width: 1000px) {
+        .wrapper {
+            width: 47%;
+        }
+    }
+
+    @media screen and(max-width:700px) {
+        .wrapper {
+            float: none;
+            width: 70%;
+            margin: 1em auto;
+        }
+    }
+
+    @media screen and(max-width:700px) {
+        .wrapper {
+            float: none;
+            width: 70%;
+            margin: 1em auto;
+        }
+    } */
+
+            .hotel-image {
+                width: 200px;
+                height: 200px;
+                margin-right: 20px;
+            }
+
+            .hotel-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .hotel-listing {
+                background-color: #fff;
+                width: 800px;
+                margin-left: 5%;
+                margin-top: 10%;
+                padding: 20px;
+                box-shadow: 0px 0px 10px #ccc;
+                display: flex;
+                justify-content: left;
+                align-items: center;
+            }
+
+
+
+            .hotel-info h2 {
+                margin-top: 0;
+                font-weight: bold;
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .hotel-info p {
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
+
+            .hotel-info strong {
+                font-weight: bold;
+            }
+
+            .hotel-info button {
+                background-color: #008CBA;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                margin-top: 10px;
+            }
+
+            .hotel-info button:hover {
+                background-color: #004265;
+            }
+            </style>
 
 
 
 
 
 
-    
 
-    <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
-    <script src="land.js"></script>
+
+            <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
+            <script src="land.js"></script>
 </body>
+
 </html>

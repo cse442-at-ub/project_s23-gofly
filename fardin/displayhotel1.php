@@ -28,6 +28,7 @@ if(!isset($_SESSION['username'])){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="display.css">
+    <link rel="stylesheet" href="hoteldisplay.css">
     <title>Listings</title>
 </head>
 
@@ -57,49 +58,7 @@ if(!isset($_SESSION['username'])){
     </div>
 
 
-    <style>
-    .sort-dropdown {
-        display: inline-block;
-        margin: 10px;
-    }
-
-    .sort-label {
-        font-size: 17px;
-        font-weight: bold;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-        letter-spacing: 3px;
-    }
-
-    .select-container {
-        position: relative;
-        display: inline-block;
-    }
-
-    .sort-select {
-        appearance: none;
-        background-color: rgb(130, 111, 236);
-        border: none;
-        border-radius: 5px;
-        color: white;
-        cursor: pointer;
-        font-family: 'Poppins', sans-serif;
-        font-size: 15px;
-        font-weight: bold;
-        letter-spacing: 3px;
-        padding: 5px 10px;
-        width: auto;
-    }
-
-    .select-container::after {
-        content: "▼";
-        color: white;
-        font-size: 12px;
-        position: absolute;
-        right: 10px;
-        top: 8px;
-    }
-    </style>
+    
     <div class="sort-dropdown">
         <form action="sort_listing.php" method="post">
             <label for="sort" class="sort-label">Sort by:</label>
@@ -123,10 +82,12 @@ if(!isset($_SESSION['username'])){
                         Destination</option>
                 </select>
             </div>
+        </form>
+    </div>
 
 
+<?php
 
-            <?php
 	require_once("config.php");
 
 	$limit = 5;
@@ -150,29 +111,42 @@ if(!isset($_SESSION['username'])){
 		// output data of each row
 		foreach ($listings as $row) {
 			?>
+            <div class="wrap-2">
+                <div class="wrapper">
+                    <h1><?php echo $row["hotel_name"]; ?></h1>
+                    <div class="image hotel-image">
+                        <?php
+                                $image_data = $row["hotel_image"];
+                                $encoded_image = base64_encode($image_data);
+                                $image_src = "data:image/jpeg;base64," . $encoded_image;
+                                ?>
 
+                        <img src="<?php echo $image_src; ?>" alt="Hotel Image">
+                    </div>
+                    <div class="details">
+                        <h1>
+                            <em><?php echo $row["hotel_city"]; ?></em>
+                        </h1>
+                        <h4><?php echo $row["hotel_room"]; ?></h4>
+                        <p>2 days 1 Night
+                        </p>
+                    </div>
+                    <h1><?php echo $row["hotel_price"]; ?></h1>
+                    <div class="btn-frame">
+                        <a
+                            href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>"
+                            style="width:45%;"
+                            class="custom-btn btn-3">Book Now</a>
+                        <a
+                            href="hotel_details.php?id=<?php echo $row['id']; ?>"
+                            style="width:45%;"
+                            class="custom-btn btn-3"
+                            id="view-details">View Details</a>
+                    </div>
 
-            <div class="hotel-listing">
-                <div class="hotel-image">
-                    <?php
-      $image_data = $row["hotel_image"];
-      $encoded_image = base64_encode($image_data);
-      $image_src = "data:image/jpeg;base64," . $encoded_image;
-    ?>
-                    <img src="<?php echo $image_src; ?>" alt="Hotel Image">
-                </div>
-                <div class="hotel-info">
-                    <h2><?php echo $row["hotel_name"]; ?></h2>
-                    <p><strong>Room type:</strong><?php echo $row["hotel_room"]; ?></p>
-                    <p><strong>City:</strong><?php echo $row["hotel_city"]; ?></p>
-                    <p><strong>Price per night:</strong><?php echo $row["hotel_price"]; ?></p>
-                    <a href="hotel_details.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-1"
-                        id="view-details">View Details</a>
-
-                    <a href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>" style="width:45%;"
-                        class="btn-2">Book Now</a>
                 </div>
             </div>
+
 
             <br>
             <?php
@@ -207,176 +181,9 @@ if(!isset($_SESSION['username'])){
 	mysqli_close($db_connection);
 ?>
 
-            <style>
-            /* @import url('https://fonts.googleapis.com/css?family=Lato:200,400|Playfair+Display');
 
-    body {
-        background-image: linear-gradient(190deg, rgba(0, 0, 99, .05) 10%, rgba(0, 0, 255, .19) 100%);
-        padding: 0;
-        margin: 0;
-    }
-
-    .wrapper {
-        float: left;
-        width: 30%;
-        min-width: 300px;
-        background-color: #f1f1f1;
-        margin: 1.5%;
-        padding: 2em 1em;
-        box-sizing: border-box;
-        box-shadow: 0 1px 30px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.24);
-        text-align: center;
-    }
-
-    .wrapper>h1 {
-        font-family: "Lato", sans-serif;
-        font-weight: 200;
-        font-size: 1.5em;
-        letter-spacing: .15em;
-        color: #333;
-    }
-
-    .details {
-        width: 95%;
-        margin: 0 auto 2em;
-        padding-top: 10.5em;
-        padding-bottom: 1em;
-        background-color: #FFEBC8;
-        color: #333;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.24);
-        transition: all ease-in 0.15s;
-    }
-
-    .wrapper:hover .details {
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 5px rgba(0, 0, 0, 0.22);
-        transform: translate(0px, -2px) scale(1.01);
-    }
-
-    .details>h1 {
-        font-family: "Playfair Display";
-        font-size: 1em;
-    }
-
-    .details>h2 {
-        font-family: sans-serif;
-        font-size: 1.4em;
-        font-weight: 200;
-        letter-spacing: 0.1em;
-    }
-
-    .details>p {
-        font-family: sans-serif;
-        font-size: 1em;
-        font-weight: 200;
-    }
-
-    .image {
-        position: relative;
-        z-index: 2;
-        width: 85%;
-        height: 250px;
-        margin: 0 auto -10em;
-        background-size: cover;
-        background-position: center;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
-        transition: all ease-in .15s;
-    }
-
-    .wrapper:hover .image {
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-        transform: translate(0px, -3px) scale(1.02);
-    }
-
-
-    @media screen and (max-width: 1000px) {
-        .wrapper {
-            width: 47%;
-        }
-    }
-
-    @media screen and(max-width:700px) {
-        .wrapper {
-            float: none;
-            width: 70%;
-            margin: 1em auto;
-        }
-    }
-
-    @media screen and(max-width:700px) {
-        .wrapper {
-            float: none;
-            width: 70%;
-            margin: 1em auto;
-        }
-    } */
-
-            .hotel-image {
-                width: 200px;
-                height: 200px;
-                margin-right: 20px;
-            }
-
-            .hotel-image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .hotel-listing {
-                background-color: #fff;
-                width: 800px;
-                margin-left: 5%;
-                margin-top: 10%;
-                padding: 20px;
-                box-shadow: 0px 0px 10px #ccc;
-                display: flex;
-                justify-content: left;
-                align-items: center;
-            }
-
-
-
-            .hotel-info h2 {
-                margin-top: 0;
-                font-weight: bold;
-                font-size: 24px;
-                margin-bottom: 10px;
-            }
-
-            .hotel-info p {
-                margin-bottom: 10px;
-                font-size: 16px;
-            }
-
-            .hotel-info strong {
-                font-weight: bold;
-            }
-
-            .hotel-info button {
-                background-color: #008CBA;
-                color: #fff;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
-                margin-top: 10px;
-            }
-
-            .hotel-info button:hover {
-                background-color: #004265;
-            }
-            </style>
-
-
-
-
-
-
-
-
-            <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
-            <script src="land.js"></script>
+    <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
+    <script src="land.js"></script>
 </body>
 
 </html>

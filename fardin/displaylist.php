@@ -29,33 +29,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <link rel="stylesheet" href="display.css">
     <title>Listings</title>
 </head>
-<body>
-    <?php 
-        // Check the session status
-        $status = session_status();
-        if ($status === PHP_SESSION_ACTIVE) {
-            // Session is active
-            include_once 'navbar.php';
-        } else {
-            session_start();
-            // Session is not active
-            include_once 'navbar.php';
-
-        }
-        
-    ?>
-
-    <div class="wel"> 
-    <?php
-        if(isset($_SESSION["username"])) {
-            $username = $_SESSION['username'];
-            echo "<h1>Welcome, $username!</h1>";
-        }
-    ?>
-    </div>
-
-
-    <style>
+<style>
         .sort-dropdown {
         display: inline-block;
         margin: 10px;
@@ -98,6 +72,33 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
         top: 8px;
         }
     </style>
+<body>
+    <?php 
+        // Check the session status
+        $status = session_status();
+        if ($status === PHP_SESSION_ACTIVE) {
+            // Session is active
+            include_once 'navbar.php';
+        } else {
+            session_start();
+            // Session is not active
+            include_once 'navbar.php';
+
+        }
+        
+    ?>
+
+    <div class="wel"> 
+    <?php
+        if(isset($_SESSION["username"])) {
+            $username = $_SESSION['username'];
+            echo "<h1>Welcome, $username!</h1>";
+        }
+    ?>
+    </div>
+
+
+    
     <div class="sort-dropdown">
         <form action="sort_listing.php" method="post">
             <label for="sort" class="sort-label">Sort by:</label>

@@ -27,6 +27,7 @@ if(!isset($_SESSION['username'])){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="display.css">
+    <link rel="stylesheet" href="hoteldisplay.css">
     <title>Listings</title>
 </head>
 <body>
@@ -54,50 +55,6 @@ if(!isset($_SESSION['username'])){
     ?>
     </div>
 
-
-    <style>
-        .sort-dropdown {
-        display: inline-block;
-        margin: 10px;
-        }
-
-        .sort-label {
-        font-size: 17px;
-        font-weight: bold;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-        letter-spacing: 3px;
-        }
-
-        .select-container {
-        position: relative;
-        display: inline-block;
-        }
-
-        .sort-select {
-        appearance: none;
-        background-color: rgb(130, 111, 236);
-        border: none;
-        border-radius: 5px;
-        color: white;
-        cursor: pointer;
-        font-family: 'Poppins', sans-serif;
-        font-size: 15px;
-        font-weight: bold;
-        letter-spacing: 3px;
-        padding: 5px 10px;
-        width: auto;
-        }
-
-        .select-container::after {
-        content: "▼";
-        color: white;
-        font-size: 12px;
-        position: absolute;
-        right: 10px;
-        top: 8px;
-        }
-    </style>
     <div class="sort-dropdown">
         <form action="sort_listing.php" method="post">
             <label for="sort" class="sort-label">Sort by:</label>
@@ -159,25 +116,32 @@ if(!isset($_SESSION['username'])){
 		foreach ($listings as $row) {
 			?>
 
-<div class="hotel-listing">
-  <div class="hotel-image">
-    <?php
-      $image_data = $row["hotel_image"];
-      $encoded_image = base64_encode($image_data);
-      $image_src = "data:image/jpeg;base64," . $encoded_image;
-    ?>
-    <img src="<?php echo $image_src; ?>" alt="Hotel Image">
-  </div>
-  <div class="hotel-info">
-    <h2><?php echo $row["hotel_name"]; ?></h2>
-    <p><strong>Room type:</strong><?php echo $row["hotel_room"]; ?></p>
-    <p><strong>City:</strong><?php echo $row["hotel_city"]; ?></p>
-    <p><strong>Price per night:</strong><?php echo '$' . $row["hotel_price"] * $duration; ?></p>
-        <a href="hotel_details.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-1" id="view-details">View Details</a>
+    <div class="wrapper">
+            <h1><?php echo $row["hotel_name"]; ?></h1>
+            <div class="image hotel-image">
+                <?php
+                $image_data = $row["hotel_image"];
+                $encoded_image = base64_encode($image_data);
+                $image_src = "data:image/jpeg;base64," . $encoded_image;
+                ?>
+                
+                <img src="<?php echo $image_src; ?>" alt="Hotel Image">
+            </div>
+            <div class="details">
+                <h1>
+                    <em><?php echo $row["hotel_city"]; ?></em>
+                </h1>
+                <h4><?php echo $row["hotel_room"]; ?></h4>
+                <p><?php echo $duration . " days " . ($duration - 1) . " nights"; ?></p>
+            </div>
+            <h1><?php echo "$".$row["hotel_price"]* ($duration-1); ?></h1>
+            <div class="btn-frame"><a href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>" style="width:45%;" class="custom-btn btn-3">Book Now</a>
+            <a href="hotel_details.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="custom-btn btn-3" id="view-details">View Details</a>
+            </div>
+            
 
-    <a href="addbookinghotel.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
-  </div>
-</div>
+            
+        </div>
 
 		<br>
         <?php
@@ -211,65 +175,6 @@ if(!isset($_SESSION['username'])){
 
 	mysqli_close($db_connection);
 ?>
-
-<style>
-  .hotel-listing {
-	background-color: #fff;
-    width:800px;
-    margin-left:5%;
-    margin-top:10%;
-    padding: 20px;
-	box-shadow: 0px 0px 10px #ccc;
-	display: flex;
-    justify-content: left;
-	align-items: center;
-}
-
-.hotel-image {
-	width: 200px;
-	height: 200px;
-	margin-right: 20px;
-}
-
-.hotel-image img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.hotel-info h2 {
-	margin-top: 0;
-	font-weight: bold;
-	font-size: 24px;
-	margin-bottom: 10px;
-}
-
-.hotel-info p {
-	margin-bottom: 10px;
-	font-size: 16px;
-}
-
-.hotel-info strong {
-	font-weight: bold;
-}
-
-.hotel-info button {
-	background-color: #008CBA;
-	color: #fff;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 16px;
-	margin-top: 10px;
-}
-
-.hotel-info button:hover {
-	background-color: #004265;
-}
-
-</style>
-
 
 
 

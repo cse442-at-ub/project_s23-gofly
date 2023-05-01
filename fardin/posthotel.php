@@ -99,6 +99,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -110,6 +111,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <title>Edit Profile</title>
 </head>
+
 <body>
     <?php 
     // Check the session status
@@ -127,56 +129,56 @@
         
     ?>
 
-  
-<div class="form-container">
-		<h2>Hotel Listing</h2>
-		<form method="post" enctype="multipart/form-data">
-  <label for="name">Hotel name:</label>
-  <input type="text" id="name" name="name" placeholder="Enter hotel name" required>
 
-  <label for="address">Hotel address:</label>
-  <input type="text" id="address" name="address" placeholder="Enter hotel address" required>
+    <div class="form-container">
+        <h2>Hotel Listing</h2>
+        <form method="post" enctype="multipart/form-data">
+            <label for="name">Hotel name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter hotel name" required>
 
-  <label for="city">City:</label>
-  <select id="city" name="city" required>
-    <option value="">Select a city</option>
-    <?php
+            <label for="address">Hotel address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter hotel address" required>
+
+            <label for="city">City:</label>
+            <select id="city" name="city" required>
+                <option value="">Select a city</option>
+                <?php
       $us_cities = array("New York City", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose", "Austin", "Jacksonville", "Fort Worth", "Columbus", "San Francisco");
       foreach ($us_cities as $city) {
         echo "<option value='$city'>$city</option>";
       }
     ?>
-  </select>
+            </select>
 
-  <label for="zipcode">Zip code:</label>
-  <input type="text" id="zipcode" name="zipcode" placeholder="Enter zip code" required>
+            <label for="zipcode">Zip code:</label>
+            <input type="text" id="zipcode" name="zipcode" placeholder="Enter zip code" required>
 
-  <label for="room_type">Room type:</label>
-  <select id="room_type" name="room_type" required>
-    <option value="">Select a room type</option>
-    <option value="Single">Single</option>
-    <option value="Double">Double</option>
-    <option value="King">King</option>
-    <option value="Queen">Queen</option>
-    <option value="Suite">Suite</option>
-  </select>
+            <label for="room_type">Room type:</label>
+            <select id="room_type" name="room_type" required>
+                <option value="">Select a room type</option>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="King">King</option>
+                <option value="Queen">Queen</option>
+                <option value="Suite">Suite</option>
+            </select>
 
-  <label for="description">Description:</label>
-  <textarea id="description" name="description" placeholder="Enter hotel description" required></textarea>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" placeholder="Enter hotel description" required></textarea>
 
-  <label for="image">Hotel image:</label>
-  <input type="file" id="image" name="image" required>
+            <label for="image">Hotel image:</label>
+            <input type="file" id="image" name="image" required>
 
-  <label for="roomimage">Room Images:</label>
-  <input type="file" id="roomimage" name="roomimage[]" multiple required>
+            <label for="roomimage">Room Images:</label>
+            <input type="file" id="roomimage" name="roomimage[]" multiple required>
 
-  <label for="price">Price per night:</label>
-  <input type="text" id="price" name="price" placeholder="Enter price per night" required>
+            <label for="price">Price per night:</label>
+            <input type="text" id="price" name="price" placeholder="Enter price per night" required>
 
-  <input type="submit" value="Submit">
-</form>
+            <input type="submit" value="Submit">
+        </form>
 
-	</div>
+    </div>
 
 
 
@@ -186,10 +188,11 @@
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>
-    
+
 </body>
+
 </html>
 
 <style>
-    
-    </style>
+
+</style>

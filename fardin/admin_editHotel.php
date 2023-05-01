@@ -16,7 +16,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
 }
 
 
-var_dump($_GET);
+
 //Get the ticket ID from the query parameter.
 $hotel_id = $_GET['id'];
 
@@ -77,79 +77,58 @@ mysqli_close($db_connection);
         
     ?>
 
-
-    <div class="container">
-    <form method="post" action="updateHotelListing.php?id=<?php echo $hotel_id ?>">
-          <h2>Edit Hotel Listing</h2>
-            <p class="failed">
-                <?php
+    <div class="form-container">
+        <h2>Hotel Listing</h2>
+        <p class="failed">
+            <?php
                 if(isset($_SESSION['status'])){
                     echo $_SESSION['status'];
                     unset($_SESSION['status']);
                 }
             ?>
-            </p>
+        </p>
+        <form method="post" action="updateHotelListing.php">
+            <label for="name">Hotel name:</label>
+            <input type="text" id="name" name="hotel_name" value="<?php echo $hotelName; ?>" readonly>
 
+            <label for="address">Hotel address:</label>
+            <input class="box" type="text" name="hotel_address" value="<?php echo $hotelAddress; ?>">
 
-            <section class="child">
-                <p>Hotel Name:</p>
-                <!-- <input type="hidden" name="id" value="<?php echo $hotel_id; ?>"> -->
-                <input list="air-name-lists" class="box" type="text" name="hotel_name" value="<?php echo $hotelName; ?>"
-                    required>
-                <datalist id="air-name-lists">
-                    <option>Four Seasons</option>
-                    <option>Marriott Internation Hotel</option>
-                    <option>Hilton WorldWide Hotels</option>
-                    <option>Hyatt Hotels Coropration</option>
-                </datalist>
+            <label for="city">City:</label>
+            <select id="city" name="city" required>
+                <option value="<?php echo $hotelCity ;?>">Select a city</option>
+                <?php
+      $us_cities = array("New York City", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose", "Austin", "Jacksonville", "Fort Worth", "Columbus", "San Francisco");
+      foreach ($us_cities as $city) {
+        echo "<option value='$city'>$city</option>";
+      }
+    ?>
+            </select>
 
-                <p>Hotel Address:</p>
-                <input class="box" type="text" name="hotel_address" value="<?php echo $hotelAddress; ?>">
+            <label for="zipcode">Zip code:</label>
+            <input list="hotels" class="box" type="number" id="zipcode" name="hotel_zipcode"
+                value="<?php echo $hotelZipcode; ?>" maxlength="5" required><br>
 
-                <p><label for="zipcode">Hotel Zipcode:</label></p>
-                <input list="hotels" class="box" type="number" id="zipcode" name="hotel_zipcode"
-                    value="<?php echo $hotelZipcode; ?>" maxlength="5" required><br>
+            <label for="room_type">Room type:</label>
+            <select class="box" id="room" name="hotel_room" value="<?php echo $hotel_room; ?>">
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="King">King</option>
+                <option value="Queen">Queen</option>
+                <option value="Suite">Suite</option>
 
-                <p><label for="description">Description:</label></p>
-                <textarea id="description" name="hotel_description" value="<?php echo $hotel_description; ?>"
-                    required></textarea>
+            </select>
 
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" placeholder="Enter hotel description" required></textarea>
 
+            <label for="price">Price per night:</label>
+            <input class="box" type="number" id="price" name="hotel_price" value="<?php echo $hotel_price; ?>"
+                required><br>
 
-            </section>
-            <section class="child">
-                <p><label for="price">Price:</label></p>
-                <input class="box" type="number" id="price" name="hotel_price" value="<?php echo $hotel_price; ?>"
-                    required><br>
-
-
-                <p><label for="seats">Hotel Room:</label></p>
-                <select class="box" id="room" name="hotel_room" value="<?php echo $hotel_room; ?>">
-                    <option value="Single">Single</option>
-                    <option value="Double">Double</option>
-                    <option value="King">King</option>
-                    <option value="Queen">Queen</option>
-                    <option value="Suite">Suite</option>
-
-                </select>
-
-
-
-
-
-
-
-            </section>
-
-
-
-
-
-            <input type="submit" value="Save Listing" id="submit">
-            <a class="btn-4" href="admin_hotelDisplay.php">Cancel</a>
-
+            <input type="submit" value="Submit">
+            <a type="submit"class="btn-4" href="admin_hotelDisplay.php">Cancel</a>
         </form>
-
 
     </div>
 

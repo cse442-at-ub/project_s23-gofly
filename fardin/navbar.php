@@ -12,7 +12,7 @@
             
             // Display different items based on the user's role
             if ($role === 'admin') {
-                echo '<li><a href="admindisplay.php">Listing</a></li>';
+                echo '<li><a href="admin_displaylist.php">Listing</a></li>';
             } else if ($role === 'user') {
                 echo '<li><a href="displaylist.php">Flights</a></li>';
                 echo '<li><a href="displayhotel1.php">Hotels</a></li>';

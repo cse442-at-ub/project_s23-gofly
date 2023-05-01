@@ -111,7 +111,7 @@ if(!isset($_SESSION['username'])){
 		// output data of each row
 		foreach ($listings as $row) {
 			?>
-            <div class="wrap-2">
+            
                 <div class="wrapper">
                     <h1><?php echo $row["hotel_name"]; ?></h1>
                     <div class="image hotel-image">
@@ -145,7 +145,6 @@ if(!isset($_SESSION['username'])){
                     </div>
 
                 </div>
-            </div>
 
 
             <br>

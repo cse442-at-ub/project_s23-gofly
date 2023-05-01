@@ -38,6 +38,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hotel Details</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="display.css">
+    <link rel="stylesheet" href="hoteldisplay.css">
   </head>
   <body>
     <header>
@@ -56,14 +58,15 @@
     ?>
   </div>
         <p class="hotel-description">
-        <h3>Description: </h3>
-        <?php echo $description ?>
+        <h3>Description:  </h3>
+        <?php echo  $description ?>
         
         
 
         </p>
 
         <div class="address">
+          
 
         </div>
         <div class="amenities">
@@ -86,13 +89,13 @@
           </div>
         </div>
         <div class="price">
-        <h3>Address</h3>
+        <h3>Address: </h3>
           <p><?php echo $address ?></p>
           <p><?php echo $city . ", " . $zipcode; ?></p>
-          <h3>Price</h3>
-          <div class="price-label">Price per night:</div>
-          <div class="price-amount"><?php echo $price ?></div>
-          <a href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
+
+          
+          <div class="price-amount"><?php echo 'Price per night: $'. $price ?></div>
+          <a href="addbookinghotel.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
         </div>
       </section>
     </main>
@@ -195,6 +198,23 @@ main {
   width: 50px;
   height: 50px;
   margin-right: 10px;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price-amount {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .price {

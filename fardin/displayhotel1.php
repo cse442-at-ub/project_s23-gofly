@@ -128,13 +128,13 @@ if(!isset($_SESSION['username'])){
                             <em><?php echo $row["hotel_city"]; ?></em>
                         </h1>
                         <h4><?php echo $row["hotel_room"]; ?></h4>
-                        <p>2 days 1 Night
-                        </p>
+                        <!-- <p>2 days 1 Night
+                        </p> -->
                     </div>
-                    <h1><?php echo $row["hotel_price"]; ?></h1>
+                    <h1><?php echo  '$'. $row["hotel_price"]; ?></h1>
                     <div class="btn-frame">
                         <a
-                            href="addbookinghotel.php?id=hotel<?php echo $row['id']; ?>"
+                            href="addbookinghotel.php?id=<?php echo $row['id']; ?>"
                             style="width:45%;"
                             class="custom-btn btn-3">Book Now</a>
                         <a

@@ -30,7 +30,6 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <title>Listings</title>
 </head>
 <body>
-    <h1>Return Flights</h1>
     <?php 
         // Check the session status
         $status = session_status();
@@ -46,6 +45,12 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
         
     ?>
 
+
+    <div class="wel">
+        <h1>Return Flights</h1>
+    </div>
+
+        
 
 <?php
 	require_once("config.php");
@@ -179,8 +184,10 @@ $_SESSION['first_flight'] = $_GET['id'];
         ?>
         <div class="wel">
             <h1>
-                <?php echo "No results found.";?>
+                <?php echo "No results found. Use a different Date";?>
+                
             </h1>
+            <a class="btn-3" style="width:30%; margin:0 auto; " href="landing.php">Search Again</a>'
             
         </div>
 		<?php

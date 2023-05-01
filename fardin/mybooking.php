@@ -21,17 +21,23 @@ $result = $stmt->get_result();
 
 // Create an empty array to store ticket IDs
 $ticket_ids = array();
+$hotel_ids = array();
 
-// Loop through the records and add the ticket IDs to the array
+
+
+// Loop through the records and add the ticket IDs and hotel IDs to the arrays
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $ticket_ids[] = $row["ticket_id"];
+        if ($row["ticket_id"] !== null && $row["hotel_id"] == null ) {
+            $ticket_ids[] = $row["ticket_id"];
+        }
+        if ($row["hotel_id"] !== null && $row["ticket_id"] == null ) {
+            $hotel_ids[] = $row["hotel_id"];
+        }
     }
 } else {
     // echo "<p>No tickets found for $username</p>";
 }
-
-
 ?>
 
 
@@ -81,10 +87,32 @@ if ($result->num_rows > 0) {
     ?>
     </h1>
 
+    <br> </br>
 
+    <div class="buttons-container">
+    
+    <div style="text-align: center;">
+  <button onclick="showPage1()" class="btn-flight active">Flights</button>
+  <button onclick="showPage2()" class="btn-hotel">Hotels</button>
+</div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+    <section id="flight-section">
 
 
     <?php
+
+    
     // Loop through the ticket IDs and retrieve the corresponding flight data
     foreach ($ticket_ids as $ticket_id) {
     // Retrieve the flight data based on the ticket ID
@@ -174,9 +202,57 @@ if ($result->num_rows > 0) {
             echo "<p>No flight data found for ticket ID $ticket_id</p>";
         }
         }
+        
+    ?>
+
+    </section>
+
+    <section id="hotel-section">
+
+    <?php
+
+    
+
+        foreach ($hotel_ids as $hotel_id) {
+            // Retrieve the flight data based on the ticket ID
+            $sql = "SELECT * FROM hotel_listings WHERE id='$hotel_id'";
+            $result = $db_connection->query($sql);
+            // Display the flight data
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+        
+                // echo $row["airline"];
+                ?>
+            <div class="hotel-listing">
+		<div class="hotel-image">
+        
+        <?php
+                        $image_data = $row["hotel_image"];
+                        $encoded_image = base64_encode($image_data);
+                        $image_src = "data:image/jpeg;base64," . $encoded_image;
+                    ?>
+                    <img src="<?php echo $image_src; ?>" alt="Hotel Image">
+		</div>
+		<div class="hotel-info">
+			<h2><?php echo $row["hotel_name"]; ?></h2>
+			<p><strong>Room Type: </strong><?php echo $row["hotel_room"]; ?></p>
+			<p><strong>City: </strong><?php echo $row["hotel_city"]; ?></p>
+			<p><strong>Price per night: </strong><?php echo '$'. $row["hotel_price"]; ?></p>
+			
+            <a href="cancel_ticket.php?id=hotel<?php echo $row['id']; ?>" style="width:60%;" class="btn-2">Cancel Booking</a>
+
+
+		</div>
+	</div>
+        
+        
+            <?php
+                } 
+                }
 
         $db_connection->close();
     ?>
+     </section>
 
     </div>
 
@@ -186,5 +262,127 @@ if ($result->num_rows > 0) {
     <script src="land.js"></script>
 
 </body>
+
+<style>
+   .hotel-listing {
+	background-color: #fff;
+    width: 800px;
+    margin: 10% auto 0;
+    padding: 20px;
+    box-shadow: 0px 0px 10px #ccc;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+.hotel-image {
+	width: 200px;
+	height: 200px;
+	margin-right: 20px;
+}
+
+.hotel-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.hotel-info h2 {
+	margin-top: 0;
+	font-weight: bold;
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.hotel-info p {
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+.hotel-info strong {
+	font-weight: bold;
+}
+
+.hotel-info button {
+	background-color: #008CBA;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+.hotel-info button:hover {
+	background-color: #004265;
+}
+
+.btn-flight.active {
+  background-color: grey;
+  color: white;
+}
+
+.btn-hotel.active {
+  background-color: grey;
+  color: white;
+}
+
+.btn-flight {
+  background-color: white;
+  color: grey;
+  font-size: 20px;
+  padding: 10px 40px;
+  margin-right: 10px;
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-hotel {
+  background-color: white;
+  color: grey;
+  font-size: 20px;
+  padding: 10px 40px;
+  margin-left: 10px;
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+  border: none;
+}
+
+</style>
+
+<script>
+    window.onload = function() {
+  showPage1();
+}
+    
+    
+
+    function showPage1() {
+  document.getElementById("flight-section").style.display = "block";
+  document.getElementById("hotel-section").style.display = "none";
+}
+
+function showPage2() {
+  document.getElementById("flight-section").style.display = "none";
+  document.getElementById("hotel-section").style.display = "block";
+}
+
+const btnFlight = document.querySelector('.btn-flight');
+  const btnHotel = document.querySelector('.btn-hotel');
+
+  btnFlight.addEventListener('click', function() {
+    btnFlight.classList.add('active');
+    btnHotel.classList.remove('active');
+  });
+
+  btnHotel.addEventListener('click', function() {
+    btnHotel.classList.add('active');
+    btnFlight.classList.remove('active');
+  });
+    </script>
 
 </html>

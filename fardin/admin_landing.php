@@ -58,6 +58,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
                     <div class="dropdown-content">
                         <a href="profile.php">My Profile</a>
                         <a href="post_listing.php">Post Listing</a>
+                        <a href="posthotel.php">Post Hotel</a>
                         <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>

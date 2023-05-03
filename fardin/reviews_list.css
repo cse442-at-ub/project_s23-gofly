@@ -215,3 +215,58 @@ h2 {
 .dropbtn:focus {
     outline: none;
 }
+
+
+
+/* Media query for iPhone 12 Pro */
+@media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
+
+    /* Adjust the container width for iPhone 12 Pro */
+    .container {
+        width: 80%;
+    }
+
+    /* Adjust the reviews header font size and margins for iPhone 12 Pro */
+    h2 {
+        font-size: 2rem;
+        margin: 60px 0;
+        margin-bottom: 80px;
+    }
+
+    /* Adjust the review card container width for iPhone 12 Pro */
+    .review-container {
+        width: 100%;
+    }
+
+    /* Adjust the review card height for iPhone 12 Pro */
+    .review {
+        height: 290px;
+    }
+
+    /* Adjust the review card title (name) font size for iPhone 12 Pro */
+    .review h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Adjust the rating font size for iPhone 12 Pro */
+    .rating {
+        font-size: 1.5rem;
+    }
+
+    /* Adjust the review card comment font size for iPhone 12 Pro */
+    .review p {
+        font-size: 1.2rem;
+    }
+
+    /* Adjust the arrow icons font size for iPhone 12 Pro */
+    .arrow {
+        font-size: 1.5rem;
+    }
+
+    /* Adjust the view-reviews-btn width and padding for iPhone 12 Pro */
+    .view-reviews-btn {
+        width: 70%;
+        padding: 10px 20px;
+    }
+
+}

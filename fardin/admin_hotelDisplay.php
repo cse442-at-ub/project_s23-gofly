@@ -145,7 +145,6 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
             <a href="admin_DeleteHotel.php?id=<?php echo $row['id']; ?>" style="width:45%;"
                 class="custom-btn btn-3">Delete Hotel</a>
 
-
         </div>
 
     </div>

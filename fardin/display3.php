@@ -46,6 +46,12 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     ?>
 
 
+    <div class="wel">
+        <h1>Return Flights</h1>
+    </div>
+
+        
+
 <?php
 	require_once("config.php");
 
@@ -54,7 +60,9 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 	$offset = ($page - 1) * $limit;
 
     // Retrieve input values from the form
-  $flight_type = $_SESSION['flight-type'];
+//   $flight_type = $_SESSION['flight-type'];
+$_SESSION['first_flight'] = $_GET['id'];
+  
   $origin = $_SESSION['Origin'];
   $destination = $_SESSION['Destination'];
   $departure_date = $_SESSION['Departure'];
@@ -64,11 +72,10 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 
    
   $sql = "SELECT * FROM flight_listings 
-            WHERE departure = '$origin' 
-            AND arrival = '$destination' 
-            AND departure_date = '$departure_date'
-            
-            AND class = '$class_type'
+            WHERE departure = '$destination' 
+            AND arrival = '$origin' 
+            AND departure_date = '$arrival_date'
+
             LIMIT $limit OFFSET $offset";
 
 	$result = mysqli_query($db_connection, $sql);
@@ -82,6 +89,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 			<!-- Creating Lufthansa Listing -->
 			<div class="container">
 				<div class="box">
+                    <?php $_SESSION['return_flight'] = $row['id']; ?>
 
 					<div action='editlistings.php' class="ticket" method="get">
 						<span class="airline"><?php echo $row["airline"]; ?></span>
@@ -140,15 +148,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 									
 								</span>
                                 <span class="price plane">
-                                    <?php 
-                                    if ($flight_type == 'Single'){
-                                        echo '<a class="btn-3" href="addbooking.php?id=' . $row["id"] . '">Book Now</a>' ;
-                                    }
-                                    else{
-                                        
-                                        echo '<a class="btn-3" href="display3.php?id=' . $row["id"] . '">Select</a>' ;
-                                    }
-                                    ?>
+                                    <?php echo '<a class="btn-3" href="addbooking.php?id=' . $row["id"]. '">Book Now</a>' ?>
                                 </span>
 							</div>
 						</div>
@@ -160,13 +160,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
         <?php
 		}
 		// add pagination links
-		$sql = "SELECT * FROM flight_listings 
-            WHERE departure = '$origin' 
-            AND arrival = '$destination' 
-            AND departure_date = '$departure_date'
-            AND class = '$class_type'
-            LIMIT $limit OFFSET $offset";
-            
+		$sql = "SELECT COUNT(*) AS count FROM flight_listings";
 		$result = mysqli_query($db_connection, $sql);
 		$row = mysqli_fetch_assoc($result);
 		$count = $row['count'];
@@ -190,8 +184,10 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
         ?>
         <div class="wel">
             <h1>
-                <?php echo "No results found.";?>
+                <?php echo "No results found. Use a different Date";?>
+                
             </h1>
+            <a class="btn-3" style="width:30%; margin:0 auto; " href="landing.php">Search Again</a>'
             
         </div>
 		<?php

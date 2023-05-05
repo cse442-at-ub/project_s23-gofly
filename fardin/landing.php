@@ -3,20 +3,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $errors = '';
   
   // Check if required fields are filled in
-  if (empty($_POST['Origin']) || empty($_POST['Destination']) || empty($_POST['Departure']) || empty($_POST['class-type']))  {
-    $errors = 'Please fill in all the fields';
-  }
-  else{
-  session_start(); // start the session
-  $_SESSION['Origin'] = $_POST['Origin']; // store Origin in session
-  $_SESSION['Destination'] = $_POST['Destination']; // store Destination in session
-  $_SESSION['Departure'] = $_POST['Departure']; // store Departure in session
-  $_SESSION['class-type'] = $_POST['class-type']; // store Departure in session
+ if ($_POST['flight-type']=='Single'){
+    if (empty($_POST['flight-type']) || empty($_POST['Origin']) || empty($_POST['Destination']) || empty($_POST['Departure']) || empty($_POST['class-type']))  {
+        $errors = 'Please fill in all the fields';
+      }
+      else{
+      session_start(); // start the session
+      $_SESSION['Origin'] = $_POST['Origin']; // store Origin in session
+      $_SESSION['Destination'] = $_POST['Destination']; // store Destination in session
+      $_SESSION['Departure'] = $_POST['Departure']; // store Departure in session
+      $_SESSION['class-type'] = $_POST['class-type']; // store Departure in session
+      $_SESSION['flight-type'] = $_POST['flight-type'];
+    
+      header('Location: display2.php');
+      exit;
+    }
+ }
+ else{
+    if (empty($_POST['Arrival']) ||empty($_POST['Origin']) || empty($_POST['Destination']) || empty($_POST['Departure']) || empty($_POST['class-type']))  {
+        $errors = 'Please fill in all the fields';
+      }
+      else{
+      session_start(); // start the session
+      $_SESSION['Origin'] = $_POST['Origin']; // store Origin in session
+      $_SESSION['Destination'] = $_POST['Destination']; // store Destination in session
+      $_SESSION['Departure'] = $_POST['Departure']; // store Departure in session
+      $_SESSION['Arrival'] = $_POST['Arrival']; // store the arrival in session
+      $_SESSION['class-type'] = $_POST['class-type']; // store Departure in session
+      $_SESSION['flight-type'] = $_POST['flight-type'];
+    
+      header('Location: display2.php');
+      exit;
+    }
+ }
+}
 
-  header('Location: display2.php');
-  exit;
-}
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -71,10 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         ?>
     </div>
+
+
         <!-- .................Search Bar................................. -->
         <div id="search-form">
             <section>
-                <h2 class="header">Search Flights</h2>
+                <h2 class="header">Flights</h2>
                 <div class="flight" id="flightbox">
                 <?php if (!empty($errors)): ?>
                 <p class="error" style="color: red;"><?php echo $errors; ?></p>
@@ -82,20 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <form id="flight-form" method="post" action="">
                         <!-- TRIP TYPE -->
-                        <div id="flight-type">
-                            <div class="info-box">
-                                <!-- <input
-                                    type="radio"
-                                    name="flight-type"
-                                    value="Return"
-                                    id="return"
-                                    checked="checked"/>
-                                <label for="return">
-                                    RETURN</label> -->
-                            </div>
-                            <div class="info-box">
-                                <input type="radio" name="flight-type" value="Single" id="one-way"/>
-                                <label for="one-way">ONE WAY</label>
+                        <div class="container-10">
+                            <div class="tabs">
+                            <input type="radio" name="flight-type" value="Return" id="return" checked="checked" onchange="showArrival()"/>
+                                <label class="tab" for="return"> RETURN</label>
+                                <input type="radio" name="flight-type" value="Single" id="one-way" onchange="hideArrival()"/>
+                                <label class="tab" for="one-way">ONE WAY</label>
+                                
+                                <span class="glider"></span>
                             </div>
                         </div>
 
@@ -121,27 +139,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </select>
                             </div>
                         </div>
+                        
 
                         <!-- FROM/TO -->
                         <div id="flight-dates">
                             <div class="info-box">
                                 <label for="">Departure</label>
-                                <input
-                                    class="date-box"
-                                    type="date"
-                                    name="Departure"
-                                    class="form-control"
-                                    aria-describedby="return-date-label"/>
+                                <input class="date-box" type="date" name="Departure" class="form-control" aria-describedby="return-date-label"/>
                             </div>
-
-                            <!-- <div  class="info-box" id="return-box">
+                            <div class="info-box" id="return-box" style="display: block;">
                                 <label for="">Arrival</label>
-                                <input
-                                    class="date-box"
-                                    type="date"
-                                    name="Arrival"
-                                    aria-describedby="return-date-label" required/>
-                            </div> -->
+                                <input class="date-box" type="date" name="Arrival" aria-describedby="return-date-label"/>
+                            </div>
                         </div>
 
                         <!-- PASSENGER INFO -->
@@ -242,6 +251,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 
+<!-- Contact us form -->
+<div class="ctct">
+    <div id="contact" class="contact">
+        <div class="side">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95613.31811545139!2d-90.58590019925656!3d41.50609095432337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e231fb045e40b1%3A0x9fae16c1ba99fdc9!2sGofly%20Biz!5e0!3m2!1sen!2sus!4v1682902817928!5m2!1sen!2sus"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+           </div>
+           <form action="https://formspree.io/f/mlekpwqw" method="post" class="form color-g">
+               <h2>Contact Us</h2>
+               
+               <input class="box" type="text" name="name" pattern="[a-zA-Z]+" title="Please enter only alphabetical letters." placeholder="Enter Your Name" required>
+               <input class="box" type="email" name="email" placeholder="Enter Your Email Address" required>
+               <textarea class="box" name="message" rows="4" cols="50" placeholder="Enter text here..."></textarea>
+               <input type="submit" value="Submit" id="submit">
+           </form>
+
+       </div>
+   
+    </div>
+
+
 
 
 
@@ -296,5 +325,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>
+    <script>
+    function showArrival() {
+        document.getElementById("return-box").style.display = "block";
+    }
+    function hideArrival() {
+        document.getElementById("return-box").style.display = "none";
+    }
+</script>
 </body>
 </html>

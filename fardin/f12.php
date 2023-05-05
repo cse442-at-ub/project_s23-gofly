@@ -1,28 +1,9 @@
 <?php
-session_start();
-require_once ("config.php");
-
-
-// Check if the user is logged in.
-// If not, redirect them to the login page.
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
-
-
-if ($_SESSION['flight-type'] == 'Single') {
-  $ticket_id = $_SESSION['return_flight']; // Return Flight ID
-  include_once 'f12.php';
-}
-elseif($_SESSION['flight-type'] =='Return'){
-  $first_flight = $_SESSION['first_flight']; // First Flight ID 
-  $return_id = $_SESSION['return_flight']; // Return Flight ID
-
+// Get the current ticket information from the database
 $stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
 
 //binding the type of parameter
-mysqli_stmt_bind_param($stmt, "i", $first_flight);
+mysqli_stmt_bind_param($stmt, "i", $ticket_id);
 mysqli_stmt_execute($stmt);
 
 $result = mysqli_stmt_get_result($stmt);
@@ -40,30 +21,12 @@ $price = $ticket['price'];
 $seats = $ticket['seats'];
 $class = $ticket['class'];
 
-$stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
 
-//binding the type of parameter
-mysqli_stmt_bind_param($stmt, "i", $return_id);
-mysqli_stmt_execute($stmt);
-
-$result = mysqli_stmt_get_result($stmt);
-$ticket = mysqli_fetch_assoc($result);
-
-$return_airline = $ticket['airline'];
-$return_flight_number = $ticket['flight_number'];
-$return_departure = $ticket['departure'];
-$return_arrival = $ticket['arrival'];
-$return_date = $ticket['departure_date'];
-$return_time = $ticket['departure_time'];
-$return_duration = $ticket['duration'];
-$return_price = $ticket['price'];
-$return_seats = $ticket['seats'];
-$return_class = $ticket['class'];
 
 
 mysqli_close($db_connection);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,54 +62,37 @@ mysqli_close($db_connection);
     <div class="container2">
     <div class="model">
     <div class="room">
+      <div class="text-cover">
 
-    <div class="text-cover">
-      <h1 style="text-align:center;">First Flight</h1>
-      <hr>
-      <h1><?php echo $departure ?> To <?php echo $arrival ?> </h1>
-      <h2 class="price"> <?php echo $price?> <span>USD</span> / person</h2>
-      <hr>
-      <h3>Flight: <?php echo $flight_number?></h3>
-      <h3> <?php echo $date?>  <?php echo $time?></h3>
-    </div>
-
-    <div class="text-cover">
-        <h1 style="text-align:center;">Return Flight</h1>
+        <h1><?php echo $departure ?> To <?php echo $arrival ?> </h1>
+        <h2 class="price"> <?php echo $price?> <span>USD</span> / person</h2>
         <hr>
-        <h1><?php echo $return_departure ?> To <?php echo $return_arrival ?> </h1>
-        <h2 class="price"> <?php echo $return_price?> <span>USD</span> / person</h2>
-        <hr>
-        <h3>Flight: <?php echo $return_flight_number?></h3>
-        <h3> <?php echo $return_date?>  <?php echo $return_time?></h3>
-    </div>
-
+        <h3>Flight: <?php echo $flight_number?></h3>
+        <h3> <?php echo $date?>  <?php echo $time?></h3>
+      </div>
     </div><div class="payment">
       <div class="receipt-box">
         <h2 style="padding-bottom:20px;">Reciept Summary</h2>
         <table class="table">
           <tr>
-            <td>Ticket-1</td>
+            <td>Ticket</td>
             <td><?php echo $price?> USD</td>
           </tr>
           <tr>
-            <td>Ticket-2</td>
-            <td><?php echo $return_price?> USD</td>
-          </tr>
-          <tr>
             <td>Tax</td>
-            <td><?php echo (($return_price + $price)*(10/100)); ?> USD</td>
+            <td>0 USD</td>
           </tr>
           <tfoot>
             <tr>
               <td>Total</td>
-              <td>$<?php echo (($return_price + $price)*(10/100)) + $return_price + $price?> USD</td>
+              <td>$<?php echo $price?></td>
             </tr>
           </tfoot>
         </table>
       </div>
       <div class="payment-info">
   <h2 style="padding-bottom:20px;">Payment Info</h2>
-  <form method="post" action='processbooking.php?ids=' . $first_id . '-' . $second_id;>
+  <form method="post" action="processbooking.php?ticket_id=<?php echo $ticket_id; ?>">
     <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
     <label>Name on Credit Card</label>
     <input type="text" name="card_name" values="<?php echo $_SESSION['username']; ?>" required>
@@ -160,7 +106,6 @@ mysqli_close($db_connection);
         }
     ?>
     <button class="btn btn-1" type="submit" name="book_securely">Book Securely</button>
-    
   </form>
 </div>
 
@@ -174,12 +119,3 @@ mysqli_close($db_connection);
 </body>
       
 </html>
-
-
-
-<?php
-}else{
-  echo"Invalid Flight type";
-}
-
-?>

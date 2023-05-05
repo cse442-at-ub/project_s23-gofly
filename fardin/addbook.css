@@ -28,11 +28,10 @@ label {
   
   .text-cover {
     color: rgb(238, 238, 238);
-    position: absolute;
     bottom: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.7);
-    padding: 30px;
+    padding: 5%;
   }
   
   .text-cover > * {

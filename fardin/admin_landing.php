@@ -20,6 +20,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,8 +31,10 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="admin_land.css">
     <title>Gofly</title>
 </head>
+
 <body>
     <nav>
         <div class="logo">
@@ -44,8 +47,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
             <li>
                 <div class="dropdown">
                     <a href="#">
-                    <i class="fa-solid fa-user"></i>
-                    <?php
+                        <i class="fa-solid fa-user"></i>
+                        <?php
                         // session_start();
 
                         if(isset($_SESSION["username"])) {
@@ -54,17 +57,18 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
                         }
                     ?>
                     </a>
-                <!-- dropdown for the user -->
+                    <!-- dropdown for the user -->
                     <div class="dropdown-content">
                         <a href="profile.php">My Profile</a>
                         <a href="post_listing.php">Post Listing</a>
+                        <a href="posthotel.php">Post Hotel</a>
                         <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>
                 </div>
             </li>
         </ul>
-        
+
         <!-- Create a burger for mobile view -->
         <div class="burger">
             <div class="line1"></div>
@@ -73,7 +77,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
         </div>
     </nav>
 
-    <div class="wel"> 
+    <div class="wel">
         <?php
 
         if(isset($_SESSION["username"])) {
@@ -83,8 +87,27 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
         
         ?>
     </div>
+    <main class="page-content">
+        <div class="card">
+            <div class="content">
+                <h2 class="title">View Flight Listings</h2>
+                <p class="copy">Check out all the flight Listings</p>
+                <a class="btn-a" href= "admin_displaylist.php">View Flight</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="content">
+                <h2 class="title">View Hotel Lisiting</h2>
+                <p class="copy">See all the hotels Lisiting </p>
+                <a class="btn-a" href='admin_hotelDisplay.php'>View Hotel</a>
+            </div>
+        </div>
+
+    </main>
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>
 </body>
+
 </html>

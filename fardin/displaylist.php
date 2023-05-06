@@ -27,35 +27,11 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="display.css">
+    <link rel="stylesheet" href="weather.css">
+
     <title>Listings</title>
 </head>
-<body>
-    <?php 
-        // Check the session status
-        $status = session_status();
-        if ($status === PHP_SESSION_ACTIVE) {
-            // Session is active
-            include_once 'navbar.php';
-        } else {
-            session_start();
-            // Session is not active
-            include_once 'navbar.php';
-
-        }
-        
-    ?>
-
-    <div class="wel"> 
-    <?php
-        if(isset($_SESSION["username"])) {
-            $username = $_SESSION['username'];
-            echo "<h1>Welcome, $username!</h1>";
-        }
-    ?>
-    </div>
-
-
-    <style>
+<style>
         .sort-dropdown {
         display: inline-block;
         margin: 10px;
@@ -98,6 +74,33 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
         top: 8px;
         }
     </style>
+<body>
+    <?php 
+        // Check the session status
+        $status = session_status();
+        if ($status === PHP_SESSION_ACTIVE) {
+            // Session is active
+            include_once 'navbar.php';
+        } else {
+            session_start();
+            // Session is not active
+            include_once 'navbar.php';
+
+        }
+        
+    ?>
+
+    <div class="wel"> 
+    <?php
+        if(isset($_SESSION["username"])) {
+            $username = $_SESSION['username'];
+            echo "<h1>Welcome, $username!</h1>";
+        }
+    ?>
+    </div>
+
+
+    
     <div class="sort-dropdown">
         <form action="sort_listing.php" method="post">
             <label for="sort" class="sort-label">Sort by:</label>
@@ -188,7 +191,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
 							</span>
 							<div class="sub-content">
 								<span style="display:inline-block; white-space: nowrap; overflow: hidden; max-width: 9ch;" class="watermark"><?php echo $row["airline"]; ?></span>
-								<span class="name">BOARDING TIME<span>
+                                        <?php echo '<a class="btn-weather" href="weather.php?id=' . $row["id"] . '">Weather</a>' ?>
+                                <span class="name">BOARDING TIME<span>
 										<br>
 										<span><?php echo $row["departure_date"] . " " . $row["departure_time"]; ?></span>
 									</span>

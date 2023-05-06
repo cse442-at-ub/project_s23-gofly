@@ -32,6 +32,7 @@
     // Check the session status
     $status = session_status();
 
+    if ($_SESSION['user_type'] == 'user'){
     if ($status === PHP_SESSION_ACTIVE) {
         // Session is active
         include_once 'navbar.php';
@@ -41,6 +42,20 @@
         include_once 'navbar.php';
 
     }
+}
+if ($_SESSION['user_type'] == 'admin'){
+    if ($status === PHP_SESSION_ACTIVE) {
+        // Session is active
+        include_once 'admin_navbar.php';
+    } else {
+        session_start();
+        // Session is not active
+        include_once 'admin_navbar.php';
+
+    }
+
+}
+ 
         
     ?>
 

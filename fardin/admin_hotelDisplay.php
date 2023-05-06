@@ -40,18 +40,19 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
 </head>
 
 <body>
-    <?php 
-        // Check the session status
-        $status = session_status();
-        if ($status === PHP_SESSION_ACTIVE) {
-            // Session is active
-            include_once 'navbar.php';
-        } else {
-            session_start();
-            // Session is not active
-            include_once 'navbar.php';
+<?php 
+    // Check the session status
+    $status = session_status();
 
-        }
+    if ($status === PHP_SESSION_ACTIVE) {
+        // Session is active
+        include_once 'admin_navbar.php';
+    } else {
+        session_start();
+        // Session is not active
+        include_once 'admin_navbar.php';
+
+    }
         
     ?>
 
@@ -65,9 +66,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
     </div>
 
 
-
     <div class="sort-dropdown">
-        <form action="sort_listing.php" method="post">
+        <form action="sort_hotel.php" method="post">
             <label for="sort" class="sort-label">Sort by:</label>
             <div class="select-container">
                 <select name="sort" id="sort" class="sort-select" onchange="this.form.submit()">
@@ -78,15 +78,12 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
                     <option value="price_low_high"
                         <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'price_low_high' ? 'selected' : ''; ?>>
                         Price Low-High</option>
-                    <option value="duration"
-                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'duration' ? 'selected' : ''; ?>>
-                        Duration</option>
-                    <option value="airline"
-                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'airline' ? 'selected' : ''; ?>>
-                        Airline</option>
-                    <option value="destination"
-                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'destination' ? 'selected' : ''; ?>>
-                        Destination</option>
+                    <option value="hotel_name"
+                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'hotel_name' ? 'selected' : ''; ?>>
+                        Hotel Name</option>
+                    <option value="hotel_city"
+                        <?= isset($_SESSION['selected_sort']) && $_SESSION['selected_sort'] == 'hotel_city' ? 'selected' : ''; ?>>
+                        Hotel City</option>
                 </select>
             </div>
         </form>

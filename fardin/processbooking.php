@@ -10,17 +10,16 @@ if (!isset($_SESSION['username'])) {
 }
 
 // Retrieve the ticket ID and username from the form
-$ids = $_GET['ids'];
-$ids_array = explode('-', $ids);
-$first_id = $ids_array[0];
-$second_id = $ids_array[1];
 
+
+
+$ticket_id = $_GET['ticket_id'];
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 
 // Check if the user has already booked this ticket
-$select_query = "SELECT * FROM user_booking WHERE ticket_id = ? AND return_ticket_id = ? AND user = ?";
+$select_query = "SELECT * FROM user_booking WHERE ticket_id = ? AND user = ?";
 $stmt = mysqli_prepare($db_connection, $select_query);
-mysqli_stmt_bind_param($stmt, "iis", $first_id, $second_id, $username);
+mysqli_stmt_bind_param($stmt, "is", $ticket_id, $username);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
@@ -31,11 +30,11 @@ if (mysqli_num_rows($result) > 0) {
     exit();
 } else {
     // Prepare the insert statement
-    $insert_query = "INSERT INTO user_booking (ticket_id, return_ticket_id, user) VALUES (?, ?, ?)";
+    $insert_query = "INSERT INTO user_booking (ticket_id, user) VALUES (?, ?)";
 
     // Use prepared statements to prevent SQL injection attacks
     $stmt = mysqli_prepare($db_connection, $insert_query);
-    mysqli_stmt_bind_param($stmt, "iis", $first_id, $second_id, $username);
+    mysqli_stmt_bind_param($stmt, "is", $ticket_id, $username);
 
     // Execute the insert statement
     if(mysqli_stmt_execute($stmt)){

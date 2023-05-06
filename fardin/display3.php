@@ -14,6 +14,8 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     exit();
 }
 
+$_SESSION['firstflight'] = $_GET['id'];
+
 
 ?>
 <!DOCTYPE html>

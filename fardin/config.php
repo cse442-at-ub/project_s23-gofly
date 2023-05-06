@@ -12,6 +12,8 @@ $username = "mdhyder";
 $password = "50313569";
 $dbname = "cse442_2023_spring_team_y_db";
 
+
+
 $db_connection = new mysqli($servername, $username, $password, $dbname);
 
 //Check conncection

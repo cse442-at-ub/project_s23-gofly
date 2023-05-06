@@ -12,12 +12,18 @@ if (!isset($_SESSION['username'])) {
 
 
 if ($_SESSION['flight-type'] == 'Single') {
-  $ticket_id = $_SESSION['return_flight']; // Return Flight ID
+  $ticket_id = $_GET['id']; // Return Flight ID
   include_once 'f12.php';
 }
 elseif($_SESSION['flight-type'] =='Return'){
   $first_flight = $_SESSION['first_flight']; // First Flight ID 
   $return_id = $_SESSION['return_flight']; // Return Flight ID
+
+$_SESSION['Returnflight'] = $_GET['id'];
+
+echo $_SESSION['firstflight'];
+
+echo $_SESSION['Returnflight'];
 
 $stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
 
@@ -59,6 +65,10 @@ $return_duration = $ticket['duration'];
 $return_price = $ticket['price'];
 $return_seats = $ticket['seats'];
 $return_class = $ticket['class'];
+
+
+
+
 
 
 mysqli_close($db_connection);
@@ -146,7 +156,7 @@ mysqli_close($db_connection);
       </div>
       <div class="payment-info">
   <h2 style="padding-bottom:20px;">Payment Info</h2>
-  <form method="post" action='processbooking.php?ids=' . $first_id . '-' . $second_id;>
+  <form method="post" action='process_return_booking.php?'>
     <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
     <label>Name on Credit Card</label>
     <input type="text" name="card_name" values="<?php echo $_SESSION['username']; ?>" required>

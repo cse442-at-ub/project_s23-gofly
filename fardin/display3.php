@@ -161,28 +161,8 @@ $_SESSION['first_flight'] = $_GET['id'];
 		<br>
         <?php
 		}
-		// add pagination links
-	// 	$sql = "SELECT COUNT(*) AS count FROM flight_listings";
-	// 	$result = mysqli_query($db_connection, $sql);
-	// 	$row = mysqli_fetch_assoc($result);
-	// 	$count = $row['count'];
-	// 	$pages = ceil($count / $limit);
-	// 	if ($pages > 1) {
-	// 		?>
-    //         <div class="pagination">
-    //         <?php
-	// 		for ($i = 1; $i <= $pages; $i++) {
-	// 			if ($i == $page) {
-	// 				echo "<span class='current'>$i</span>";
-	// 			} else {
-	// 				echo "<a href='?page=$i'>$i</a>";
-	// 			}
-	// 		}
-	// 		?>
-    //         </div>
-    //         <?php
-	// 	}
-	// } else {
+		
+	 } else {
         ?>
         <div class="wel">
             <h1>

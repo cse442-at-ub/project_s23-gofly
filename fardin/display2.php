@@ -160,32 +160,32 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
         <?php
 		}
 		// add pagination links
-		$sql = "SELECT * FROM flight_listings 
-            WHERE departure = '$origin' 
-            AND arrival = '$destination' 
-            AND departure_date = '$departure_date'
-            AND class = '$class_type'
-            LIMIT $limit OFFSET $offset";
+	// 	$sql = "SELECT * FROM flight_listings 
+    //         WHERE departure = '$origin' 
+    //         AND arrival = '$destination' 
+    //         AND departure_date = '$departure_date'
+    //         AND class = '$class_type'
+    //         LIMIT $limit OFFSET $offset";
             
-		$result = mysqli_query($db_connection, $sql);
-		$row = mysqli_fetch_assoc($result);
-		$count = $row['count'];
-		$pages = ceil($count / $limit);
-		if ($pages > 1) {
-			?>
-            <div class="pagination">
-            <?php
-			for ($i = 1; $i <= $pages; $i++) {
-				if ($i == $page) {
-					echo "<span class='current'>$i</span>";
-				} else {
-					echo "<a href='?page=$i'>$i</a>";
-				}
-			}
-			?>
-            </div>
-            <?php
-		}
+	// 	$result = mysqli_query($db_connection, $sql);
+	// 	$row = mysqli_fetch_assoc($result);
+	// 	$count = $row['count'];
+	// 	$pages = ceil($count / $limit);
+	// 	if ($pages > 1) {
+	// 		?>
+    //         <div class="pagination">
+    //         <?php
+	// 		for ($i = 1; $i <= $pages; $i++) {
+	// 			if ($i == $page) {
+	// 				echo "<span class='current'>$i</span>";
+	// 			} else {
+	// 				echo "<a href='?page=$i'>$i</a>";
+	// 			}
+	// 		}
+	// 		?>
+    //         </div>
+    //         <?php
+	// 	}
 	} else {
         ?>
         <div class="wel">

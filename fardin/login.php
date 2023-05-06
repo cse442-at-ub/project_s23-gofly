@@ -86,8 +86,9 @@ mysqli_close($db_connection);
         </div>
         <ul class="nav-links">
             <li><a href="reviews.php">Reviews</a></li>
+           
+            <li><a href="landing2.php#contact">Contact Us</a></li>
             <li><a href="signup.php">Register</a></li>
-            <li><a href="contact.php">Contact Us</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>

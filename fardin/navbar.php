@@ -6,7 +6,7 @@
             <li><a href="mybooking.php"><i class="fa-solid fa-suitcase-rolling fa-bounce" style="color: #f2f2f2;"></i> My Booking</a></li>
             <li><a href="displaylist.php">Flights</a></li>
             <li><a href="displayhotel1.php">Hotels</a></li>
-            <li><a href="contact.php">Contact Us</a></li>
+            <li><a href="landing.php#contact">Contact Us</a></li>
 
             
             <li>

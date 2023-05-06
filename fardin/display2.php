@@ -186,7 +186,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
     //         </div>
     //         <?php
 	// 	}
-	// } else {
+	} else {
         ?>
         <div class="wel">
             <h1>

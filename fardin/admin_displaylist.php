@@ -31,19 +31,19 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
     <title>Listings</title>
 </head>
 <body>
-    <?php 
-        // Check the session status
-        $status = session_status();
+<?php 
+    // Check the session status
+    $status = session_status();
 
-        if ($status === PHP_SESSION_ACTIVE) {
-            // Session is active
-            include_once 'navbar.php';
-        } else {
-            session_start();
-            // Session is not active
-            include_once 'navbar.php';
+    if ($status === PHP_SESSION_ACTIVE) {
+        // Session is active
+        include_once 'admin_navbar.php';
+    } else {
+        session_start();
+        // Session is not active
+        include_once 'admin_navbar.php';
 
-        }
+    }
         
     ?>
 

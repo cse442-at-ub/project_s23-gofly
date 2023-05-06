@@ -1,17 +1,12 @@
-    <nav>
+<nav>
         <div class="logo">
-            <h4><a href="landing.php">Gofly</a></h4>
+            <h4><a href="admin_landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-<<<<<<< HEAD
-            <li><a href="mybooking.php"><i class="fa-solid fa-suitcase-rolling fa-bounce" style="color: #f2f2f2;"></i>Booking</a></li>
-            <li><a href="displaylist.php">Listings</a></li>
-=======
-            <li><a href="mybooking.php"><i class="fa-solid fa-suitcase-rolling fa-bounce" style="color: #f2f2f2;"></i> My Booking</a></li>
-            <li><a href="displaylist.php">Flights</a></li>
-            <li><a href="displayhotel1.php">Hotels</a></li>
->>>>>>> 10370be80ae93e7c9fe27016217ad7777ae43086
-            <li><a href="contact.php">Contact Us</a></li>
+
+            <li><a href="post_listing.php">Post Flights</a></li>
+            <li><a href="posthotel.php">Post Hotels</a></li>
+
 
             
             <li>
@@ -28,8 +23,6 @@
                 <!-- dropdown for the user -->
                     <div class="dropdown-content">
                         <a href="profile.php">My Profile</a>
-                        <a href="reviews.php">Reviews</a>
-                    
                         <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>
@@ -44,3 +37,4 @@
             <div class="line3"></div>
         </div>
     </nav>
+    

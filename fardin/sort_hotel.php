@@ -30,7 +30,13 @@ if (mysqli_num_rows($result) > 0) {
     session_start();
     $_SESSION["sorted_listings"] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $_SESSION['selected_sort'] = $sort_option; // Store the selected sort option in the session
+    if ($_SESSION['user-type'] == 'user'){
     header("Location: displayhotel1.php");
+    }
+    else{
+        header("Location: admin_hotelDisplay.php");
+    }
+    
 } else {
     echo "<p>No results found.</p>";
 }

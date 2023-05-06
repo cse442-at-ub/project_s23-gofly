@@ -113,17 +113,17 @@
 </head>
 
 <body>
-    <?php 
+<?php 
     // Check the session status
     $status = session_status();
 
     if ($status === PHP_SESSION_ACTIVE) {
         // Session is active
-        include_once 'navbar.php';
+        include_once 'admin_navbar.php';
     } else {
         session_start();
         // Session is not active
-        include_once 'navbar.php';
+        include_once 'admin_navbar.php';
 
     }
         

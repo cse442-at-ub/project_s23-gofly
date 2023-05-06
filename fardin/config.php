@@ -12,6 +12,8 @@ $username = "mdhyder";
 $password = "50313569";
 $dbname = "cse442_2023_spring_team_y_db";
 
+define('SENDGRID_API_KEY', "SG.Go3WsEFDQt-YiWo81L9mcQ.LQRRZ9SztycbtHrQXz2m1SLlaEU1-Gaoz4IU1SW3ozQ");
+
 
 
 $db_connection = new mysqli($servername, $username, $password, $dbname);

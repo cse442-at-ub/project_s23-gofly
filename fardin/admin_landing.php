@@ -100,7 +100,7 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
             <div class="content">
                 <h2 class="title">View Hotel Lisiting</h2>
                 <p class="copy">See all the hotels Lisiting </p>
-                <a class="btn-a" href='admin_hoteldisplay.php'>View Hotel</a>
+                <a class="btn-a" href='admin_hotelDisplay.php'>View Hotel</a>
             </div>
         </div>
 

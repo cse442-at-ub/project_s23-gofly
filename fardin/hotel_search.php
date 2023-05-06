@@ -87,7 +87,7 @@ if(!isset($_SESSION['username'])){
     $interval = $check_in->diff($check_out);
     $duration = $interval->format('%a'); // Get the difference in days
 
-    echo $duration;
+    
 
 	$limit = 5;
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;

@@ -1,46 +1,3 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $errors = '';
-  
-  // Check if required fields are filled in
- if ($_POST['flight-type']=='Single'){
-    if (empty($_POST['flight-type']) || empty($_POST['Origin']) || empty($_POST['Destination']) || empty($_POST['Departure']) || empty($_POST['class-type']))  {
-        $errors = 'Please fill in all the fields';
-      }
-      else{
-      session_start(); // start the session
-      $_SESSION['Origin'] = $_POST['Origin']; // store Origin in session
-      $_SESSION['Destination'] = $_POST['Destination']; // store Destination in session
-      $_SESSION['Departure'] = $_POST['Departure']; // store Departure in session
-      $_SESSION['class-type'] = $_POST['class-type']; // store Departure in session
-      $_SESSION['flight-type'] = $_POST['flight-type'];
-    
-      header('Location: display2.php');
-      exit;
-    }
- }
- else{
-    if (empty($_POST['Arrival']) ||empty($_POST['Origin']) || empty($_POST['Destination']) || empty($_POST['Departure']) || empty($_POST['class-type']))  {
-        $errors = 'Please fill in all the fields';
-      }
-      else{
-      session_start(); // start the session
-      $_SESSION['Origin'] = $_POST['Origin']; // store Origin in session
-      $_SESSION['Destination'] = $_POST['Destination']; // store Destination in session
-      $_SESSION['Departure'] = $_POST['Departure']; // store Departure in session
-      $_SESSION['Arrival'] = $_POST['Arrival']; // store the arrival in session
-      $_SESSION['class-type'] = $_POST['class-type']; // store Departure in session
-      $_SESSION['flight-type'] = $_POST['flight-type'];
-    
-      header('Location: display2.php');
-      exit;
-    }
- }
-}
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,14 +54,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- .................Search Bar................................. -->
         <div id="search-form">
-            <section>
-                <h2 class="header">Flights</h2>
+        <h1 class ='header'>
+        <button class="c-button c-button--gooey" onclick="showFlightSearchBar()"> Flights
+            <div class="c-button__blobs">
+            <div></div>
+            <div></div>
+            <div></div>
+            </div>
+            </button>
+        <button class="c-button c-button--gooey" onclick="showHotelSearchBar()"> Hotels
+            <div class="c-button__blobs">
+            <div></div>
+            <div></div>
+            <div></div>
+            </div>
+            </button>
+            
+        </h1>
+            <section id = 'flight-search-bar'>
                 <div class="flight" id="flightbox">
                 <?php if (!empty($errors)): ?>
                 <p class="error" style="color: red;"><?php echo $errors; ?></p>
                 <?php endif; ?>
 
-                    <form id="flight-form" method="post" action="">
+                    <form id="flight-form" method="post" action="search_type.php?id=1">
                         <!-- TRIP TYPE -->
                         <div class="container-10">
                             <div class="tabs">
@@ -192,8 +165,107 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 </div>
             </section>
+
+            <section id = "hotel-search-bar">
+       
+        <div class="flight" id="flightbox">
+        <?php if (!empty($errors)): ?>
+          <p class="error" style="color: red;"><?php echo $errors; ?></p>
+        <?php endif; ?>
+
+            <form id="hotel-form" method="post" action="search_type.php?id=2">
+    
+                <div id="hotel-depart">
+                    <div class="info-box">
+                        <label for="location">Location</label>
+                        <select id="city" name="search_city" required>
+                        <option value="">Select a city</option>
+                        <?php
+                        $us_cities = array("New York City", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose", "Austin", "Jacksonville", "Fort Worth", "Columbus", "San Francisco");
+                        foreach ($us_cities as $city) {
+                            echo "<option value='$city'>$city</option>";
+                        }
+                        ?>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- FROM/TO -->
+                <div id="flight-dates">
+                    <div class="info-box">
+                        <label for="">Check-In</label>
+                        <input
+                            class="date-box"
+                            type="date"
+                            name="check_in"
+                            class="form-control"
+                            aria-describedby="return-date-label"/>
+                    </div>
+                    <div class="info-box">
+                        <label for="">Check-Out</label>
+                        <input
+                            class="date-box"
+                            type="date"
+                            name="check_out"
+                            class="form-control"
+                            aria-describedby="return-date-label"/>
+                    </div>
+                </div>
+
+                <!-- PASSENGER INFO -->
+                <div id="flight-info">
+                    <div class="info-box">
+                        <label for="adults">Adults</label>
+                        <select name="hotel_adults">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                  
+                </div>
+
+                <!-- SEARCH BUTTON -->
+                <div id="flight-search">
+                    <div class="info-box">
+                        <input type="submit" id="search-hotel" name="search-hotel" value="Search"/>
+                        <p class="failed"> 
+                            <?php 
+                                if(isset($_SESSION['status'])){ 
+                                    echo $_SESSION['status']; 
+                                    unset($_SESSION['status']); 
+                                } 
+                            ?> </p>
+            
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </section>
         </div>
     </div>
+
+    <script>
+     window.onload = function() {
+        showFlightSearchBar();
+}
+    function showFlightSearchBar() {
+        var flightSearchBar = document.getElementById("flight-search-bar");
+        var hotelSearchBar = document.getElementById("hotel-search-bar");
+        flightSearchBar.style.display = "block";
+        hotelSearchBar.style.display = "none";
+    }
+    
+    function showHotelSearchBar() {
+        var flightSearchBar = document.getElementById("flight-search-bar");
+        var hotelSearchBar = document.getElementById("hotel-search-bar");
+        flightSearchBar.style.display = "none";
+        hotelSearchBar.style.display = "block";
+    }
+</script>
 
 
 

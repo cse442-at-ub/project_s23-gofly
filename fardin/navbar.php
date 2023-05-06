@@ -4,7 +4,8 @@
         </div>
         <ul class="nav-links">
             <li><a href="mybooking.php"><i class="fa-solid fa-suitcase-rolling fa-bounce" style="color: #f2f2f2;"></i> My Booking</a></li>
-            <li><a href="displaylist.php">Listings</a></li>
+            <li><a href="displaylist.php">Flights</a></li>
+            <li><a href="displayhotel1.php">Hotels</a></li>
             <li><a href="contact.php">Contact Us</a></li>
 
             
@@ -23,7 +24,7 @@
                     <div class="dropdown-content">
                         <a href="profile.php">My Profile</a>
                         <a href="reviews.php">Reviews</a>
-                        <a href="post_listing.php">Post Listing</a>
+                    
                         <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>

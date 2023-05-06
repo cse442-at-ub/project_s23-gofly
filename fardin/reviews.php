@@ -58,21 +58,20 @@ if (!isset($_SESSION['username'])) {
     <title>Reviews</title>
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <h4><a href="landing.php">Gofly</a></h4>
-        </div>
-        <ul class="nav-links">
-            <li><a href="displaylist.php">Listings</a></li>
-            <li><a href="contact.php">Contact Us</a></li>
-            <li><a href="profile.php">My Profile</a></li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+<?php 
+        // Check the session status
+        $status = session_status();
+        if ($status === PHP_SESSION_ACTIVE) {
+            // Session is active
+            include_once 'navbar.php';
+        } else {
+            session_start();
+            // Session is not active
+            include_once 'navbar.php';
+
+        }
+        
+    ?>
 
     <div class="container">
         <form action="submit_review.php" method="post" class="form color-g">

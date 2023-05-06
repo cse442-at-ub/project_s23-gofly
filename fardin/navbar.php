@@ -3,7 +3,7 @@
             <h4><a href="landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="mybooking.php"><i class="fa-solid fa-suitcase-rolling fa-bounce" style="color: #f2f2f2;"></i> My Booking</a></li>
+            <li><a href="mybooking.php"><i class="fa-solid fa-suitcase-rolling fa-bounce" style="color: #f2f2f2;"></i>Booking</a></li>
             <li><a href="displaylist.php">Listings</a></li>
             <li><a href="contact.php">Contact Us</a></li>
 

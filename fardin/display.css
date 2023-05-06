@@ -584,3 +584,57 @@ nav {
   box-shadow: 15px 15px 20px black;
 }
 
+.hotel-listing {
+	background-color: #fff;
+    width:800px;
+    margin-left:5%;
+    margin-top:10%;
+    padding: 20px;
+	box-shadow: 0px 0px 10px #ccc;
+	display: flex;
+    justify-content: left;
+	align-items: center;
+}
+
+.hotel-image {
+	width: 200px;
+	height: 200px;
+	margin-right: 20px;
+}
+
+.hotel-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.hotel-info h2 {
+	margin-top: 0;
+	font-weight: bold;
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.hotel-info p {
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+.hotel-info strong {
+	font-weight: bold;
+}
+
+.hotel-info button {
+	background-color: #008CBA;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+.hotel-info button:hover {
+	background-color: #004265;
+}

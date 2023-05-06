@@ -113,18 +113,18 @@
                 <datalist id="airports">
                     <option>JFK</option>
                     <option>BUF</option>
-                    <option>SAF</option>
+                    <option>DIA</option>
                     <option>LAG</option>
                     <option>DAC</option>
                 </datalist>
 
                 <p><label for="arrival">Arrival Airport:</label></p>
-                <input list="airports" class= "box" type="text" id="arrival" name="arrival" Placeholder="Ex..Buf"maxlength="3" required><br>
+                <input list="airports" class= "box" type="text" id="arrival" name="arrival" Placeholder="Ex..Buf"maxlength="11" required><br>
 
                 <datalist id="airports">
                     <option>JFK</option>
                     <option>BUF</option>
-                    <option>SAF</option>
+                    <option>DIA</option>
                     <option>LAG</option>
                     <option>DAC</option>
                 </datalist>

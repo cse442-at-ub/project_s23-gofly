@@ -160,7 +160,13 @@ if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'user') {
         <?php
 		}
 		// add pagination links
-		$sql = "SELECT COUNT(*) AS count FROM flight_listings";
+		$sql = "SELECT * FROM flight_listings 
+            WHERE departure = '$origin' 
+            AND arrival = '$destination' 
+            AND departure_date = '$departure_date'
+            AND class = '$class_type'
+            LIMIT $limit OFFSET $offset";
+            
 		$result = mysqli_query($db_connection, $sql);
 		$row = mysqli_fetch_assoc($result);
 		$count = $row['count'];

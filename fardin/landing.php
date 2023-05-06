@@ -118,11 +118,11 @@
                         <div id="flight-dates">
                             <div class="info-box">
                                 <label for="">Departure</label>
-                                <input class="date-box" type="date" name="Departure" class="form-control" aria-describedby="return-date-label"/>
+                                <input class="date-box" type="date" name="Departure" class="form-control" min="<?php echo date('Y-m-d'); ?>" aria-describedby="return-date-label"/>
                             </div>
                             <div class="info-box" id="return-box" style="display: block;">
                                 <label for="">Arrival</label>
-                                <input class="date-box" type="date" name="Arrival" aria-describedby="return-date-label"/>
+                                <input class="date-box" type="date" name="Arrival" min="<?php echo date('Y-m-d'); ?>" aria-describedby="return-date-label"/>
                             </div>
                         </div>
 
@@ -200,6 +200,7 @@
                             type="date"
                             name="check_in"
                             class="form-control"
+                            min="<?php echo date('Y-m-d'); ?>"
                             aria-describedby="return-date-label"/>
                     </div>
                     <div class="info-box">
@@ -209,6 +210,7 @@
                             type="date"
                             name="check_out"
                             class="form-control"
+                            min="<?php echo date('Y-m-d'); ?>"
                             aria-describedby="return-date-label"/>
                     </div>
                 </div>

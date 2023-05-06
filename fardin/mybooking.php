@@ -21,6 +21,7 @@ $result = $stmt->get_result();
 
 // Create an empty array to store ticket IDs
 $ticket_ids = array();
+$roundtrip_ids = array();
 $hotel_ids = array();
 
 
@@ -33,6 +34,11 @@ if ($result->num_rows > 0) {
         }
         if ($row["hotel_id"] !== null && $row["ticket_id"] == null ) {
             $hotel_ids[] = $row["hotel_id"];
+        }
+        if ($row["ticket_id"] !== null && $row["return_ticket_id"] !== null && $row["hotel_id"] == null ) {
+            
+            $roundtrip_ids[] = array($row["ticket_id"], $row["return_ticket_id"]);
+
         }
     }
 } else {
@@ -202,7 +208,6 @@ if ($result->num_rows > 0) {
             echo "<p>No flight data found for ticket ID $ticket_id</p>";
         }
         }
-<<<<<<< HEAD
 
         foreach ($roundtrip_ids as $roundtrip_id) {
             // Retrieve the flight data based on the ticket ID
@@ -320,8 +325,6 @@ if ($result->num_rows > 0) {
                     echo "<p>No flight data found for ticket ID $ticket_id</p>";
                 }
                 }
-=======
->>>>>>> e1fb6ed3cd5698441f52bfc4e4f99cf003e5bc30
         
     ?>
 

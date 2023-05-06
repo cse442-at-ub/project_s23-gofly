@@ -34,14 +34,34 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Details</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="display.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landingstyle.css">
     <link rel="stylesheet" href="hoteldisplay.css">
   </head>
   <body>
+<?php
+  // Check the session status
+  $status = session_status();
+
+  if ($status === PHP_SESSION_ACTIVE) {
+      // Session is active
+      include_once 'navbar.php';
+  } else {
+      session_start();
+      // Session is not active
+      include_once 'navbar.php';
+
+  }
+?>
+        
+
     <header>
       <h1><?php echo $name ?></h1>
     </header>
@@ -89,49 +109,43 @@
           </div>
         </div>
         <div class="price">
-        <h3>Address: </h3>
-          <p><?php echo $address ?></p>
-          <p><?php echo $city . ", " . $zipcode; ?></p>
-
+          <h3>Address: </h3>
+            <p><?php echo $address ?></p>
+            <p><?php echo $city . ", " . $zipcode; ?></p>
+            <br>
+          <p class="pr-type"><?php echo 'Price per night: $'. $price ?> </p>
           
-          <div class="price-amount"><?php echo 'Price per night: $'. $price ?></div>
-          <a href="addbookinghotel.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
+          
         </div>
+        
+        <a href="addbookinghotel.php?id=<?php echo $row['id']; ?>" style="width:45%;" class="btn-2">Book Now</a>
       </section>
     </main>
+
+    <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
+    <script src="land.js"></script>
   </body>
 </html>
 
 <style>
-    /* Global styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-}
 
 /* Header styles */
 header {
+  text-align:center;
   background-color: #333;
   color: #fff;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 10px;
 }
 
 h1 {
   font-size: 28px;
 }
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 10px;
+.pr-type{
+  font-weight: 900;
+ font-size: 1.2em;
+ line-height: 1.5;
 }
 
 /* Main content styles */
@@ -209,7 +223,8 @@ main {
 .price {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin:auto;
+  justify-content:center;
 }
 
 .price-amount {
@@ -248,6 +263,25 @@ button {
 
 button:hover {
   background-color: #555;
+}
+.btn-2 {
+  display: block;
+  text-align: center;
+  padding: 10px 25px;
+  margin-top: 56.5px;
+  text-decoration: none;
+  background-color: rgb(124, 100, 231);
+  color: white;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  margin-left: 150px;
+}
+
+.btn-2:hover{
+  cursor: pointer;
+  background-color: blueviolet;
 }
 
 

@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:200,400|Playfair+Display');
-body {
-  background-image: linear-gradient(190deg, rgba(0, 0, 99, .05) 10%, rgba(0, 0, 255, .19) 100%);
-  padding: 0;
-  margin: 0;
 
-}
 .wrap-2 {
   
   width: 100%;
@@ -255,4 +250,140 @@ body {
 
 
 
- 
+
+/* Header styles */
+header {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+/* Main content styles */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.room-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.room-details h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.room-images {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.room-images img {
+  max-width: 32%;
+}
+
+.hotel-description {
+  margin-bottom: 30px;
+}
+
+.address {
+    margin-top: 20px;
+  width: 50%;
+}
+
+.address h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.address p {
+  margin-bottom: 5px;
+}
+
+.amenities {
+  width: 50%;
+}
+
+.amenities h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.amenity {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.amenity-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price-amount {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.price {
+  margin-top: 20px;
+}
+
+.price h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.price-label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.price-amount {                  
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 200px;
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+

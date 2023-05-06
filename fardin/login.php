@@ -82,7 +82,7 @@ mysqli_close($db_connection);
 <body>
     <nav>
         <div class="logo">
-            <h4><a href="landing2.html">Gofly</a></h4>
+            <h4><a href="landing2.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
             <li><a href="reviews.php">Reviews</a></li>

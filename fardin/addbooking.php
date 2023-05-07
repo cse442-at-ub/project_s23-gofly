@@ -11,11 +11,8 @@ if (!isset($_SESSION['username'])) {
 }
 
 
-if ($_SESSION['flight-type'] == 'Single') {
-  $ticket_id = $_GET['id']; // Return Flight ID
-  include_once 'f12.php';
-}
-elseif($_SESSION['flight-type'] =='Return'){
+
+if($_SESSION['flight-type'] =='Return'){
   $first_flight = $_SESSION['first_flight']; // First Flight ID 
   $return_id = $_SESSION['return_flight']; // Return Flight ID
 
@@ -189,7 +186,10 @@ mysqli_close($db_connection);
 
 <?php
 }else{
-  echo"Invalid Flight type";
+  
+    $ticket_id = $_GET['id']; // Return Flight ID
+    include_once 'f12.php';
+  
 }
 
 ?>

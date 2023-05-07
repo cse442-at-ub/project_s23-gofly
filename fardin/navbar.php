@@ -4,9 +4,21 @@
         </div>
         <ul class="nav-links">
             <li><a href="mybooking.php"><i class="fa-solid fa-suitcase-rolling fa-bounce" style="color: #f2f2f2;"></i> My Booking</a></li>
-            <li><a href="displaylist.php">Flights</a></li>
-            <li><a href="displayhotel1.php">Hotels</a></li>
+            <li>
+                <div class="dropdown">
+                    <a href="#">Listings</a>
+                <!-- dropdown for the user -->
+                    <div class="dropdown-content">
+                         <a href="displaylist.php">Flights</a>
+                        <a href="displayhotel1.php">Hotels</a>
+                    </div>
+                </div>
+            </li>
+           
             <li><a href="landing.php#contact">Contact Us</a></li>
+
+            
+            
 
             
             <li>

@@ -7,10 +7,10 @@ global $db_connection;
 // }
 
 //Connect to the databse using mysqli
-$servername = "oceanus.cse.buffalo.edu:3306";
-$username = "mdhyder";
-$password = "50313569";
-$dbname = "cse442_2023_spring_team_y_db";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "go_fly";
 
 define('SENDGRID_API_KEY', "SG.Go3WsEFDQt-YiWo81L9mcQ.LQRRZ9SztycbtHrQXz2m1SLlaEU1-Gaoz4IU1SW3ozQ");
 
